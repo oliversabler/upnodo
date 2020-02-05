@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Upnodo.Infrastructure.Services.SaveDate;
+using Upnodo.Domain.Contracts;
+using Upnodo.Domain.Responses.Records;
+using Upnodo.Infrastructure.Services.Records;
 
 namespace Upnodo.Api
 {
@@ -24,7 +26,8 @@ namespace Upnodo.Api
             
             services.AddMediatR(typeof(Startup));
 
-            services.AddTransient<ISaveDateService, SaveDateService>();
+            services.AddTransient<IRecord<SaveResponse>, SaveService>();
+            services.AddTransient<IRecord<ListResponse>, ListService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

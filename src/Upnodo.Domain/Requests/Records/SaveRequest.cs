@@ -1,9 +1,9 @@
 using System;
 using Upnodo.Domain.Enums;
 
-namespace Upnodo.Domain.Requests
+namespace Upnodo.Domain.Requests.Records
 {
-    public class SaveDateRequest
+    public class SaveRequest
     {
         public Guid Guid { get; set; }
         

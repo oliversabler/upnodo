@@ -1,13 +1,13 @@
 using System;
 using MediatR;
 using Upnodo.Domain.Enums;
-using Upnodo.Domain.Responses;
+using Upnodo.Domain.Responses.Records;
 
-namespace Upnodo.Domain.Commands
+namespace Upnodo.Domain.Commands.Records
 {
-    public class SaveDateCommand : IRequest<SaveDateResponse>
+    public class SaveCommand : IRequest<SaveResponse>
     {
-        public SaveDateCommand(Guid guid, Mode mode, DateTime date)
+        public SaveCommand(Guid guid, Mode mode, DateTime date)
         {
             Guid = guid;
             Mode = mode;
