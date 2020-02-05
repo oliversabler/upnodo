@@ -4,7 +4,7 @@ using Upnodo.Domain.Responses.Records;
 
 namespace Upnodo.Infrastructure.Services.Records
 {
-    public class SaveService : IRecord<SaveResponse>
+    public class SaveService : IService<SaveResponse>
     {
         public Task<SaveResponse> RunAsync<T>(T request)
         {

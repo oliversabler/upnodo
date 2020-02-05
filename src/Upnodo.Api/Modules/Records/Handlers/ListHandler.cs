@@ -9,9 +9,9 @@ namespace Upnodo.Api.Modules.Records.Handlers
 {
     public class ListHandler : IRequestHandler<ListQuery, ListResponse>
     {
-        private readonly IRecord<ListResponse> _listService;
+        private readonly IService<ListResponse> _listService;
 
-        public ListHandler(IRecord<ListResponse> listService)
+        public ListHandler(IService<ListResponse> listService)
         {
             _listService = listService;
         }

@@ -10,9 +10,9 @@ namespace Upnodo.Api.Modules.Records.Handlers
     
     public class SaveHandler : IRequestHandler<SaveCommand, SaveResponse>
     {
-        private readonly IRecord<SaveResponse> _saveService;
+        private readonly IService<SaveResponse> _saveService;
 
-        public SaveHandler(IRecord<SaveResponse> saveService)
+        public SaveHandler(IService<SaveResponse> saveService)
         {
             _saveService = saveService;
         }
