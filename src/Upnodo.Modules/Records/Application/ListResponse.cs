@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Upnodo.Domain.Contracts;
 
-namespace Upnodo.Domain.Responses.Records
+namespace Upnodo.Modules.Records.Application
 {
     public class ListResponse : IResponse
     {

@@ -1,9 +1,8 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Upnodo.Domain.Commands.Records;
-using Upnodo.Domain.Queries.Records;
-using Upnodo.Domain.Requests.Records;
+using Upnodo.Api.Factories;
+using Upnodo.Modules.Records.Application;
 
 namespace Upnodo.Api.Modules.Records
 {
@@ -21,8 +20,7 @@ namespace Upnodo.Api.Modules.Records
         [Route("/api/records")]
         public async Task<IActionResult> Save([FromBody] SaveRequest request)
         {
-            var result = 
-                await _mediator.Send(new SaveCommand(request.Guid, request.Mode, request.Date));
+            var result = await _mediator.Send(MediatorRequestFactory.SaveCommand(request));
 
             return Ok(result);
         }
@@ -31,8 +29,7 @@ namespace Upnodo.Api.Modules.Records
         [Route("/api/records")]
         public async Task<IActionResult> List([FromBody] ListRequest request)
         {
-            var result =
-                await _mediator.Send(new ListQuery());
+            var result = await _mediator.Send(MediatorRequestFactory.ListQuery(request));
 
             return Ok(result);
         }

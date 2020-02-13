@@ -1,7 +1,7 @@
 using System;
 using Upnodo.Domain.Enums;
 
-namespace Upnodo.Domain.Requests.Records
+namespace Upnodo.Modules.Records.Application
 {
     public class SaveRequest
     {

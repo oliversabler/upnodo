@@ -1,6 +1,6 @@
 using System;
 
-namespace Upnodo.Domain.Requests.Records
+namespace Upnodo.Modules.Records.Application
 {
     public class ListRequest
     {

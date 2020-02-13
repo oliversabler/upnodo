@@ -12,6 +12,8 @@
     <ItemGroup>
       <ProjectReference Include="..\Upnodo.Domain\Upnodo.Domain.csproj" />
       <ProjectReference Include="..\Upnodo.Infrastructure\Upnodo.Infrastructure.csproj" />
+      <ProjectReference Include="..\Upnodo.Modules.Records\Upnodo.Modules.Records.csproj" />
+      <ProjectReference Include="..\Upnodo.Modules\Upnodo.Modules.csproj" />
     </ItemGroup>
 
 

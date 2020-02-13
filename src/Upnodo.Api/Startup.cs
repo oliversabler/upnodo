@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Upnodo.Api.Configurations;
-using Upnodo.Domain.Contracts;
-using Upnodo.Domain.Responses.Records;
-using Upnodo.Infrastructure.Services.Records;
+using Upnodo.Infrastructure;
+using Upnodo.Infrastructure.Repositories;
 
 namespace Upnodo.Api
 {
@@ -22,11 +22,18 @@ namespace Upnodo.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            
+            // MediatR
             services.AddMediatR(typeof(Startup));
+            
+            // Services
+            services.AddRecords();
 
-            services.AddRecordsDi();
+            // MongoDb
+            services.Configure<DbSettings>(Configuration.GetSection(nameof(DbSettings)));
+            services.AddSingleton<IDbSettings>(
+                serviceProvider => serviceProvider.GetRequiredService<IOptions<DbSettings>>().Value);
+            
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

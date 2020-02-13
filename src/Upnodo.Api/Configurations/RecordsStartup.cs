@@ -1,13 +1,13 @@
 using Microsoft.Extensions.DependencyInjection;
 using Upnodo.Domain.Contracts;
-using Upnodo.Domain.Responses.Records;
-using Upnodo.Infrastructure.Services.Records;
+using Upnodo.Modules.Records.Application;
+using Upnodo.Modules.Records.Services;
 
 namespace Upnodo.Api.Configurations
 {
-    internal static class ServiceCollectionExtensions
+    internal static class RecordsStartup
     {
-        internal static void AddRecordsDi(this IServiceCollection s)
+        internal static void AddRecords(this IServiceCollection s)
         {
             s.AddTransient<IService<SaveResponse>, SaveService>();
             s.AddTransient<IService<ListResponse>, ListService>();

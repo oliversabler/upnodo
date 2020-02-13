@@ -2,8 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Upnodo.Domain.Contracts;
-using Upnodo.Domain.Queries.Records;
-using Upnodo.Domain.Responses.Records;
+using Upnodo.Modules.Records.Application;
 
 namespace Upnodo.Api.Modules.Records.Handlers
 {

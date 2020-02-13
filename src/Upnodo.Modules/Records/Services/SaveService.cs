@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
 using Upnodo.Domain.Contracts;
-using Upnodo.Domain.Responses.Records;
+using Upnodo.Modules.Records.Application;
 
-namespace Upnodo.Infrastructure.Services.Records
+namespace Upnodo.Modules.Records.Services
 {
     public class SaveService : IService<SaveResponse>
     {

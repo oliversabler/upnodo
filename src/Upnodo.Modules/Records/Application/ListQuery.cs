@@ -1,8 +1,7 @@
 using System;
 using MediatR;
-using Upnodo.Domain.Responses.Records;
 
-namespace Upnodo.Domain.Queries.Records
+namespace Upnodo.Modules.Records.Application
 {
     public class ListQuery : IRequest<ListResponse>
     {

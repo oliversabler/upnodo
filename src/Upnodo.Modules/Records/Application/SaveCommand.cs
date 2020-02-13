@@ -1,9 +1,8 @@
 using System;
 using MediatR;
 using Upnodo.Domain.Enums;
-using Upnodo.Domain.Responses.Records;
 
-namespace Upnodo.Domain.Commands.Records
+namespace Upnodo.Modules.Records.Application
 {
     public class SaveCommand : IRequest<SaveResponse>
     {
