@@ -6,17 +6,20 @@ namespace Upnodo.Modules.Records.Application
 {
     public class SaveCommand : IRequest<SaveResponse>
     {
-        public SaveCommand(Guid guid, Mode mode, DateTime date)
+        public SaveCommand(Mode mode, string userId)
         {
-            Guid = guid;
+            UserId = userId;
+            Guid = Guid.NewGuid();
             Mode = mode;
-            Date = date;
+            Date = DateTime.UtcNow;
         }
         
         public Guid Guid { get; }
 
-        public Mode Mode { get; }
-
         public DateTime Date { get; }
+
+        public Mode Mode { get; }
+        
+        public string UserId { get; }
     }
 }

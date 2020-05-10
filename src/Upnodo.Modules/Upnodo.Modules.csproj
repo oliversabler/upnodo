@@ -5,11 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Records\Repositories" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Upnodo.Domain\Upnodo.Domain.csproj" />
+      <ProjectReference Include="..\Upnodo.Infrastructure\Upnodo.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

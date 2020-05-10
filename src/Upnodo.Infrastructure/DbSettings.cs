@@ -1,4 +1,4 @@
-namespace Upnodo.Infrastructure.Repositories
+namespace Upnodo.Infrastructure
 {
     public class DbSettings : IDbSettings
     {

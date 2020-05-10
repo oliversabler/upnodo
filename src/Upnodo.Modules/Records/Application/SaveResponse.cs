@@ -4,6 +4,14 @@ namespace Upnodo.Modules.Records.Application
 {
     public class SaveResponse : IResponse
     {
-        public string Test { get; set; }
+        public SaveResponse(bool success, string value)
+        {
+            Success = success;
+            Value = value;
+        }
+        
+        public bool Success { get; }
+        
+        public string Value { get; }
     }
 }

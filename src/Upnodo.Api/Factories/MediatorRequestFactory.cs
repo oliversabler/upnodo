@@ -6,7 +6,7 @@ namespace Upnodo.Api.Factories
     {
         internal static SaveCommand SaveCommand(SaveRequest request)
         {
-            return new SaveCommand(request.Guid, request.Mode, request.Date);
+            return new SaveCommand(request.Mode, request.UserId);
         }
 
         internal static ListQuery ListQuery(ListRequest request)
