@@ -9,8 +9,8 @@ namespace Upnodo.Api.Configurations
     {
         internal static void AddRecords(this IServiceCollection s)
         {
-            s.AddTransient<IService<SaveResponse>, SaveService>();
-            s.AddTransient<IService<ListResponse>, ListService>();
+            s.AddTransient<IService<SaveRecordResponse>, SaveRecordService>();
+            s.AddTransient<IService<ListAllRecordsResponse>, ListAllRecordsService>();
         }
     }
 }

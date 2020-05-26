@@ -2,7 +2,7 @@ using Upnodo.Domain.Enums;
 
 namespace Upnodo.Modules.Records.Application
 {
-    public class SaveRequest
+    public class SaveRecordRequest
     {
         public string UserId { get; set; }
         

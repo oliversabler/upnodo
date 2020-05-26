@@ -4,14 +4,19 @@ namespace Upnodo.Api.Factories
 {
     internal static class MediatorRequestFactory
     {
-        internal static SaveCommand SaveCommand(SaveRequest request)
+        internal static SaveRecordCommand SaveCommand(SaveRecordRequest recordRequest)
         {
-            return new SaveCommand(request.Mode, request.UserId);
+            return new SaveRecordCommand(recordRequest.Mode, recordRequest.UserId);
         }
 
-        internal static ListQuery ListQuery(ListRequest request)
+        internal static ListAllRecordsQuery ListAllRecordsQuery()
         {
-            return new ListQuery();
+            return new ListAllRecordsQuery();
+        }
+        
+        internal static ListRecordsByUserIdQuery ListRecordsByUserIdQuery(string userId)
+        {
+            return new ListRecordsByUserIdQuery(userId);
         }
     }
 }

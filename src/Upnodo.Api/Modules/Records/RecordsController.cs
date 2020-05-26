@@ -7,7 +7,6 @@ using Upnodo.Modules.Records.Application;
 namespace Upnodo.Api.Modules.Records
 {
     [ApiController]
-    [Route("/api/records")]
     public class RecordsController : Controller
     {
         private readonly IMediator _mediator;
@@ -18,17 +17,28 @@ namespace Upnodo.Api.Modules.Records
         }
 
         [HttpPost]
-        public async Task<IActionResult> Save([FromBody]SaveRequest request)
+        [Route("/api/records")]
+        public async Task<IActionResult> SaveRecords([FromBody]SaveRecordRequest recordRequest)
         {
-            var result = await _mediator.Send(MediatorRequestFactory.SaveCommand(request));
+            var result = await _mediator.Send(MediatorRequestFactory.SaveCommand(recordRequest));
+
+            return Ok(result);
+        }
+        
+        [HttpGet]
+        [Route("/api/records/")]
+        public async Task<IActionResult> ListAllRecords([FromBody]ListAllRecordsRequest allRecordsRequest)
+        {
+            var result = await _mediator.Send(MediatorRequestFactory.ListAllRecordsQuery());
 
             return Ok(result);
         }
 
         [HttpGet]
-        public async Task<IActionResult> List([FromBody]ListRequest request)
+        [Route("/api/records/")]
+        public async Task<IActionResult> ListRecordsByUserId(string userId)
         {
-            var result = await _mediator.Send(MediatorRequestFactory.ListQuery(request));
+            var result = await _mediator.Send(MediatorRequestFactory.ListRecordsByUserIdQuery(userId));
 
             return Ok(result);
         }

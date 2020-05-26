@@ -2,9 +2,9 @@ using Upnodo.Domain.Contracts;
 
 namespace Upnodo.Modules.Records.Application
 {
-    public class SaveResponse : IResponse
+    public class ListAllRecordsResponse : IResponse
     {
-        public SaveResponse(bool success, string value)
+        public ListAllRecordsResponse(bool success, string value)
         {
             Success = success;
             Value = value;

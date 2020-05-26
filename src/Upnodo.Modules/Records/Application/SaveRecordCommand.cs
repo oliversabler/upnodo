@@ -4,9 +4,9 @@ using Upnodo.Domain.Enums;
 
 namespace Upnodo.Modules.Records.Application
 {
-    public class SaveCommand : IRequest<SaveResponse>
+    public class SaveRecordCommand : IRequest<SaveRecordResponse>
     {
-        public SaveCommand(Mode mode, string userId)
+        public SaveRecordCommand(Mode mode, string userId)
         {
             UserId = userId;
             Guid = Guid.NewGuid();
