@@ -11,6 +11,7 @@ namespace Upnodo.Api.Configurations
         {
             s.AddTransient<IService<SaveRecordResponse>, SaveRecordService>();
             s.AddTransient<IService<ListAllRecordsResponse>, ListAllRecordsService>();
+            s.AddTransient<IService<ListRecordsByUserIdResponse>, ListRecordsByUserIdService>();
         }
     }
 }

@@ -15,15 +15,6 @@ namespace Upnodo.Api.Modules.Records
         {
             _mediator = mediator;
         }
-
-        [HttpPost]
-        [Route("/api/records")]
-        public async Task<IActionResult> SaveRecords([FromBody]SaveRecordRequest recordRequest)
-        {
-            var result = await _mediator.Send(MediatorRequestFactory.SaveCommand(recordRequest));
-
-            return Ok(result);
-        }
         
         [HttpGet]
         [Route("/api/records/")]
