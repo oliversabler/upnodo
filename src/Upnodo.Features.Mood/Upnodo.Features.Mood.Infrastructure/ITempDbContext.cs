@@ -2,10 +2,10 @@ namespace Upnodo.Features.Mood.Infrastructure
 {
     public interface ITempDbContext
     {
-        void SaveMood(string value);
+        void CreateMoodRecord(string value);
 
-        string ListAllMoods();
+        string GetAllMoodRecords();
 
-        string ListMoodsByUserId(string userId);
+        string GetMoodRecordsByUserId(string userId);
     }
 }

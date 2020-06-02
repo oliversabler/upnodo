@@ -1,10 +1,10 @@
 using Upnodo.Domain.Contracts;
 
-namespace Upnodo.Features.Mood.Application.SaveMood
+namespace Upnodo.Features.Mood.Application.CreateMoodRecord
 {
-    public class SaveMoodResponse : IResponse
+    public class CreateMoodRecordResponse : IResponse
     {
-        public SaveMoodResponse(bool success, string value)
+        public CreateMoodRecordResponse(bool success, string value)
         {
             Success = success;
             Value = value;

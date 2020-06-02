@@ -8,7 +8,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Upnodo.Api.Features.Mood.Configurations;
 using Upnodo.Api.Middleware.Exceptions;
-using Upnodo.Infrastructure;
 
 namespace Upnodo.Api
 {

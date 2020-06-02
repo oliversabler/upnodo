@@ -1,24 +1,24 @@
-using Upnodo.Features.Mood.Application.ListAllMoods;
-using Upnodo.Features.Mood.Application.ListMoodsByUserId;
-using Upnodo.Features.Mood.Application.SaveMood;
+using Upnodo.Features.Mood.Application.CreateMoodRecord;
+using Upnodo.Features.Mood.Application.GetAllMoodRecords;
+using Upnodo.Features.Mood.Application.GetMoodRecordsByUserId;
 
 namespace Upnodo.Api.Features.Mood.Configurations
 {
     internal static class MediatorRequestFactory
     {
-        internal static ListAllMoodsQuery ListAllMoodsQuery()
+        internal static CreateMoodRecordCommand CreateMoodRecordCommand(CreateMoodRecordRequest recordRequest)
         {
-            return new ListAllMoodsQuery();
-        }
-
-        internal static ListMoodsByUserIdQuery ListMoodsByUserIdQuery(string userId)
-        {
-            return new ListMoodsByUserIdQuery(userId);
+            return new CreateMoodRecordCommand(recordRequest.Mood, recordRequest.UserId);
         }
         
-        internal static SaveMoodCommand SaveMoodCommand(SaveMoodRequest request)
+        internal static GetAllMoodRecordsQuery GetAllMoodRecordsQuery()
         {
-            return new SaveMoodCommand(request.Mood, request.UserId);
+            return new GetAllMoodRecordsQuery();
+        }
+
+        internal static GetMoodRecordsByUserIdQuery GetMoodRecordsByUserIdQuery(string userId)
+        {
+            return new GetMoodRecordsByUserIdQuery(userId);
         }
     }
 }

@@ -2,7 +2,8 @@ using System;
 
 namespace Upnodo.Features.Mood.Domain.SaveMood
 {
-    public class SaveMoodRecord
+    // Todo: Good name?
+    public class MoodRecord
     {
         public DateTime Date { get; set; }
 

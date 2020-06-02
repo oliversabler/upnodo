@@ -2,14 +2,12 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Upnodo.Api.Features.Mood.Configurations;
-using Upnodo.Features.Mood.Application.ListAllMoods;
-using Upnodo.Features.Mood.Application.ListMoodsByUserId;
-using Upnodo.Features.Mood.Application.SaveMood;
+using Upnodo.Features.Mood.Application.CreateMoodRecord;
 
 namespace Upnodo.Api.Features.Mood
 {
     [ApiController]
-    [Route("api/mood/[controller]")]
+    [Route("api/mood/")]
     public class MoodController : Controller
     {
         private readonly IMediator _mediator;
@@ -19,29 +17,28 @@ namespace Upnodo.Api.Features.Mood
             _mediator = mediator;
         }
         
-        // Todo: Fix endpoint and change name of model
-        [HttpGet]
-        public async Task<IActionResult> ListAllMoods()
-        {
-            var result = await _mediator.Send(MediatorRequestFactory.ListAllMoodsQuery());
-
-            return Ok(result);
-        }
-        
-        // Todo: Fix endpoint and change name of model
-        //       Post or Get?
-        [HttpGet("{userId}")]
-        public async Task<IActionResult> ListMoodsByUserId(string userId)
-        {
-            var result = await _mediator.Send(MediatorRequestFactory.ListMoodsByUserIdQuery(userId));
-
-            return Ok(result);
-        }
-        
         [HttpPost]
-        public async Task<IActionResult> SaveMood([FromBody]SaveMoodRequest request)
+        public async Task<IActionResult> CreateMoodRecord([FromBody]CreateMoodRecordRequest recordRequest)
         {
-            var result = await _mediator.Send(MediatorRequestFactory.SaveMoodCommand(request));
+            var result = await _mediator.Send(MediatorRequestFactory.CreateMoodRecordCommand(recordRequest));
+
+            return Ok(result);
+        }
+
+        // Todo: Only admin should be able to fetch all registered mood records
+        [HttpGet]
+        public async Task<IActionResult> GetAllMoodRecords()
+        {
+            var result = await _mediator.Send(MediatorRequestFactory.GetAllMoodRecordsQuery());
+
+            return Ok(result);
+        }
+        
+        // Todo: Change name of model
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetMoodRecordsByUserId(string userId)
+        {
+            var result = await _mediator.Send(MediatorRequestFactory.GetMoodRecordsByUserIdQuery(userId));
 
             return Ok(result);
         }

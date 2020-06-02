@@ -1,10 +1,10 @@
 using Upnodo.Domain.Contracts;
 
-namespace Upnodo.Features.Mood.Application.ListAllMoods
+namespace Upnodo.Features.Mood.Application.GetAllMoodRecords
 {
-    public class ListAllMoodsResponse : IResponse
+    public class GetAllMoodRecordsResponse : IResponse
     {
-        public ListAllMoodsResponse(bool success, string value)
+        public GetAllMoodRecordsResponse(bool success, string value)
         {
             Success = success;
             Value = value;

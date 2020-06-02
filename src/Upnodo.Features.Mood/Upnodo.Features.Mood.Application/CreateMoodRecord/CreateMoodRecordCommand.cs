@@ -1,11 +1,11 @@
 using System;
 using MediatR;
 
-namespace Upnodo.Features.Mood.Application.SaveMood
+namespace Upnodo.Features.Mood.Application.CreateMoodRecord
 {
-    public class SaveMoodCommand : IRequest<SaveMoodResponse>
+    public class CreateMoodRecordCommand : IRequest<CreateMoodRecordResponse>
     {
-        public SaveMoodCommand(Domain.Mood mood, string userId)
+        public CreateMoodRecordCommand(Domain.Mood mood, string userId)
         {
             UserId = userId;
             Guid = Guid.NewGuid();

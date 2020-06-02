@@ -1,6 +1,6 @@
-namespace Upnodo.Features.Mood.Application.SaveMood
+namespace Upnodo.Features.Mood.Application.CreateMoodRecord
 {
-    public class SaveMoodRequest
+    public class CreateMoodRecordRequest
     {
         public string UserId { get; set; }
         

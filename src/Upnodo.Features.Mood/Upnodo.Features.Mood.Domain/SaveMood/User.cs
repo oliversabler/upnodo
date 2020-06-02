@@ -7,13 +7,13 @@ namespace Upnodo.Features.Mood.Domain.SaveMood
     {
         public User()
         {
-            if (Records == null)
+            if (MoodRecords == null)
             {
-                Records = new List<SaveMoodRecord>();
+                MoodRecords = new List<MoodRecord>();
             }
         }
         
-        public List<SaveMoodRecord> Records { get; set; }
+        public List<MoodRecord> MoodRecords { get; set; }
 
         public string Email { get; set; }
 
