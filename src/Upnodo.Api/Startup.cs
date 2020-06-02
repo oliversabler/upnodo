@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Upnodo.Api.Configurations;
 using Upnodo.Api.Features.Mood.Configurations;
 using Upnodo.Api.Middleware.Exceptions;
 using Upnodo.Infrastructure;
@@ -49,7 +48,6 @@ namespace Upnodo.Api
             services.AddMediatR(typeof(Startup));
 
             // Services
-            services.AddRecords();
             services.AddMood();
 
             // MongoDb

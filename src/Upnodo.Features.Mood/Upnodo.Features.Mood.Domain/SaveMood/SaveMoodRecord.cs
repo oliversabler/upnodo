@@ -8,7 +8,7 @@ namespace Upnodo.Features.Mood.Domain.SaveMood
 
         public Guid Guid { get; set; }
         
-        public Mood Mood { get; set; }
+        public Domain.Mood Mood { get; set; }
 
         public string UserId { get; set; }
     }

@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace Upnodo.Features.Mood.Domain.SaveMood
 {
-    public class SaveMood
+    public class MoodDb
     {
-        public SaveMood()
+        public MoodDb()
         {
             if (Records == null)
             {

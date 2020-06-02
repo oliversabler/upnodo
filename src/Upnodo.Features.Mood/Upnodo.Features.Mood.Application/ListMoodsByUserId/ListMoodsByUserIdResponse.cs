@@ -1,10 +1,10 @@
 using Upnodo.Domain.Contracts;
 
-namespace Upnodo.Modules.Records.Application
+namespace Upnodo.Features.Mood.Application.ListMoodsByUserId
 {
-    public class ListRecordsByUserIdResponse : IResponse
+    public class ListMoodsByUserIdResponse : IResponse
     {
-        public ListRecordsByUserIdResponse(bool success, string value)
+        public ListMoodsByUserIdResponse(bool success, string value)
         {
             Success = success;
             Value = value;
