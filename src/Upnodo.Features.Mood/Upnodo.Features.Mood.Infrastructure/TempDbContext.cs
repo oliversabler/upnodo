@@ -15,9 +15,9 @@ namespace Upnodo.Features.Mood.Infrastructure
 
             user.MoodRecords.Add(record);
 
-            var tempDbUpdate = JsonSerializer.Serialize(user);
+            var userUpdate = JsonSerializer.Serialize(user);
 
-            File.WriteAllText("tempdb.json", tempDbUpdate);
+            File.WriteAllText("tempdb.json", userUpdate);
         }
         
         public string GetAllMoodRecords()
