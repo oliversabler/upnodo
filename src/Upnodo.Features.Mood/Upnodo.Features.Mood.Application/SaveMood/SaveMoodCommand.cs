@@ -1,8 +1,9 @@
 using System;
+using MediatR;
 
 namespace Upnodo.Features.Mood.Application.SaveMood
 {
-    public class SaveMoodCommand
+    public class SaveMoodCommand : IRequest<SaveMoodResponse>
     {
         public SaveMoodCommand(Domain.Mood mood, string userId)
         {

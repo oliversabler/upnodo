@@ -2,9 +2,10 @@ using System.Collections.Generic;
 
 namespace Upnodo.Features.Mood.Domain.SaveMood
 {
-    public class MoodDb
+    // Todo: Where to put?
+    public class User
     {
-        public MoodDb()
+        public User()
         {
             if (Records == null)
             {
@@ -13,5 +14,9 @@ namespace Upnodo.Features.Mood.Domain.SaveMood
         }
         
         public List<SaveMoodRecord> Records { get; set; }
+
+        public string Email { get; set; }
+
+        public string UserId { get; set; }
     }
 }

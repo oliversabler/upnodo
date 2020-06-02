@@ -55,9 +55,6 @@ namespace Upnodo.Api
             // services.AddSingleton<IDbSettings>(
             //     serviceProvider => serviceProvider.GetRequiredService<IOptions<DbSettings>>().Value);
 
-            // TempDb
-            services.AddScoped<ITempDbContext, TempDbContext>();
-
             services.AddControllers();
         }
 

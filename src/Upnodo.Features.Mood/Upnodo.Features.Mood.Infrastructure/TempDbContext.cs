@@ -10,9 +10,9 @@ namespace Upnodo.Features.Mood.Infrastructure
         public string ListAllMoods()
         {
             var tempDbFile = File.ReadAllText("tempdb.json");
-            var tempDb = JsonSerializer.Deserialize<MoodDb>(tempDbFile);
+            var user = JsonSerializer.Deserialize<User>(tempDbFile);
 
-            var records = tempDb.Records;
+            var records = user.Records;
             if (!records.Any())
             {
                 return "No records found for user";
@@ -24,26 +24,26 @@ namespace Upnodo.Features.Mood.Infrastructure
         public string ListMoodsByUserId(string userId)
         {
             var tempDbFile = File.ReadAllText("tempdb.json");
-            var tempDb = JsonSerializer.Deserialize<MoodDb>(tempDbFile);
+            var user = JsonSerializer.Deserialize<User>(tempDbFile);
 
-            var records = tempDb.Records.Where(r => r.UserId == userId);
+            var records = user.Records.Where(r => r.UserId == userId).ToList();
             if (!records.Any())
             {
                 return "No records found for user";
             }
 
-            return JsonSerializer.Serialize(tempDb);
+            return JsonSerializer.Serialize(records);
         }
         
         public void SaveMood(string value)
         {
             var tempDbFile = File.ReadAllText("tempdb.json");
-            var tempDb = JsonSerializer.Deserialize<MoodDb>(tempDbFile);
+            var user = JsonSerializer.Deserialize<User>(tempDbFile);
             var record = JsonSerializer.Deserialize<SaveMoodRecord>(value);
 
-            tempDb.Records.Add(record);
+            user.Records.Add(record);
 
-            var tempDbUpdate = JsonSerializer.Serialize(tempDb);
+            var tempDbUpdate = JsonSerializer.Serialize(user);
 
             File.WriteAllText("tempdb.json", tempDbUpdate);
         }

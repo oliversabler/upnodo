@@ -9,6 +9,7 @@ using Upnodo.Features.Mood.Application.SaveMood;
 namespace Upnodo.Api.Features.Mood
 {
     [ApiController]
+    [Route("api/mood/[controller]")]
     public class MoodController : Controller
     {
         private readonly IMediator _mediator;
@@ -18,26 +19,26 @@ namespace Upnodo.Api.Features.Mood
             _mediator = mediator;
         }
         
+        // Todo: Fix endpoint and change name of model
         [HttpGet]
-        [Route("/api/mood/all")]
-        public async Task<IActionResult> ListAllMoods([FromBody]ListAllMoodsRequest request)
+        public async Task<IActionResult> ListAllMoods()
         {
-            var result = await _mediator.Send(MediatorRequestFactory.ListAllMoodsQuery(request));
+            var result = await _mediator.Send(MediatorRequestFactory.ListAllMoodsQuery());
 
             return Ok(result);
         }
         
-        [HttpGet]
-        [Route("/api/mood/byUserId")]
-        public async Task<IActionResult> ListRecordsByUserId([FromBody]ListMoodsByUserIdRequest request)
+        // Todo: Fix endpoint and change name of model
+        //       Post or Get?
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> ListMoodsByUserId(string userId)
         {
-            var result = await _mediator.Send(MediatorRequestFactory.ListMoodsByUserIdQuery(request));
+            var result = await _mediator.Send(MediatorRequestFactory.ListMoodsByUserIdQuery(userId));
 
             return Ok(result);
         }
         
         [HttpPost]
-        [Route("/api/mood/")]
         public async Task<IActionResult> SaveMood([FromBody]SaveMoodRequest request)
         {
             var result = await _mediator.Send(MediatorRequestFactory.SaveMoodCommand(request));
