@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -18,9 +19,17 @@ namespace Upnodo.Api.Features.Mood
         }
         
         [HttpPost]
-        public async Task<IActionResult> CreateMoodRecord([FromBody]CreateMoodRecordRequest recordRequest)
+        public async Task<IActionResult> CreateMoodRecord([FromBody]CreateMoodRecordRequest request)
         {
-            var result = await _mediator.Send(MediatorRequestFactory.CreateMoodRecordCommand(recordRequest));
+            var result = await _mediator.Send(MediatorRequestFactory.CreateMoodRecordCommand(request));
+
+            return Ok(result);
+        }
+        
+        [HttpDelete("{moodRecordId}")]
+        public async Task<IActionResult> CreateMoodRecord(Guid guid)
+        {
+            var result = await _mediator.Send(MediatorRequestFactory.DeleteMoodRecordCommand(guid));
 
             return Ok(result);
         }
