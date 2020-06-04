@@ -27,11 +27,11 @@ namespace Upnodo.Api.Features.Mood
         }
         
         [HttpDelete("{moodRecordId}")]
-        public async Task<IActionResult> CreateMoodRecord(Guid guid)
+        public async Task<IActionResult> CreateMoodRecord(Guid moodRecordId)
         {
-            var result = await _mediator.Send(MediatorRequestFactory.DeleteMoodRecordCommand(guid));
+            await _mediator.Send(MediatorRequestFactory.DeleteMoodRecordCommand(moodRecordId));
 
-            return Ok(result);
+            return NoContent();
         }
 
         // Todo: Only admin should be able to fetch all registered mood records

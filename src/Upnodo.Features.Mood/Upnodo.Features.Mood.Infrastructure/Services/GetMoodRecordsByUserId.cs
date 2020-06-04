@@ -16,12 +16,12 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 
         public Task<GetMoodRecordsByUserIdResponse> RunAsync<T>(T request)
         {
-            if (!(request is GetMoodRecordsByUserIdQuery requestAsJson))
+            if (!(request is GetMoodRecordsByUserIdQuery query))
             {
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(GetMoodRecordsByUserIdQuery)}");
             }
             
-            var records = _tempDbContext.GetMoodRecordsByUserId(requestAsJson.UserId);
+            var records = _tempDbContext.GetMoodRecordsByUserId(query.UserId);
 
             return Task.FromResult(new GetMoodRecordsByUserIdResponse(true, records));
         }

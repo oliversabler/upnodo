@@ -4,14 +4,11 @@ namespace Upnodo.Features.Mood.Application.DeleteMoodRecord
 {
     public class DeleteMoodRecordResponse : IResponse
     {
-        public DeleteMoodRecordResponse(bool success, string value)
+        public DeleteMoodRecordResponse(bool success)
         {
             Success = success;
-            Value = value;
         }
         
         public bool Success { get; }
-        
-        public string Value { get; }
     }
 }
