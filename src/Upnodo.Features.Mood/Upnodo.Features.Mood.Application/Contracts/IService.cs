@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Upnodo.Domain.Contracts
+namespace Upnodo.Features.Mood.Application.Contracts
 {
     public interface IService<TResult> : IResponse where TResult : IResponse
     {

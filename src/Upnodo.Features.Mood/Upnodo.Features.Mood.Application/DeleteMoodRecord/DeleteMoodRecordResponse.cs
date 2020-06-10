@@ -1,4 +1,4 @@
-using Upnodo.Domain.Contracts;
+using Upnodo.Features.Mood.Application.Contracts;
 
 namespace Upnodo.Features.Mood.Application.DeleteMoodRecord
 {

@@ -1,6 +1,6 @@
 using System.Text.Json;
 using System.Threading.Tasks;
-using Upnodo.Domain.Contracts;
+using Upnodo.Features.Mood.Application.Contracts;
 using Upnodo.Features.Mood.Application.CreateMoodRecord;
 
 namespace Upnodo.Features.Mood.Infrastructure.Services

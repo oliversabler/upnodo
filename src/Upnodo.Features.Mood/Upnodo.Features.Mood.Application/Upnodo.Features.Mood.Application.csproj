@@ -5,8 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Upnodo.Domain\Upnodo.Domain.csproj" />
       <ProjectReference Include="..\Upnodo.Features.Mood.Domain\Upnodo.Features.Mood.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="8.0.1" />
     </ItemGroup>
 
 </Project>

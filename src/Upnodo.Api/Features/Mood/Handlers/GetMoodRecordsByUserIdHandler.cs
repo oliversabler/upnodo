@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Upnodo.Domain.Contracts;
+using Upnodo.Features.Mood.Application.Contracts;
 using Upnodo.Features.Mood.Application.GetMoodRecordsByUserId;
 
 namespace Upnodo.Api.Features.Mood.Handlers
