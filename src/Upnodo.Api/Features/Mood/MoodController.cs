@@ -43,13 +43,20 @@ namespace Upnodo.Api.Features.Mood
             return Ok(result);
         }
         
-        // Todo: Change name of model
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetMoodRecordsByUserId(string userId)
         {
             var result = await _mediator.Send(MediatorRequestFactory.GetMoodRecordsByUserIdQuery(userId));
 
             return Ok(result);
+        }
+
+        [HttpPut("{moodRecordId}")]
+        public async Task<IActionResult> ChangeMoodRecord(Guid moodRecordId)
+        {
+            // Todo: Change mood record
+            
+            return Ok();
         }
     }
 }
