@@ -18,6 +18,14 @@ namespace Upnodo.Api.Features.Mood
             _mediator = mediator;
         }
         
+        [HttpPut("{moodRecordId}")]
+        public async Task<IActionResult> AlterMoodRecord(Guid moodRecordId)
+        {
+            // Todo: Change mood record
+            
+            return Ok();
+        }
+        
         [HttpPost]
         public async Task<IActionResult> CreateMoodRecord([FromBody]CreateMoodRecordRequest request)
         {
@@ -49,14 +57,6 @@ namespace Upnodo.Api.Features.Mood
             var result = await _mediator.Send(MediatorRequestFactory.GetMoodRecordsByUserIdQuery(userId));
 
             return Ok(result);
-        }
-
-        [HttpPut("{moodRecordId}")]
-        public async Task<IActionResult> ChangeMoodRecord(Guid moodRecordId)
-        {
-            // Todo: Change mood record
-            
-            return Ok();
         }
     }
 }
