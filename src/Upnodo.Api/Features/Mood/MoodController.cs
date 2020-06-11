@@ -21,9 +21,9 @@ namespace Upnodo.Api.Features.Mood
         [HttpPut("{moodRecordId}")]
         public async Task<IActionResult> AlterMoodRecord(Guid moodRecordId)
         {
-            // Todo: Change mood record
+            var result = await _mediator.Send(MediatorRequestFactory.AlterMoodRecordCommand(moodRecordId));
             
-            return Ok();
+            return Ok(result);
         }
         
         [HttpPost]

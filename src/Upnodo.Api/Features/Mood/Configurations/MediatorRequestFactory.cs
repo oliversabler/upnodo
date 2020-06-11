@@ -1,4 +1,5 @@
 using System;
+using Upnodo.Features.Mood.Application.AlterMoodRecord;
 using Upnodo.Features.Mood.Application.CreateMoodRecord;
 using Upnodo.Features.Mood.Application.DeleteMoodRecord;
 using Upnodo.Features.Mood.Application.GetAllMoodRecords;
@@ -8,6 +9,11 @@ namespace Upnodo.Api.Features.Mood.Configurations
 {
     internal static class MediatorRequestFactory
     {
+        internal static AlterMoodRecordCommand AlterMoodRecordCommand(Guid guid)
+        {
+            return new AlterMoodRecordCommand(guid);
+        }
+        
         internal static CreateMoodRecordCommand CreateMoodRecordCommand(CreateMoodRecordRequest recordRequest)
         {
             return new CreateMoodRecordCommand(recordRequest.Mood, recordRequest.UserId);
