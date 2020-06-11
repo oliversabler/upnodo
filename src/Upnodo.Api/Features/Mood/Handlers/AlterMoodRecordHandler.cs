@@ -2,15 +2,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Upnodo.Features.Mood.Application.AlterMoodRecord;
-using Upnodo.Features.Mood.Infrastructure.Services;
+using Upnodo.Features.Mood.Application.Contracts;
 
 namespace Upnodo.Api.Features.Mood.Handlers
 {
     public class AlterMoodRecordHandler : IRequestHandler<AlterMoodRecordCommand, AlterMoodRecordResponse>
     {
-        private readonly AlterMoodRecordService _alterMoodRecordService;
+        private readonly IService<AlterMoodRecordResponse> _alterMoodRecordService;
 
-        public AlterMoodRecordHandler(AlterMoodRecordService alterMoodRecordService)
+        public AlterMoodRecordHandler(IService<AlterMoodRecordResponse> alterMoodRecordService)
         {
             _alterMoodRecordService = alterMoodRecordService;
         }

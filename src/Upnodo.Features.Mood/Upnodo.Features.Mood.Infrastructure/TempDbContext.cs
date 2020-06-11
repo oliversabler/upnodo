@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using Upnodo.Features.Mood.Application.AlterMoodRecord;
 using Upnodo.Features.Mood.Domain.SaveMood;
 
 namespace Upnodo.Features.Mood.Infrastructure
@@ -9,6 +10,22 @@ namespace Upnodo.Features.Mood.Infrastructure
     // Todo: Db only support one User atm, fix.
     public class TempDbContext : ITempDbContext
     {
+        public string AlterMoodRecord(AlterMoodRecordCommand command)
+        {
+            var tempDbFile = File.ReadAllText("tempdb.json");
+            var user = JsonSerializer.Deserialize<User>(tempDbFile);
+
+            var record = user.MoodRecords.First(r => r.Guid == command.Guid);
+            
+            record.Mood = command.Mood;
+            
+            var userUpdate = JsonSerializer.Serialize(user);
+            
+            File.WriteAllText("tempdb.json", userUpdate);
+
+            return JsonSerializer.Serialize(record);
+        }
+        
         public void CreateMoodRecord(string value)
         {
             var tempDbFile = File.ReadAllText("tempdb.json");

@@ -9,9 +9,9 @@ namespace Upnodo.Api.Features.Mood.Configurations
 {
     internal static class MediatorRequestFactory
     {
-        internal static AlterMoodRecordCommand AlterMoodRecordCommand(Guid guid)
+        internal static AlterMoodRecordCommand AlterMoodRecordCommand(AlterMoodRecordRequest alterMoodRecordRequest)
         {
-            return new AlterMoodRecordCommand(guid);
+            return new AlterMoodRecordCommand(alterMoodRecordRequest.Guid, alterMoodRecordRequest.Mood);
         }
         
         internal static CreateMoodRecordCommand CreateMoodRecordCommand(CreateMoodRecordRequest recordRequest)

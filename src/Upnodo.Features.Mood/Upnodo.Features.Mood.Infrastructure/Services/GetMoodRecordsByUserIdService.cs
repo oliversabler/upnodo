@@ -5,11 +5,11 @@ using Upnodo.Features.Mood.Application.GetMoodRecordsByUserId;
 
 namespace Upnodo.Features.Mood.Infrastructure.Services
 {
-    public class GetMoodRecordsByUserId : IService<GetMoodRecordsByUserIdResponse>
+    public class GetMoodRecordsByUserIdService : IService<GetMoodRecordsByUserIdResponse>
     {
         private readonly ITempDbContext _tempDbContext;
 
-        public GetMoodRecordsByUserId(ITempDbContext tempDbContext)
+        public GetMoodRecordsByUserIdService(ITempDbContext tempDbContext)
         {
             _tempDbContext = tempDbContext;
         }
