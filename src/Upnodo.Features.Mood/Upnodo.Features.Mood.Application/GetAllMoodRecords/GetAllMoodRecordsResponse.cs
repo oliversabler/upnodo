@@ -2,16 +2,10 @@ using Upnodo.Features.Mood.Application.Contracts;
 
 namespace Upnodo.Features.Mood.Application.GetAllMoodRecords
 {
-    public class GetAllMoodRecordsResponse : IResponse
+    public class GetAllMoodRecordsResponse : BaseResponse
     {
-        public GetAllMoodRecordsResponse(bool success, string value)
+        public GetAllMoodRecordsResponse(bool success, string value) : base(success, value)
         {
-            Success = success;
-            Value = value;
         }
-        
-        public bool Success { get; }
-        
-        public string Value { get; }
     }
 }

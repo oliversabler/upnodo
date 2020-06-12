@@ -36,7 +36,7 @@ namespace Upnodo.Api.Features.Mood
         }
         
         [HttpDelete("{moodRecordId}")]
-        public async Task<IActionResult> CreateMoodRecord(Guid moodRecordId)
+        public async Task<IActionResult> DeleteMoodRecord(Guid moodRecordId)
         {
             await _mediator.Send(MediatorRequestFactory.DeleteMoodRecordCommand(moodRecordId));
 

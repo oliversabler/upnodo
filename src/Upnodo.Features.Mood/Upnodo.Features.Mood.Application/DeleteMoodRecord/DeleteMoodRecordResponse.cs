@@ -2,13 +2,10 @@ using Upnodo.Features.Mood.Application.Contracts;
 
 namespace Upnodo.Features.Mood.Application.DeleteMoodRecord
 {
-    public class DeleteMoodRecordResponse : IResponse
+    public class DeleteMoodRecordResponse : BaseResponse
     {
-        public DeleteMoodRecordResponse(bool success)
+        public DeleteMoodRecordResponse(bool success) : base(success)
         {
-            Success = success;
         }
-        
-        public bool Success { get; }
     }
 }
