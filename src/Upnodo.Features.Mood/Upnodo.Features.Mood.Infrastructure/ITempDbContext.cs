@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using Upnodo.Features.Mood.Application.AlterMoodRecord;
+using Upnodo.Features.Mood.Domain.SaveMood;
 
 namespace Upnodo.Features.Mood.Infrastructure
 {
@@ -13,6 +15,6 @@ namespace Upnodo.Features.Mood.Infrastructure
 
         string GetAllMoodRecords();
 
-        string GetMoodRecordsByUserId(string userId);
+        List<MoodRecord> GetMoodRecordsByUserId(string userId);
     }
 }

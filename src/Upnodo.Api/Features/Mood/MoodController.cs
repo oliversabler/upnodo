@@ -52,6 +52,8 @@ namespace Upnodo.Api.Features.Mood
             return Ok(result);
         }
         
+        // Todo: Fetch mood records (pagination)
+        
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetMoodRecordsByUserId(string userId)
         {

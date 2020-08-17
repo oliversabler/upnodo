@@ -2,12 +2,16 @@ namespace Upnodo.Features.Mood.Application.Contracts
 {
     public class BaseResponse : IResponse
     {
+        public BaseResponse()
+        {
+        }
+        
         public BaseResponse(bool success)
         {
             Success = success;
         }
 
-        public BaseResponse(bool success, string value)
+        public BaseResponse(bool success, object value)
         {
             Success = success;
             Value = value;
@@ -15,6 +19,6 @@ namespace Upnodo.Features.Mood.Application.Contracts
         
         public bool Success { get; }
         
-        public string Value { get; }
+        public object Value { get; }
     }
 }

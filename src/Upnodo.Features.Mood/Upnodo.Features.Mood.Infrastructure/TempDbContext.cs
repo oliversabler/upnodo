@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -73,7 +74,7 @@ namespace Upnodo.Features.Mood.Infrastructure
             return JsonSerializer.Serialize(records);
         }
         
-        public string GetMoodRecordsByUserId(string userId)
+        public List<MoodRecord> GetMoodRecordsByUserId(string userId)
         {
             var tempDbFile = File.ReadAllText("tempdb.json");
             var user = JsonSerializer.Deserialize<User>(tempDbFile);
@@ -85,7 +86,7 @@ namespace Upnodo.Features.Mood.Infrastructure
                 throw new InvalidOperationException($"Sequence ({nameof(records)}) contains now elements.");
             }
 
-            return JsonSerializer.Serialize(records);
+            return records;
         }
     }
 }
