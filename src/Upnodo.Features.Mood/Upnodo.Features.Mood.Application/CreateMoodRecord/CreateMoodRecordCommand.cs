@@ -5,12 +5,12 @@ namespace Upnodo.Features.Mood.Application.CreateMoodRecord
 {
     public class CreateMoodRecordCommand : IRequest<CreateMoodRecordResponse>
     {
-        public CreateMoodRecordCommand(Domain.Mood mood, string userId)
-        {
-            UserId = userId;
+        public CreateMoodRecordCommand(Domain.Mood mood, Guid userGuid)
+        {            
+            Date = DateTime.UtcNow;
             Guid = Guid.NewGuid();
             Mood = mood;
-            Date = DateTime.UtcNow;
+            UserGuid = userGuid;
         }
         
         public Guid Guid { get; }
@@ -19,6 +19,6 @@ namespace Upnodo.Features.Mood.Application.CreateMoodRecord
 
         public Domain.Mood Mood { get; }
         
-        public string UserId { get; }
+        public Guid UserGuid { get; }
     }
 }

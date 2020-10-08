@@ -3,7 +3,7 @@ using Upnodo.Features.Mood.Tests.Models.Common;
 
 namespace Upnodo.Features.Mood.Tests.Models
 {
-    public class GetMoodRecordsByUserId
+    public class GetMoodRecordsByUserGuid
     {
         public bool Success { get; set; }
 

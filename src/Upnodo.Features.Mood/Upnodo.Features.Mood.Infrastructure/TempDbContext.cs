@@ -74,12 +74,12 @@ namespace Upnodo.Features.Mood.Infrastructure
             return JsonSerializer.Serialize(records);
         }
         
-        public List<MoodRecord> GetMoodRecordsByUserId(string userId)
+        public List<MoodRecord> GetMoodRecordsByUserGuid(Guid userGuid)
         {
             var tempDbFile = File.ReadAllText("tempdb.json");
             var user = JsonSerializer.Deserialize<User>(tempDbFile);
 
-            var records = user.MoodRecords.Where(r => r.UserId == userId).ToList();
+            var records = user.MoodRecords.Where(r => r.UserGuid == userGuid).ToList();
             if (!records.Any())
             {
                 // Todo: Log

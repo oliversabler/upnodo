@@ -15,6 +15,6 @@ namespace Upnodo.Features.Mood.Infrastructure
 
         string GetAllMoodRecords();
 
-        List<MoodRecord> GetMoodRecordsByUserId(string userId);
+        List<MoodRecord> GetMoodRecordsByUserGuid(Guid userGuid);
     }
 }

@@ -50,9 +50,6 @@ namespace Upnodo.Api
             services.AddMood();
 
             // MongoDb
-            // services.Configure<DbSettings>(Configuration.GetSection(nameof(DbSettings)));
-            // services.AddSingleton<IDbSettings>(
-            //     serviceProvider => serviceProvider.GetRequiredService<IOptions<DbSettings>>().Value);
 
             services.AddControllers();
         }
