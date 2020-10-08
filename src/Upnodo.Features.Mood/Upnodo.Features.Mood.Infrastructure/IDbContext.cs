@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Upnodo.Features.Mood.Application.AlterMoodRecord;
-using Upnodo.Features.Mood.Domain.SaveMood;
+using Upnodo.Features.Mood.Domain;
 
 namespace Upnodo.Features.Mood.Infrastructure
 {
-    public interface ITempDbContext
+    public interface IDbContext
     {
         string AlterMoodRecord(AlterMoodRecordCommand command);
         

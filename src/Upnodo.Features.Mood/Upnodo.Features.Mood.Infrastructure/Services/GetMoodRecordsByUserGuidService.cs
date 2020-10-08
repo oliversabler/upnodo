@@ -7,9 +7,9 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 {
     public class GetMoodRecordsByUserGuidService : IService<GetMoodRecordsByUserGuidResponse>
     {
-        private readonly ITempDbContext _tempDbContext;
+        private readonly IDbContext _tempDbContext;
 
-        public GetMoodRecordsByUserGuidService(ITempDbContext tempDbContext)
+        public GetMoodRecordsByUserGuidService(IDbContext tempDbContext)
         {
             _tempDbContext = tempDbContext;
         }

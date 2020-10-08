@@ -2,7 +2,7 @@ using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Upnodo.Features.Mood.Domain.SaveMood
+namespace Upnodo.Features.Mood.Domain
 {
     
     public class MoodRecord

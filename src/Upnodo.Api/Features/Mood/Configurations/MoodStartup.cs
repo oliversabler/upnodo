@@ -20,7 +20,7 @@ namespace Upnodo.Api.Features.Mood.Configurations
             s.AddTransient<IService<GetAllMoodRecordsResponse>, GetAllMoodRecordsService>();
             s.AddTransient<IService<GetMoodRecordsByUserGuidResponse>, GetMoodRecordsByUserGuidService>();
             
-            s.AddScoped<ITempDbContext, TempDbContext>();
+            s.AddScoped<IDbContext, DbContext>();
         }
     }
 }

@@ -7,9 +7,9 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 {
     public class DeleteMoodRecordService : IService<DeleteMoodRecordResponse>
     {
-        private readonly ITempDbContext _tempDbContext;
+        private readonly IDbContext _tempDbContext;
 
-        public DeleteMoodRecordService(ITempDbContext tempDbContext)
+        public DeleteMoodRecordService(IDbContext tempDbContext)
         {
             _tempDbContext = tempDbContext;
         }

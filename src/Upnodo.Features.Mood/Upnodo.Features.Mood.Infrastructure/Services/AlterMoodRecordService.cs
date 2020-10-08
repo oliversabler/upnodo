@@ -7,9 +7,9 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 {
     public class AlterMoodRecordService : IService<AlterMoodRecordResponse>
     {
-        private readonly ITempDbContext _tempDbContext;
+        private readonly IDbContext _tempDbContext;
 
-        public AlterMoodRecordService(ITempDbContext tempDbContext)
+        public AlterMoodRecordService(IDbContext tempDbContext)
         {
             _tempDbContext = tempDbContext;
         }
