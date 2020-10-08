@@ -13,6 +13,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Upnodo.Features.Mood\Upnodo.Features.Mood.Application\Upnodo.Features.Mood.Application.csproj" />
       <ProjectReference Include="..\Upnodo.Features.Mood\Upnodo.Features.Mood.Infrastructure\Upnodo.Features.Mood.Infrastructure.csproj" />
+      <ProjectReference Include="..\Upnodo.Features.User\Upnodo.Features.User.Application\Upnodo.Features.User.Application.csproj" />
     </ItemGroup>
 
 

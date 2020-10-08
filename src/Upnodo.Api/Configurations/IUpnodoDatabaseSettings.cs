@@ -1,6 +1,6 @@
-namespace Upnodo.Api.Features.Mood.Configurations
+namespace Upnodo.Api.Configurations
 {
-    public class MoodDatabaseSettings : IMoodDatabaseSettings
+    public interface IUpnodoDatabaseSettings
     {
         public string MoodsCollectionName { get; set; }
         
