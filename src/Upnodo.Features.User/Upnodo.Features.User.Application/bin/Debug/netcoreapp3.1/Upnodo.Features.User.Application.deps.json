@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Upnodo.Features.User.Application/1.0.0": {
+        "runtime": {
+          "Upnodo.Features.User.Application.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Upnodo.Features.User.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
