@@ -1,9 +1,0 @@
-/Users/oliversabler/Projects/hippojamba/upnodo/src/Upnodo.Features.User/Upnodo.Features.User.Application/bin/Debug/netcoreapp3.1/Upnodo.Features.User.Application.deps.json
-/Users/oliversabler/Projects/hippojamba/upnodo/src/Upnodo.Features.User/Upnodo.Features.User.Application/bin/Debug/netcoreapp3.1/Upnodo.Features.User.Application.dll
-/Users/oliversabler/Projects/hippojamba/upnodo/src/Upnodo.Features.User/Upnodo.Features.User.Application/bin/Debug/netcoreapp3.1/Upnodo.Features.User.Application.pdb
-/Users/oliversabler/Projects/hippojamba/upnodo/src/Upnodo.Features.User/Upnodo.Features.User.Application/obj/Debug/netcoreapp3.1/Upnodo.Features.User.Application.csprojAssemblyReference.cache
-/Users/oliversabler/Projects/hippojamba/upnodo/src/Upnodo.Features.User/Upnodo.Features.User.Application/obj/Debug/netcoreapp3.1/Upnodo.Features.User.Application.csproj.CoreCompileInputs.cache
-/Users/oliversabler/Projects/hippojamba/upnodo/src/Upnodo.Features.User/Upnodo.Features.User.Application/obj/Debug/netcoreapp3.1/Upnodo.Features.User.Application.AssemblyInfoInputs.cache
-/Users/oliversabler/Projects/hippojamba/upnodo/src/Upnodo.Features.User/Upnodo.Features.User.Application/obj/Debug/netcoreapp3.1/Upnodo.Features.User.Application.AssemblyInfo.cs
-/Users/oliversabler/Projects/hippojamba/upnodo/src/Upnodo.Features.User/Upnodo.Features.User.Application/obj/Debug/netcoreapp3.1/Upnodo.Features.User.Application.dll
-/Users/oliversabler/Projects/hippojamba/upnodo/src/Upnodo.Features.User/Upnodo.Features.User.Application/obj/Debug/netcoreapp3.1/Upnodo.Features.User.Application.pdb
