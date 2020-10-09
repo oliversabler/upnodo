@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Upnodo.Features.Mood.Application.Contracts;
+using Upnodo.BuildingBlocks.Application.Contracts;
 using Upnodo.Features.Mood.Application.GetMoodRecordsByUserGuid;
 
 namespace Upnodo.Features.Mood.Infrastructure.Services

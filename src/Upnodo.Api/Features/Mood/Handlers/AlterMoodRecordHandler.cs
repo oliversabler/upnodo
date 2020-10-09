@@ -1,8 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Upnodo.BuildingBlocks.Application.Contracts;
 using Upnodo.Features.Mood.Application.AlterMoodRecord;
-using Upnodo.Features.Mood.Application.Contracts;
 
 namespace Upnodo.Api.Features.Mood.Handlers
 {

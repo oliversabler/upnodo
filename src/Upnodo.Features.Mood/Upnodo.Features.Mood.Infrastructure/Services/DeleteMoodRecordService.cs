@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Upnodo.Features.Mood.Application.Contracts;
+using Upnodo.BuildingBlocks.Application.Contracts;
 using Upnodo.Features.Mood.Application.DeleteMoodRecord;
 
 namespace Upnodo.Features.Mood.Infrastructure.Services

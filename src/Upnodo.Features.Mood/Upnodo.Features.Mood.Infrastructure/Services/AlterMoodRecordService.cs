@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using Upnodo.BuildingBlocks.Application.Contracts;
 using Upnodo.Features.Mood.Application.AlterMoodRecord;
-using Upnodo.Features.Mood.Application.Contracts;
 
 namespace Upnodo.Features.Mood.Infrastructure.Services
 {

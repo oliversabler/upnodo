@@ -1,4 +1,4 @@
-using Upnodo.Features.Mood.Application.Contracts;
+using Upnodo.BuildingBlocks.Application.Contracts;
 
 namespace Upnodo.Features.Mood.Application.AlterMoodRecord
 {

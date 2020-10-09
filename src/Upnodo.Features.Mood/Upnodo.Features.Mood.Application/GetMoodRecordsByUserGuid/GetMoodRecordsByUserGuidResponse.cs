@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Upnodo.Features.Mood.Application.Contracts;
+using Upnodo.BuildingBlocks.Application.Contracts;
 using Upnodo.Features.Mood.Domain;
 
 namespace Upnodo.Features.Mood.Application.GetMoodRecordsByUserGuid

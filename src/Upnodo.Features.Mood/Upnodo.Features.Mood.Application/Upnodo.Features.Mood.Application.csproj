@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Upnodo.BuildingBlocks\Upnodo.BuildingBlocks.Application\Upnodo.BuildingBlocks.Application.csproj" />
       <ProjectReference Include="..\Upnodo.Features.Mood.Domain\Upnodo.Features.Mood.Domain.csproj" />
     </ItemGroup>
 

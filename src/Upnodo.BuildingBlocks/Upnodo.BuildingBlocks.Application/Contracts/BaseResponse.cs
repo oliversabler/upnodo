@@ -1,4 +1,4 @@
-namespace Upnodo.Features.Mood.Application.Contracts
+namespace Upnodo.BuildingBlocks.Application.Contracts
 {
     public class BaseResponse : IResponse
     {
