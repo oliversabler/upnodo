@@ -20,6 +20,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User", "User", "{BECF7965-6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upnodo.Features.User.Application", "src\Upnodo.Features.User\Upnodo.Features.User.Application\Upnodo.Features.User.Application.csproj", "{EAD39258-EAB2-4B94-B37D-632D9FC23061}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upnodo.Features.User.Domain", "src\Upnodo.Features.User\Upnodo.Features.User.Domain\Upnodo.Features.User.Domain.csproj", "{E7A4B0BF-7334-4B4F-BBE1-D7CC4EFA497E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upnodo.Features.User.Infrastructure", "src\Upnodo.Features.User\Upnodo.Features.User.Infrastructure\Upnodo.Features.User.Infrastructure.csproj", "{BFEBBC00-DAC8-41C3-974F-DB3C7CCE2467}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upnodo.Features.User.Tests", "src\Upnodo.Features.User\Upnodo.Features.User.Tests\Upnodo.Features.User.Tests.csproj", "{1DFABAEA-958D-4B08-B08B-FFC103CE36C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +56,18 @@ Global
 		{EAD39258-EAB2-4B94-B37D-632D9FC23061}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAD39258-EAB2-4B94-B37D-632D9FC23061}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAD39258-EAB2-4B94-B37D-632D9FC23061}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7A4B0BF-7334-4B4F-BBE1-D7CC4EFA497E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7A4B0BF-7334-4B4F-BBE1-D7CC4EFA497E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7A4B0BF-7334-4B4F-BBE1-D7CC4EFA497E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7A4B0BF-7334-4B4F-BBE1-D7CC4EFA497E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFEBBC00-DAC8-41C3-974F-DB3C7CCE2467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFEBBC00-DAC8-41C3-974F-DB3C7CCE2467}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFEBBC00-DAC8-41C3-974F-DB3C7CCE2467}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFEBBC00-DAC8-41C3-974F-DB3C7CCE2467}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DFABAEA-958D-4B08-B08B-FFC103CE36C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DFABAEA-958D-4B08-B08B-FFC103CE36C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DFABAEA-958D-4B08-B08B-FFC103CE36C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DFABAEA-958D-4B08-B08B-FFC103CE36C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B35CFA10-B72C-479B-BCDF-B13F0583C059} = {366455B4-62D2-43A9-BD01-FD293568F443}
@@ -60,5 +78,8 @@ Global
 		{AD4BC041-0493-489F-81C7-53F080A18576} = {0AC7C12B-A8C2-4828-ADF8-077912D50295}
 		{BECF7965-6C6A-4C09-BA28-5C58F14C7B7F} = {AE1BA2D8-1BD2-41D6-A6E3-CBE61102CA95}
 		{EAD39258-EAB2-4B94-B37D-632D9FC23061} = {BECF7965-6C6A-4C09-BA28-5C58F14C7B7F}
+		{E7A4B0BF-7334-4B4F-BBE1-D7CC4EFA497E} = {BECF7965-6C6A-4C09-BA28-5C58F14C7B7F}
+		{BFEBBC00-DAC8-41C3-974F-DB3C7CCE2467} = {BECF7965-6C6A-4C09-BA28-5C58F14C7B7F}
+		{1DFABAEA-958D-4B08-B08B-FFC103CE36C0} = {BECF7965-6C6A-4C09-BA28-5C58F14C7B7F}
 	EndGlobalSection
 EndGlobal
