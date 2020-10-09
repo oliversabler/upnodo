@@ -1,4 +1,3 @@
-using System;
 using MongoDB.Driver;
 using Upnodo.BuildingBlocks.Application.Configurations;
 
@@ -13,15 +12,7 @@ namespace Upnodo.Features.User.Infrastructure.Services
             var client = new MongoClient(settings.ConnectionString);
             var db = client.GetDatabase(settings.DatabaseName);
 
-            try
-            {
-                _users = db.GetCollection<Domain.User>(settings.UsersCollectionName);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            _users = db.GetCollection<Domain.User>(settings.UsersCollectionName);
         }
 
         public Domain.User Create(Domain.User user)
