@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.IdGenerators;
 
 namespace Upnodo.Features.User.Domain
 {
@@ -15,8 +16,7 @@ namespace Upnodo.Features.User.Domain
 
         public string Firstname { get; set; }
 
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
+        [BsonId(IdGenerator = typeof(GuidGenerator))]
         public Guid Guid { get; set; }
         
         public string Lastname { get; set; }

@@ -11,6 +11,7 @@ namespace Upnodo.BuildingBlocks.Application.Contracts
             Success = success;
         }
 
+        // Todo: object value to json
         public BaseResponse(bool success, object value)
         {
             Success = success;

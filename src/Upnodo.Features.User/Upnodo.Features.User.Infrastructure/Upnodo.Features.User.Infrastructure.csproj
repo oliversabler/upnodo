@@ -4,4 +4,14 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Upnodo.BuildingBlocks\Upnodo.BuildingBlocks.Application\Upnodo.BuildingBlocks.Application.csproj" />
+      <ProjectReference Include="..\Upnodo.Features.User.Application\Upnodo.Features.User.Application.csproj" />
+      <ProjectReference Include="..\Upnodo.Features.User.Domain\Upnodo.Features.User.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MongoDB.Driver" Version="2.11.2" />
+    </ItemGroup>
+
 </Project>

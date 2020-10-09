@@ -7,9 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using Upnodo.Api.Configurations;
 using Upnodo.Api.Features.Mood.Configurations;
+using Upnodo.Api.Features.User.Configurations;
 using Upnodo.Api.Middleware.Exceptions;
+using Upnodo.BuildingBlocks.Application.Configurations;
 
 namespace Upnodo.Api
 {
@@ -47,16 +48,17 @@ namespace Upnodo.Api
 
             // MediatR
             services.AddMediatR(typeof(Startup));
-
-            // Services
-            services.AddMood();
-
+            
             // MongoDb
             services.Configure<UpnodoDatabaseSettings>(
                 Configuration.GetSection(nameof(UpnodoDatabaseSettings)));
 
             services.AddSingleton<IUpnodoDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<UpnodoDatabaseSettings>>().Value);
+            
+            // Services
+            services.AddMood();
+            services.AddUser();
 
             services.AddControllers();
         }
