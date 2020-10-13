@@ -12,3 +12,4 @@ Setup environment (users)
 3. Set fields to be unique 
    - `db.users.createIndex({ "email": 1 }, { unique: true })`
    - `db.users.createIndex({ "alias": 1 }, { unique: true })`
+   - `db.users.createIndex({ "userId": 1 }, { unique: true })`
