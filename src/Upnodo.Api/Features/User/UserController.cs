@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,14 @@ namespace Upnodo.Api.Features.User
             var result = await _mediator.Send(MediatorRequestFactory.CreateUserCommand(request));
 
             return Ok(result);
+        }
+
+        [HttpDelete("{userId}")]
+        public async Task<IActionResult> DeleteUser(string userId)
+        {
+            await _mediator.Send(MediatorRequestFactory.DeleteUserCommand(userId));
+            
+            return NoContent();
         }
     }
 }

@@ -7,11 +7,11 @@ namespace Upnodo.Features.User.Infrastructure.Services
 {
     public class CreateUserService : IService<CreateUserResponse>
     {
-        private readonly UserService _userService;
+        private readonly UserRepository _userRepository;
 
-        public CreateUserService(UserService userService)
+        public CreateUserService(UserRepository userRepository)
         {
-            _userService = userService;
+            _userRepository = userRepository;
         }
 
         public Task<CreateUserResponse> RunAsync<T>(T request)
@@ -27,12 +27,12 @@ namespace Upnodo.Features.User.Infrastructure.Services
                 Date = command.Date,
                 Email = command.Email,
                 Firstname = command.Firstname,
-                Guid = command.Guid,
+                UserId = command.UserId,
                 Lastname = command.Lastname,
                 MoodRecordGuids = command.MoodRecordGuids
             };
 
-            var post = _userService.Create(user);
+            var post = _userRepository.Create(user);
             
             return Task.FromResult(new CreateUserResponse(true, post));
         }

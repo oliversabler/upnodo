@@ -12,7 +12,7 @@ namespace Upnodo.Features.User.Application.CreateUser
             Date = DateTime.UtcNow;
             Email = email;
             Firstname = firstname;
-            Guid = Guid.NewGuid();
+            UserId = Guid.NewGuid().ToString();
             Lastname = lastname;
             MoodRecordGuids = new List<Guid>();
         }
@@ -25,7 +25,7 @@ namespace Upnodo.Features.User.Application.CreateUser
 
         public string Firstname { get; }
         
-        public Guid Guid { get; }
+        public string UserId { get; }
         
         public string Lastname { get; }
 
