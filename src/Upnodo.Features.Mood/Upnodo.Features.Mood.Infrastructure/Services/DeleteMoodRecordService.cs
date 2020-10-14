@@ -7,11 +7,11 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 {
     public class DeleteMoodRecordService : IService<DeleteMoodRecordResponse>
     {
-        private readonly IDbContext _tempDbContext;
+        private readonly MoodRecordRepository _moodRecordRepository;
 
-        public DeleteMoodRecordService(IDbContext tempDbContext)
+        public DeleteMoodRecordService(MoodRecordRepository moodRecordRepository)
         {
-            _tempDbContext = tempDbContext;
+            _moodRecordRepository = moodRecordRepository;
         }
 
         public Task<DeleteMoodRecordResponse> RunAsync<T>(T request)
@@ -21,7 +21,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(DeleteMoodRecordCommand)}");
             }
             
-            _tempDbContext.DeleteMoodRecord(command.Guid);
+            _moodRecordRepository.Delete(command.MoodId);
 
             // Todo: No need for DeleteMoodRecordResponse to return with true.
             return Task.FromResult(new DeleteMoodRecordResponse(true));

@@ -1,5 +1,4 @@
 using System;
-using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Upnodo.Features.Mood.Domain
@@ -7,14 +6,41 @@ namespace Upnodo.Features.Mood.Domain
     
     public class MoodRecord
     {
-        public DateTime Date { get; set; }
-
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public Guid Guid { get; set; }
+        public MoodRecord(
+            DateTime dateCreated, 
+            Mood mood, 
+            string moodRecordId, 
+            string userId)
+        {
+            DateCreated = dateCreated;
+            Mood = mood;
+            MoodRecordId = moodRecordId;
+            UserId = userId;
+        }
         
-        public Mood Mood { get; set; }
+        public MoodRecord(
+            DateTime dateUpdated, 
+            Mood mood, 
+            string moodRecordId)
+        {
+            DateUpdated = dateUpdated;
+            Mood = mood;
+            MoodRecordId = moodRecordId;
+        }
+        
+        [BsonElement("dateCreated")]
+        public DateTime DateCreated { get; }
+        
+        [BsonElement("dateUpdated")]
+        public DateTime DateUpdated { get; }
 
-        public Guid UserGuid { get; set; }
+        [BsonElement("mood")]
+        public Mood Mood { get; }
+        
+        [BsonElement("moodRecordId")]
+        public string MoodRecordId { get; }
+
+        [BsonElement("userId")]
+        public string UserId { get; }
     }
 }

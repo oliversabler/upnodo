@@ -6,6 +6,12 @@ The purpose of this repository is to test architectural and technological ideas.
 
 ## MongoDB
 
+Setup environment (moods)
+1. `use DATABASE_NAME` 
+2. `db.createCollection("moods")`
+3. Set fields to be unique 
+   - `db.moods.createIndex({ "moods": 1 }, { unique: true })`
+
 Setup environment (users)
 1. `use DATABASE_NAME` 
 2. `db.createCollection("users")`

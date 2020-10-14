@@ -5,22 +5,38 @@ namespace Upnodo.Features.User.Domain
 {
     public class User
     {
+        public User(
+            string alias, 
+            DateTime date, 
+            string email, 
+            string firstname, 
+            string userId, 
+            string lastname)
+        {
+            Alias = alias;
+            Date = date;
+            Email = email;
+            Firstname = firstname;
+            UserId = userId;
+            Lastname = lastname;
+        }
+        
         [BsonElement("alias")]
-        public string Alias { get; set; }
+        private string Alias { get; }
         
         [BsonElement("date")]
-        public DateTime Date { get; set; }
+        private DateTime Date { get; }
         
         [BsonElement("email")]
-        public string Email { get; set; }
+        private string Email { get; }
 
         [BsonElement("firstname")]
-        public string Firstname { get; set; }
+        private string Firstname { get; }
 
         [BsonElement("userId")]
-        public string UserId { get; set; }
+        private string UserId { get; }
 
         [BsonElement("lastname")]
-        public string Lastname { get; set; }
+        private string Lastname { get; }
     }
 }

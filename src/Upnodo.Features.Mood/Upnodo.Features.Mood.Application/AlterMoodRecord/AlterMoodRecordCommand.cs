@@ -5,14 +5,18 @@ namespace Upnodo.Features.Mood.Application.AlterMoodRecord
 {
     public class AlterMoodRecordCommand : IRequest<AlterMoodRecordResponse>
     {
-        public AlterMoodRecordCommand(Guid guid, Domain.Mood mood)
+        public AlterMoodRecordCommand(Domain.Mood mood, string moodRecordId)
         {
-            Guid = guid;
+            DateUpdate = DateTime.UtcNow;
             Mood = mood;
+            MoodRecordId = moodRecordId;
         }
 
-        public Guid Guid { get; }
+        public DateTime DateUpdate { get; set; }
         
         public Domain.Mood Mood { get; }
+        
+        public string MoodRecordId { get; }
+
     }
 }

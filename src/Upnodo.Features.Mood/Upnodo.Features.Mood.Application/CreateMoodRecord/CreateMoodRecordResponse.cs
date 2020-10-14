@@ -4,7 +4,7 @@ namespace Upnodo.Features.Mood.Application.CreateMoodRecord
 {
     public class CreateMoodRecordResponse : BaseResponse
     {
-        public CreateMoodRecordResponse(bool success, string value) : base(success, value)
+        public CreateMoodRecordResponse(bool success, object value) : base(success, value)
         {
         }
     }

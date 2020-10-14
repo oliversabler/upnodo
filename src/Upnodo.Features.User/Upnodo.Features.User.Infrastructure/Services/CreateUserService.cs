@@ -21,19 +21,17 @@ namespace Upnodo.Features.User.Infrastructure.Services
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(CreateUserCommand)}");
             }
 
-            var user = new Domain.User
-            {
-                Alias = command.Alias,
-                Date = command.Date,
-                Email = command.Email,
-                Firstname = command.Firstname,
-                UserId = command.UserId,
-                Lastname = command.Lastname
-            };
+            var user = new Domain.User(
+                command.Alias,
+                command.Date,
+                command.Email,
+                command.Firstname,
+                command.UserId,
+                command.Lastname);
 
-            var post = _userRepository.Create(user);
+            var response = _userRepository.Create(user);
             
-            return Task.FromResult(new CreateUserResponse(true, post));
+            return Task.FromResult(new CreateUserResponse(true, response));
         }
     }
 }

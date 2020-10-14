@@ -1,26 +1,38 @@
-using System.Text.Json;
+using System;
 using System.Threading.Tasks;
 using Upnodo.BuildingBlocks.Application.Contracts;
 using Upnodo.Features.Mood.Application.CreateMoodRecord;
+using Upnodo.Features.Mood.Domain;
 
 namespace Upnodo.Features.Mood.Infrastructure.Services
 {
     public class CreateMoodRecordService : IService<CreateMoodRecordResponse>
     {
-        private readonly IDbContext _tempDbContext;
-
-        public CreateMoodRecordService(IDbContext tempDbContext)
+        private readonly MoodRecordRepository _moodRecordRepository;
+        
+        public CreateMoodRecordService(MoodRecordRepository moodRecordRepository)
         {
-            _tempDbContext = tempDbContext;
+            _moodRecordRepository = moodRecordRepository;
         }
 
         public Task<CreateMoodRecordResponse> RunAsync<T>(T request)
         {
-            var requestAsJson = JsonSerializer.Serialize(request);
+            if (!(request is CreateMoodRecordCommand command))
+            {
+                throw new ArgumentException($"{nameof(request)} is not of type {typeof(CreateMoodRecordCommand)}");
+            }
             
-            _tempDbContext.CreateMoodRecord(requestAsJson);
+            var moodRecord = new MoodRecord
+            (
+                command.DateCreated,
+                command.Mood,
+                command.MoodRecordId,
+                command.UserId
+            );
+            
+            var response = _moodRecordRepository.Create(moodRecord);
 
-            return Task.FromResult(new CreateMoodRecordResponse(true, requestAsJson));
+            return Task.FromResult(new CreateMoodRecordResponse(true, response));
         }
     }
 }

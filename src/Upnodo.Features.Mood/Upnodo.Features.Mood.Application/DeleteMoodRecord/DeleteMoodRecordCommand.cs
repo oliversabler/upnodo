@@ -5,11 +5,11 @@ namespace Upnodo.Features.Mood.Application.DeleteMoodRecord
 {
     public class DeleteMoodRecordCommand : IRequest<DeleteMoodRecordResponse>
     {
-        public DeleteMoodRecordCommand(Guid guid)
+        public DeleteMoodRecordCommand(string moodId)
         {
-            Guid = guid;
+            MoodId = moodId;
         }
         
-        public Guid Guid { get; }
+        public string MoodId { get; }
     }
 }

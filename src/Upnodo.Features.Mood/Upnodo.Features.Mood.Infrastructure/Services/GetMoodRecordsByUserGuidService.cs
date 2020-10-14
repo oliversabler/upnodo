@@ -7,11 +7,11 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 {
     public class GetMoodRecordsByUserGuidService : IService<GetMoodRecordsByUserGuidResponse>
     {
-        private readonly IDbContext _tempDbContext;
+        private readonly MoodRecordRepository _moodRecordRepository;
 
-        public GetMoodRecordsByUserGuidService(IDbContext tempDbContext)
+        public GetMoodRecordsByUserGuidService(MoodRecordRepository moodRecordRepository)
         {
-            _tempDbContext = tempDbContext;
+            _moodRecordRepository = moodRecordRepository;
         }
 
         public Task<GetMoodRecordsByUserGuidResponse> RunAsync<T>(T request)
@@ -21,7 +21,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(GetMoodRecordsByUserGuidQuery)}");
             }
             
-            var records = _tempDbContext.GetMoodRecordsByUserGuid(query.UserGuid);
+            var records = _moodRecordRepository.Read(query.UserId);
 
             return Task.FromResult(new GetMoodRecordsByUserGuidResponse(true, records));
         }

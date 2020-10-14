@@ -19,8 +19,8 @@ namespace Upnodo.Api.Features.Mood.Configurations
             s.AddTransient<IService<DeleteMoodRecordResponse>, DeleteMoodRecordService>();
             s.AddTransient<IService<GetAllMoodRecordsResponse>, GetAllMoodRecordsService>();
             s.AddTransient<IService<GetMoodRecordsByUserGuidResponse>, GetMoodRecordsByUserGuidService>();
-            
-            s.AddScoped<IDbContext, DbContext>();
+
+            s.AddSingleton<MoodRecordRepository>();
         }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -36,14 +35,14 @@ namespace Upnodo.Api.Features.Mood
         }
         
         [HttpDelete("{moodRecordId}")]
-        public async Task<IActionResult> DeleteMoodRecord(Guid moodRecordId)
+        public async Task<IActionResult> DeleteMoodRecord(string moodRecordId)
         {
             await _mediator.Send(MediatorRequestFactory.DeleteMoodRecordCommand(moodRecordId));
 
             return NoContent();
         }
 
-        // Todo: Only admin should be able to fetch all registered mood records
+        // Todo: Remove
         [HttpGet]
         public async Task<IActionResult> GetAllMoodRecords()
         {
@@ -55,9 +54,9 @@ namespace Upnodo.Api.Features.Mood
         // Todo: Fetch mood records (pagination)
         
         [HttpGet("{userId}")]
-        public async Task<IActionResult> GetMoodRecordsByUserGuid(Guid userGuid)
+        public async Task<IActionResult> GetMoodRecordsByUserGuid(string userId)
         {
-            var result = await _mediator.Send(MediatorRequestFactory.GetMoodRecordsByUserGuidQuery(userGuid));
+            var result = await _mediator.Send(MediatorRequestFactory.GetMoodRecordsByUserGuidQuery(userId));
 
             return Ok(result);
         }

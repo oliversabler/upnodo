@@ -5,20 +5,20 @@ namespace Upnodo.Features.Mood.Application.CreateMoodRecord
 {
     public class CreateMoodRecordCommand : IRequest<CreateMoodRecordResponse>
     {
-        public CreateMoodRecordCommand(Domain.Mood mood, Guid userGuid)
+        public CreateMoodRecordCommand(Domain.Mood mood, string userId)
         {            
-            Date = DateTime.UtcNow;
-            Guid = Guid.NewGuid();
+            DateCreated = DateTime.UtcNow;
             Mood = mood;
-            UserGuid = userGuid;
+            MoodRecordId = Guid.NewGuid().ToString();
+            UserId = userId;
         }
         
-        public Guid Guid { get; }
-
-        public DateTime Date { get; }
-
+        public DateTime DateCreated { get; }
+        
         public Domain.Mood Mood { get; }
         
-        public Guid UserGuid { get; }
+        public string MoodRecordId { get; }
+
+        public string UserId { get; }
     }
 }

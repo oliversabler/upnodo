@@ -8,4 +8,8 @@
       <ProjectReference Include="..\Upnodo.Features.Mood.Application\Upnodo.Features.Mood.Application.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="MongoDB.Driver" Version="2.11.2" />
+    </ItemGroup>
+
 </Project>

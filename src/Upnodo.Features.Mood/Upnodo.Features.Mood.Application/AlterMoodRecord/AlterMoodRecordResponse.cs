@@ -4,7 +4,7 @@ namespace Upnodo.Features.Mood.Application.AlterMoodRecord
 {
     public class AlterMoodRecordResponse : BaseResponse
     {
-        public AlterMoodRecordResponse(bool success, string value) : base(success, value)
+        public AlterMoodRecordResponse(bool success, object value) : base(success, value)
         {
         }
     }

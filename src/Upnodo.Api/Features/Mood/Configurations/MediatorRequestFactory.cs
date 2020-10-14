@@ -11,7 +11,7 @@ namespace Upnodo.Api.Features.Mood.Configurations
     {
         internal static AlterMoodRecordCommand AlterMoodRecordCommand(AlterMoodRecordRequest alterMoodRecordRequest)
         {
-            return new AlterMoodRecordCommand(alterMoodRecordRequest.Guid, alterMoodRecordRequest.Mood);
+            return new AlterMoodRecordCommand(alterMoodRecordRequest.Mood, alterMoodRecordRequest.MoodRecordId);
         }
         
         internal static CreateMoodRecordCommand CreateMoodRecordCommand(CreateMoodRecordRequest recordRequest)
@@ -19,9 +19,9 @@ namespace Upnodo.Api.Features.Mood.Configurations
             return new CreateMoodRecordCommand(recordRequest.Mood, recordRequest.UserId);
         }
         
-        internal static DeleteMoodRecordCommand DeleteMoodRecordCommand(Guid guid)
+        internal static DeleteMoodRecordCommand DeleteMoodRecordCommand(string moodId)
         {
-            return new DeleteMoodRecordCommand(guid);
+            return new DeleteMoodRecordCommand(moodId);
         }
         
         internal static GetAllMoodRecordsQuery GetAllMoodRecordsQuery()
@@ -29,9 +29,9 @@ namespace Upnodo.Api.Features.Mood.Configurations
             return new GetAllMoodRecordsQuery();
         }
 
-        internal static GetMoodRecordsByUserGuidQuery GetMoodRecordsByUserGuidQuery(Guid userGuid)
+        internal static GetMoodRecordsByUserGuidQuery GetMoodRecordsByUserGuidQuery(string userId)
         {
-            return new GetMoodRecordsByUserGuidQuery(userGuid);
+            return new GetMoodRecordsByUserGuidQuery(userId);
         }
     }
 }

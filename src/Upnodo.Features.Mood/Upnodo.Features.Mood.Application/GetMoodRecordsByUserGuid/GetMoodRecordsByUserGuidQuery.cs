@@ -1,15 +1,14 @@
-using System;
 using MediatR;
 
 namespace Upnodo.Features.Mood.Application.GetMoodRecordsByUserGuid
 {
     public class GetMoodRecordsByUserGuidQuery : IRequest<GetMoodRecordsByUserGuidResponse>
     {
-        public GetMoodRecordsByUserGuidQuery(Guid userGuid)
+        public GetMoodRecordsByUserGuidQuery(string userId)
         {
-            UserGuid = userGuid;
+            UserId = userId;
         }
         
-        public Guid UserGuid { get; }
+        public string UserId { get; }
     }
 }

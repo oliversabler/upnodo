@@ -6,7 +6,7 @@ namespace Upnodo.Features.Mood.Application.GetMoodRecordsByUserGuid
 {
     public class GetMoodRecordsByUserGuidResponse : BaseResponse
     {
-        public GetMoodRecordsByUserGuidResponse(bool success, List<MoodRecord> value) : base(success, value)
+        public GetMoodRecordsByUserGuidResponse(bool success, object value) : base(success, value)
         {
         }
     }
