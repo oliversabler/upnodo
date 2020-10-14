@@ -12,7 +12,7 @@ namespace Upnodo.Features.Mood.Application.UpdateMoodRecord
             MoodRecordId = moodRecordId;
         }
 
-        public DateTime DateUpdate { get; set; }
+        public DateTime DateUpdate { get; }
         
         public Domain.Mood Mood { get; }
         

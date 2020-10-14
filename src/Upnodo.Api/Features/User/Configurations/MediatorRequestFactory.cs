@@ -1,6 +1,6 @@
-using System;
 using Upnodo.Features.User.Application.CreateUser;
 using Upnodo.Features.User.Application.DeleteUser;
+using Upnodo.Features.User.Application.UpdateUser;
 
 namespace Upnodo.Api.Features.User.Configurations
 {
@@ -18,6 +18,16 @@ namespace Upnodo.Api.Features.User.Configurations
         internal static DeleteUserCommand DeleteUserCommand(string userId)
         {
             return new DeleteUserCommand(userId);
+        }
+
+        public static UpdateUserCommand UpdateUserCommand(UpdateUserRequest request)
+        {
+            return new UpdateUserCommand(
+                request.Alias,
+                request.Email,
+                request.Firstname,
+                request.Lastname,
+                request.UserId);
         }
     }
 }

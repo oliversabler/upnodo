@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Upnodo.Api.Features.User.Configurations;
 using Upnodo.Features.User.Application.CreateUser;
+using Upnodo.Features.User.Application.UpdateUser;
 
 namespace Upnodo.Api.Features.User
 {
@@ -18,7 +19,7 @@ namespace Upnodo.Api.Features.User
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUser([FromBody]CreateUserRequest request)
+        public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
         {
             var result = await _mediator.Send(MediatorRequestFactory.CreateUserCommand(request));
 
@@ -29,8 +30,16 @@ namespace Upnodo.Api.Features.User
         public async Task<IActionResult> DeleteUser(string userId)
         {
             await _mediator.Send(MediatorRequestFactory.DeleteUserCommand(userId));
-            
+
             return NoContent();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserRequest request)
+        {
+            var result = await _mediator.Send(MediatorRequestFactory.UpdateUserCommand(request));
+            
+            return Ok(result);
         }
     }
 }
