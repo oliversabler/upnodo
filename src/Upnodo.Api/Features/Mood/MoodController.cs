@@ -36,9 +36,9 @@ namespace Upnodo.Api.Features.Mood
 
         // Todo: Add (pagination)
         [HttpGet("{userId}")]
-        public async Task<IActionResult> GetMoodRecordsByUserGuid(string userId)
+        public async Task<IActionResult> GetMoodRecordsByUserId(string userId)
         {
-            var result = await _mediator.Send(MediatorRequestFactory.GetMoodRecordsByUserGuidQuery(userId));
+            var result = await _mediator.Send(MediatorRequestFactory.GetMoodRecordsByUserIdQuery(userId));
 
             return Ok(result);
         }

@@ -34,7 +34,7 @@ namespace Upnodo.Features.Mood.Tests
         //     
         //     var content = await response.Content.ReadAsStringAsync();
         //
-        //     var result = JsonConvert.DeserializeObject<GetMoodRecordsByUserGuid>(content);
+        //     var result = JsonConvert.DeserializeObject<GetMoodRecordsByUserId>(content);
         //
         //     // Assert 
         //     Assert.IsTrue(response.IsSuccessStatusCode);
