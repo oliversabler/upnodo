@@ -14,22 +14,10 @@ namespace Upnodo.Features.Mood.Infrastructure
         {
             var client = new MongoClient(settings.ConnectionString);
             var db = client.GetDatabase(settings.DatabaseName);
-            
+
             _moods = db.GetCollection<MoodRecord>(settings.MoodsCollectionName);
         }
 
-        public MoodRecord Update(MoodRecord moodRecord)
-        {
-            var filter = Builders<MoodRecord>.Filter.Eq("moodRecordId", moodRecord.MoodRecordId);
-            var update = Builders<MoodRecord>.Update
-                .Set("dateUpdated", moodRecord.DateUpdated)
-                .Set("mood", moodRecord.Mood);
-            
-            _moods.UpdateOne(filter, update);
-
-            return moodRecord;
-        }
-        
         public MoodRecord Create(MoodRecord moodRecord)
         {
             // Todo: Find a way to check if User exists before saving moodRecord
@@ -41,13 +29,25 @@ namespace Upnodo.Features.Mood.Infrastructure
         public void Delete(string moodRecordId)
         {
             var deleteFilter = Builders<MoodRecord>.Filter.Eq("moodRecordId", moodRecordId);
-            
+
             _moods.DeleteOne(deleteFilter);
         }
 
         public List<MoodRecord> Read(string userId)
         {
             throw new NotImplementedException();
+        }
+
+        public MoodRecord Update(MoodRecord moodRecord)
+        {
+            var filter = Builders<MoodRecord>.Filter.Eq("moodRecordId", moodRecord.MoodRecordId);
+            var update = Builders<MoodRecord>.Update
+                .Set("dateUpdated", moodRecord.DateUpdated)
+                .Set("mood", moodRecord.Mood);
+
+            _moods.UpdateOne(filter, update);
+
+            return moodRecord;
         }
     }
 }

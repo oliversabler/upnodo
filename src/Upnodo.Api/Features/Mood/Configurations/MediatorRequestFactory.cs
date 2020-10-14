@@ -7,11 +7,6 @@ namespace Upnodo.Api.Features.Mood.Configurations
 {
     internal static class MediatorRequestFactory
     {
-        internal static UpdateMoodRecordCommand UpdateMoodRecordCommand(UpdateMoodRecordRequest updateMoodRecordRequest)
-        {
-            return new UpdateMoodRecordCommand(updateMoodRecordRequest.Mood, updateMoodRecordRequest.MoodRecordId);
-        }
-
         internal static CreateMoodRecordCommand CreateMoodRecordCommand(CreateMoodRecordRequest recordRequest)
         {
             return new CreateMoodRecordCommand(recordRequest.Mood, recordRequest.UserId);
@@ -25,6 +20,11 @@ namespace Upnodo.Api.Features.Mood.Configurations
         internal static GetMoodRecordsByUserGuidQuery GetMoodRecordsByUserGuidQuery(string userId)
         {
             return new GetMoodRecordsByUserGuidQuery(userId);
+        }
+        
+        internal static UpdateMoodRecordCommand UpdateMoodRecordCommand(UpdateMoodRecordRequest updateMoodRecordRequest)
+        {
+            return new UpdateMoodRecordCommand(updateMoodRecordRequest.Mood, updateMoodRecordRequest.MoodRecordId);
         }
     }
 }

@@ -13,10 +13,10 @@ namespace Upnodo.Api.Features.Mood.Configurations
     {
         internal static void AddMood(this IServiceCollection s)
         {
-            s.AddTransient<IService<UpdateMoodRecordResponse>, UpdateMoodRecordService>();
             s.AddTransient<IService<CreateMoodRecordResponse>, CreateMoodRecordService>();
             s.AddTransient<IService<DeleteMoodRecordResponse>, DeleteMoodRecordService>();
             s.AddTransient<IService<GetMoodRecordsByUserGuidResponse>, GetMoodRecordsByUserGuidService>();
+            s.AddTransient<IService<UpdateMoodRecordResponse>, UpdateMoodRecordService>();
 
             s.AddSingleton<MoodRecordRepository>();
         }

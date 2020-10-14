@@ -18,14 +18,6 @@ namespace Upnodo.Api.Features.Mood
             _mediator = mediator;
         }
         
-        [HttpPut]
-        public async Task<IActionResult> UpdateMoodRecord([FromBody]UpdateMoodRecordRequest request)
-        {
-            var result = await _mediator.Send(MediatorRequestFactory.UpdateMoodRecordCommand(request));
-            
-            return Ok(result);
-        }
-        
         [HttpPost]
         public async Task<IActionResult> CreateMoodRecord([FromBody]CreateMoodRecordRequest request)
         {
@@ -48,6 +40,14 @@ namespace Upnodo.Api.Features.Mood
         {
             var result = await _mediator.Send(MediatorRequestFactory.GetMoodRecordsByUserGuidQuery(userId));
 
+            return Ok(result);
+        }
+        
+        [HttpPut]
+        public async Task<IActionResult> UpdateMoodRecord([FromBody]UpdateMoodRecordRequest request)
+        {
+            var result = await _mediator.Send(MediatorRequestFactory.UpdateMoodRecordCommand(request));
+            
             return Ok(result);
         }
     }
