@@ -28,8 +28,7 @@ namespace Upnodo.Features.User.Infrastructure.Services
                 Email = command.Email,
                 Firstname = command.Firstname,
                 UserId = command.UserId,
-                Lastname = command.Lastname,
-                MoodRecordGuids = command.MoodRecordGuids
+                Lastname = command.Lastname
             };
 
             var post = _userRepository.Create(user);

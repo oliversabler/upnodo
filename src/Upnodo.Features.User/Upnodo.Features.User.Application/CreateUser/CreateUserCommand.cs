@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using MediatR;
 
 namespace Upnodo.Features.User.Application.CreateUser
@@ -14,7 +13,6 @@ namespace Upnodo.Features.User.Application.CreateUser
             Firstname = firstname;
             UserId = Guid.NewGuid().ToString();
             Lastname = lastname;
-            MoodRecordGuids = new List<Guid>();
         }
         
         public string Alias { get; }
@@ -28,7 +26,5 @@ namespace Upnodo.Features.User.Application.CreateUser
         public string UserId { get; }
         
         public string Lastname { get; }
-
-        public List<Guid> MoodRecordGuids { get; set; }
     }
 }

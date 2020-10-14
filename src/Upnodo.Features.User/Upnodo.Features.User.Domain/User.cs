@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Upnodo.Features.User.Domain
@@ -23,8 +22,5 @@ namespace Upnodo.Features.User.Domain
 
         [BsonElement("lastname")]
         public string Lastname { get; set; }
-
-        [BsonElement("moodRecordGuids")]
-        public List<Guid> MoodRecordGuids { get; set; }
     }
 }
