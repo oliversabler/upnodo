@@ -1,7 +1,5 @@
-using System;
 using Upnodo.Features.Mood.Application.CreateMoodRecord;
 using Upnodo.Features.Mood.Application.DeleteMoodRecord;
-using Upnodo.Features.Mood.Application.GetAllMoodRecords;
 using Upnodo.Features.Mood.Application.GetMoodRecordsByUserGuid;
 using Upnodo.Features.Mood.Application.UpdateMoodRecord;
 
@@ -13,20 +11,15 @@ namespace Upnodo.Api.Features.Mood.Configurations
         {
             return new UpdateMoodRecordCommand(updateMoodRecordRequest.Mood, updateMoodRecordRequest.MoodRecordId);
         }
-        
+
         internal static CreateMoodRecordCommand CreateMoodRecordCommand(CreateMoodRecordRequest recordRequest)
         {
             return new CreateMoodRecordCommand(recordRequest.Mood, recordRequest.UserId);
         }
-        
+
         internal static DeleteMoodRecordCommand DeleteMoodRecordCommand(string moodId)
         {
             return new DeleteMoodRecordCommand(moodId);
-        }
-        
-        internal static GetAllMoodRecordsQuery GetAllMoodRecordsQuery()
-        {
-            return new GetAllMoodRecordsQuery();
         }
 
         internal static GetMoodRecordsByUserGuidQuery GetMoodRecordsByUserGuidQuery(string userId)

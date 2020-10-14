@@ -42,17 +42,7 @@ namespace Upnodo.Api.Features.Mood
             return NoContent();
         }
 
-        // Todo: Remove
-        [HttpGet]
-        public async Task<IActionResult> GetAllMoodRecords()
-        {
-            var result = await _mediator.Send(MediatorRequestFactory.GetAllMoodRecordsQuery());
-
-            return Ok(result);
-        }
-        
-        // Todo: Fetch mood records (pagination)
-        
+        // Todo: Add (pagination)
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetMoodRecordsByUserGuid(string userId)
         {
