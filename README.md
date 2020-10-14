@@ -10,7 +10,7 @@ Setup environment (moods)
 1. `use DATABASE_NAME` 
 2. `db.createCollection("moods")`
 3. Set fields to be unique 
-   - `db.moods.createIndex({ "moods": 1 }, { unique: true })`
+   - `db.moods.createIndex({ "moodRecordId": 1 }, { unique: true })`
 
 Setup environment (users)
 1. `use DATABASE_NAME` 
