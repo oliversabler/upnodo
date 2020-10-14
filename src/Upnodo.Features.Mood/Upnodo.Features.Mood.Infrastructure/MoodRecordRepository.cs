@@ -18,7 +18,7 @@ namespace Upnodo.Features.Mood.Infrastructure
             _moods = db.GetCollection<MoodRecord>(settings.MoodsCollectionName);
         }
 
-        public MoodRecord Alter(MoodRecord moodRecord)
+        public MoodRecord Update(MoodRecord moodRecord)
         {
             var filter = Builders<MoodRecord>.Filter.Eq("moodRecordId", moodRecord.MoodRecordId);
             var update = Builders<MoodRecord>.Update
@@ -32,7 +32,7 @@ namespace Upnodo.Features.Mood.Infrastructure
         
         public MoodRecord Create(MoodRecord moodRecord)
         {
-            // Todo: Check if user exists
+            // Todo: Find a way to check if User exists before saving moodRecord
             _moods.InsertOne(moodRecord);
 
             return moodRecord;

@@ -1,11 +1,11 @@
 using System;
 using MediatR;
 
-namespace Upnodo.Features.Mood.Application.AlterMoodRecord
+namespace Upnodo.Features.Mood.Application.UpdateMoodRecord
 {
-    public class AlterMoodRecordCommand : IRequest<AlterMoodRecordResponse>
+    public class UpdateMoodRecordCommand : IRequest<UpdateMoodRecordResponse>
     {
-        public AlterMoodRecordCommand(Domain.Mood mood, string moodRecordId)
+        public UpdateMoodRecordCommand(Domain.Mood mood, string moodRecordId)
         {
             DateUpdate = DateTime.UtcNow;
             Mood = mood;

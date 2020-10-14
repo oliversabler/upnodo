@@ -2,8 +2,8 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Upnodo.Api.Features.Mood.Configurations;
-using Upnodo.Features.Mood.Application.AlterMoodRecord;
 using Upnodo.Features.Mood.Application.CreateMoodRecord;
+using Upnodo.Features.Mood.Application.UpdateMoodRecord;
 
 namespace Upnodo.Api.Features.Mood
 {
@@ -19,9 +19,9 @@ namespace Upnodo.Api.Features.Mood
         }
         
         [HttpPut]
-        public async Task<IActionResult> AlterMoodRecord([FromBody]AlterMoodRecordRequest request)
+        public async Task<IActionResult> UpdateMoodRecord([FromBody]UpdateMoodRecordRequest request)
         {
-            var result = await _mediator.Send(MediatorRequestFactory.AlterMoodRecordCommand(request));
+            var result = await _mediator.Send(MediatorRequestFactory.UpdateMoodRecordCommand(request));
             
             return Ok(result);
         }

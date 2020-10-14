@@ -1,6 +1,6 @@
-namespace Upnodo.Features.Mood.Application.AlterMoodRecord
+namespace Upnodo.Features.Mood.Application.UpdateMoodRecord
 {
-    public class AlterMoodRecordRequest
+    public class UpdateMoodRecordRequest
     {
         public Domain.Mood Mood { get; set; }
         

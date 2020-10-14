@@ -23,8 +23,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
             
             _moodRecordRepository.Delete(command.MoodId);
 
-            // Todo: No need for DeleteMoodRecordResponse to return with true.
-            return Task.FromResult(new DeleteMoodRecordResponse(true));
+            return Task.FromResult(new DeleteMoodRecordResponse());
         }
     }
 }
