@@ -3,6 +3,9 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Polly;
+using Polly.CircuitBreaker;
+using Upnodo.BuildingBlocks.Application.Exceptions;
 
 namespace Upnodo.Api.Middleware.Exceptions
 {
@@ -10,6 +13,15 @@ namespace Upnodo.Api.Middleware.Exceptions
     {
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
+        
+        private static readonly AsyncCircuitBreakerPolicy CircuitBreakerPolicy =
+            Policy
+                .Handle<Exception>()
+                .AdvancedCircuitBreakerAsync(
+                    0.5, 
+                    TimeSpan.FromSeconds(10),
+                    10,
+                    TimeSpan.FromSeconds(30));
 
         public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
         {
@@ -21,7 +33,12 @@ namespace Upnodo.Api.Middleware.Exceptions
         {
             try
             {
-                await _next(httpContext);
+                if (CircuitBreakerPolicy.CircuitState == CircuitState.Open)
+                {
+                    throw new ServiceUnavailableException("Service is unavailable.");
+                }
+
+                await CircuitBreakerPolicy.ExecuteAsync(() => _next(httpContext));
             }
             catch (Exception ex)
             {
