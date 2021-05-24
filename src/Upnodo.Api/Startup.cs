@@ -43,7 +43,7 @@ namespace Upnodo.Api
 
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new OpenApiInfo {Title = "Renault Api", Version = "v1"});
+                options.SwaggerDoc("v1", new OpenApiInfo {Title = "Upnodo Api", Version = "v1"});
             });
 
             // MediatR
