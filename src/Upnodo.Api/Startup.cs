@@ -79,7 +79,7 @@ namespace Upnodo.Api
 
             // Swagger documentation
             app.UseSwagger();
-            app.UseSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "Renault Api v1"); });
+            app.UseSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "Upnodo Api v1"); });
 
             // Custom Middleware for handling global exceptions
             app.UseMiddleware<ExceptionMiddleware>();
