@@ -1,6 +1,13 @@
 # upnodo
 Track every day with up, normal or down.
 
+## Todo
+- [ ] Create docker network with upnodo API and MongoDB connection
+- [ ] Add analyzers and .editorconfig
+- [ ] Nullable enable?
+- [ ] Unit Tests
+- [ ] 
+
 ## Purpose
 The purpose of this repository is to test architectural and technological ideas. 
 
