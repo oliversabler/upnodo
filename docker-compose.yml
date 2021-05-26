@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+    api:
+        build: .
+        container_name: "upnodo-api"
+        ports: 
+            - 5000:80
+        working_dir: /app
+
+    mongo:
+        image: mongo
+        container_name: "upnodo-db"
+        working_dir: /app
+        ports: 
+            - 27017:27017
+        volumes:
+            - upnodo-db:/data/db
+
+volumes:
+    upnodo-db:
