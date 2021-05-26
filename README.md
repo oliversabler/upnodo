@@ -4,6 +4,7 @@ Track every day with up, normal or down.
 ## Todo
 - [x] Create docker network with upnodo API and MongoDB connection
 - [x] Create docker-compose file
+- [ ] Fix https binding
 - [ ] Make sure some files are unique in MongoDb
 - [ ] Add analyzers and .editorconfig
 - [ ] Nullable enable?
@@ -15,7 +16,6 @@ The purpose of this repository is to test architectural and technological ideas.
 ## Get started
 ### Prerequisites
 * [Docker](https://www.docker.com/products/docker-desktop)
-* [.NET 5.0.x](https://dotnet.microsoft.com/download/dotnet/5.0)
 
 ### Run
 To get the API and MongoDb running, all you need to do is run `docker-compose up -d`. When you are done you can stop it by running `docker-compose down`.
