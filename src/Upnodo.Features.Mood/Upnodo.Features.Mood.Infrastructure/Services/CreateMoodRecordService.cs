@@ -9,7 +9,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
     public class CreateMoodRecordService : IService<CreateMoodRecordResponse>
     {
         private readonly MoodRecordRepository _moodRecordRepository;
-        
+
         public CreateMoodRecordService(MoodRecordRepository moodRecordRepository)
         {
             _moodRecordRepository = moodRecordRepository;
@@ -17,19 +17,17 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 
         public Task<CreateMoodRecordResponse> RunAsync<T>(T request)
         {
-            if (!(request is CreateMoodRecordCommand command))
+            if (request is not CreateMoodRecordCommand command)
             {
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(CreateMoodRecordCommand)}");
             }
-            
-            var moodRecord = new MoodRecord
-            (
+
+            var moodRecord = MoodRecord.CreateMood(
                 command.DateCreated,
                 command.Mood,
                 command.MoodRecordId,
-                command.UserId
-            );
-            
+                command.UserId);
+
             var response = _moodRecordRepository.Create(moodRecord);
 
             return Task.FromResult(new CreateMoodRecordResponse(true, response));

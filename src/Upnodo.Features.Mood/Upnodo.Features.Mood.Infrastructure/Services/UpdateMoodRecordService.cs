@@ -17,17 +17,17 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 
         public Task<UpdateMoodRecordResponse> RunAsync<T>(T request)
         {
-            if (!(request is UpdateMoodRecordCommand command))
+            if (request is not UpdateMoodRecordCommand command)
             {
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(UpdateMoodRecordCommand)}");
             }
 
-            var user = new MoodRecord(
+            var moodRecord = MoodRecord.UpdateMood(
                 command.DateUpdate,
                 command.Mood,
                 command.MoodRecordId);
             
-            var response = _moodRecordRepository.Update(user);
+            var response = _moodRecordRepository.Update(moodRecord);
 
             return Task.FromResult(new UpdateMoodRecordResponse(true, response));
         }
