@@ -4,6 +4,7 @@ Track every day with up, normal or down.
 ## Todo
 - [x] Create docker network with upnodo API and MongoDB connection
 - [x] Create docker-compose file
+- [ ] Fix Models and Repositories, not working properly anymore
 - [ ] Fix https binding
 - [ ] Make sure some fields are unique in MongoDb
 - [ ] Add analyzers and .editorconfig
