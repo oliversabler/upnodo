@@ -2,12 +2,12 @@ namespace Upnodo.BuildingBlocks.Application.Configurations
 {
     public class UpnodoDatabaseSettings : IUpnodoDatabaseSettings
     {
-        public string ConnectionString { get; set; }
+        public string ConnectionString { get; set; } = default!;
         
-        public string DatabaseName { get; set; }
+        public string DatabaseName { get; set; } = default!;
         
-        public string MoodsCollectionName { get; set; }
+        public string MoodsCollectionName { get; set; } = default!;
         
-        public string UsersCollectionName { get; set; }
+        public string UsersCollectionName { get; set; } = default!;
     }
 }

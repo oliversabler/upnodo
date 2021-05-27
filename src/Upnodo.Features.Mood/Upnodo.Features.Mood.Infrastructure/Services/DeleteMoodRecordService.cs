@@ -23,7 +23,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
             
             _moodRecordRepository.Delete(command.MoodId);
 
-            return Task.FromResult(new DeleteMoodRecordResponse());
+            return Task.FromResult(new DeleteMoodRecordResponse(true, null));
         }
     }
 }

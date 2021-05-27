@@ -24,7 +24,7 @@ namespace Upnodo.Features.User.Infrastructure.Services
             
             _userRepository.Delete(command.UserId);
             
-            return Task.FromResult(new DeleteUserResponse(true));
+            return Task.FromResult(new DeleteUserResponse(true, null));
         }
     }
 }
