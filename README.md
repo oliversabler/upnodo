@@ -5,7 +5,7 @@ Track every day with up, normal or down.
 - [x] Create docker network with upnodo API and MongoDB connection
 - [x] Create docker-compose file
 - [ ] Fix https binding
-- [ ] Make sure some files are unique in MongoDb
+- [ ] Make sure some fields are unique in MongoDb
 - [ ] Add analyzers and .editorconfig
 - [ ] Nullable enable?
 - [ ] Unit Tests
