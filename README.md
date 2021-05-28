@@ -10,6 +10,7 @@ Track every day with up, normal or down.
 - [ ] Add analyzers and .editorconfig
 - [ ] Nullable enable?
 - [ ] Unit Tests
+- [ ] NSwag?
 
 ## Purpose
 The purpose of this repository is to test architectural and technological ideas. 
