@@ -20,7 +20,7 @@ The purpose of this repository is to test architectural and technological ideas.
 * [Docker](https://www.docker.com/products/docker-desktop)
 
 ### Run
-To get the API and MongoDb running, all you need to do is run `docker-compose up -d`. When you are done you can stop it by running `docker-compose down`.
+To get the API and MongoDb running, all you need to do is run `docker-compose build` and then `docker-compose up -d`. When you are done you can stop it by running `docker-compose down`.
 
 ### Run (manually)
 If you for some reason want to create and run the API and MongoDb manually in a docker network, do the following steps:
