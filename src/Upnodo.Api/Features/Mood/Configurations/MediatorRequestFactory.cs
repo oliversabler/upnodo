@@ -10,27 +10,27 @@ namespace Upnodo.Api.Features.Mood.Configurations
     {
         internal static CreateMoodRecordCommand CreateMoodRecordCommand(CreateMoodRecordRequest recordRequest)
         {
-            return new CreateMoodRecordCommand(recordRequest.Mood, recordRequest.UserId);
+            return new(recordRequest.Mood, recordRequest.UserId);
         }
 
         internal static DeleteMoodRecordCommand DeleteMoodRecordCommand(string moodId)
         {
-            return new DeleteMoodRecordCommand(moodId);
+            return new(moodId);
         }
         
         internal static GetMoodRecordByMoodRecordIdQuery GetMoodRecordByMoodRecordIdQuery(string userId)
         {
-            return new GetMoodRecordByMoodRecordIdQuery(userId);
+            return new(userId);
         }
 
         internal static GetMoodRecordsByUserIdQuery GetMoodRecordsByUserIdQuery(string userId)
         {
-            return new GetMoodRecordsByUserIdQuery(userId);
+            return new(userId);
         }
         
         internal static UpdateMoodRecordCommand UpdateMoodRecordCommand(UpdateMoodRecordRequest updateMoodRecordRequest)
         {
-            return new UpdateMoodRecordCommand(updateMoodRecordRequest.Mood, updateMoodRecordRequest.MoodRecordId);
+            return new(updateMoodRecordRequest.Mood, updateMoodRecordRequest.MoodRecordId);
         }
     }
 }

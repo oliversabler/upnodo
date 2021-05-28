@@ -46,6 +46,7 @@ namespace Upnodo.Features.Mood.Infrastructure
 
             _moods.UpdateOneAsync(filter, update);
 
+            // Not optimal, does not return the updated document at all times
             var readFilter = Builders<MoodRecord>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecord.MoodRecordId);
 
             return _moods.Find(readFilter).FirstOrDefault();
