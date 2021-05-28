@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using MongoDB.Driver;
 using Upnodo.BuildingBlocks.Application.Configurations;
 using Upnodo.Features.Mood.Domain;
@@ -20,7 +18,6 @@ namespace Upnodo.Features.Mood.Infrastructure
 
         public MoodRecord Create(MoodRecord moodRecord)
         {
-            // Todo: Find a way to check if User exists before saving moodRecord
             _moods.InsertOne(moodRecord);
 
             return moodRecord;
@@ -28,26 +25,30 @@ namespace Upnodo.Features.Mood.Infrastructure
 
         public void Delete(string moodRecordId)
         {
-            var deleteFilter = Builders<MoodRecord>.Filter.Eq("moodRecordId", moodRecordId);
+            var deleteFilter = Builders<MoodRecord>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
 
             _moods.DeleteOne(deleteFilter);
         }
 
-        public List<MoodRecord> Read(string userId)
+        public MoodRecord Read(string moodRecordId)
         {
-            throw new NotImplementedException();
+            var readFilter = Builders<MoodRecord>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
+
+            return _moods.Find(readFilter).FirstOrDefault();
         }
 
         public MoodRecord Update(MoodRecord moodRecord)
         {
-            var filter = Builders<MoodRecord>.Filter.Eq("moodRecordId", moodRecord.MoodRecordId);
+            var filter = Builders<MoodRecord>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecord.MoodRecordId);
             var update = Builders<MoodRecord>.Update
-                .Set("dateUpdated", moodRecord.DateUpdated)
-                .Set("mood", moodRecord.Mood);
+                .Set(Constants.Elements.DateUpdated, moodRecord.DateUpdated)
+                .Set(Constants.Elements.Mood, moodRecord.Mood);
 
-            _moods.UpdateOne(filter, update);
+            _moods.UpdateOneAsync(filter, update);
 
-            return moodRecord;
+            var readFilter = Builders<MoodRecord>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecord.MoodRecordId);
+
+            return _moods.Find(readFilter).FirstOrDefault();
         }
     }
 }

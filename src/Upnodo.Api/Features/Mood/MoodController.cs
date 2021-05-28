@@ -33,15 +33,23 @@ namespace Upnodo.Api.Features.Mood
 
             return NoContent();
         }
-
-        // Todo: Add (pagination)
-        [HttpGet("{userId}")]
-        public async Task<IActionResult> GetMoodRecordsByUserId(string userId)
+        
+        [HttpGet("{moodRecordId}")]
+        public async Task<IActionResult> GetMoodRecordsByMoodRecordId(string moodRecordId)
         {
-            var result = await _mediator.Send(MediatorRequestFactory.GetMoodRecordsByUserIdQuery(userId));
+            var result = await _mediator.Send(MediatorRequestFactory.GetMoodRecordByMoodRecordIdQuery(moodRecordId));
 
             return Ok(result);
         }
+
+        // Todo: Add (pagination)
+        // [HttpGet("{userId}")]
+        // public async Task<IActionResult> GetMoodRecordsByUserId(string userId)
+        // {
+        //     var result = await _mediator.Send(MediatorRequestFactory.GetMoodRecordsByUserIdQuery(userId));
+        //
+        //     return Ok(result);
+        // }
         
         [HttpPut]
         public async Task<IActionResult> UpdateMoodRecord([FromBody]UpdateMoodRecordRequest request)

@@ -16,7 +16,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 
         public Task<GetMoodRecordsByUserIdResponse> RunAsync<T>(T request)
         {
-            if (!(request is GetMoodRecordsByUserIdQuery query))
+            if (request is not GetMoodRecordsByUserIdQuery query)
             {
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(GetMoodRecordsByUserIdQuery)}");
             }
