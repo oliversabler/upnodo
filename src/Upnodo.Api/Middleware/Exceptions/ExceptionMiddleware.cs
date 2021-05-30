@@ -40,6 +40,11 @@ namespace Upnodo.Api.Middleware.Exceptions
 
                 await CircuitBreakerPolicy.ExecuteAsync(() => _next(httpContext));
             }
+            catch (TaskCanceledException ex)
+            {
+                _logger.LogInformation(ex, ex.Message);
+                await HandleGlobalExceptionAsync(httpContext, ex);
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);

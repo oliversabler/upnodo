@@ -15,9 +15,9 @@ namespace Upnodo.Api.Features.User.Handlers
             _createUserService = createUserService;
         }
 
-        public async Task<CreateUserResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public async Task<CreateUserResponse> Handle(CreateUserCommand request, CancellationToken token)
         {
-            return await _createUserService.RunAsync(request);
+            return await _createUserService.RunAsync(request, token);
         }
     }
 }

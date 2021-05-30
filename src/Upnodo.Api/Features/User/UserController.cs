@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -19,26 +20,26 @@ namespace Upnodo.Api.Features.User
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
+        public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request, CancellationToken token)
         {
-            var result = await _mediator.Send(MediatorRequestFactory.CreateUserCommand(request));
+            var result = await _mediator.Send(MediatorRequestFactory.CreateUserCommand(request), token);
 
             return Ok(result);
         }
 
         [HttpDelete("{userId}")]
-        public async Task<IActionResult> DeleteUser(string userId)
+        public async Task<IActionResult> DeleteUser(string userId, CancellationToken token)
         {
-            await _mediator.Send(MediatorRequestFactory.DeleteUserCommand(userId));
+            await _mediator.Send(MediatorRequestFactory.DeleteUserCommand(userId), token);
 
             return NoContent();
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserRequest request)
+        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserRequest request, CancellationToken token)
         {
-            var result = await _mediator.Send(MediatorRequestFactory.UpdateUserCommand(request));
-            
+            var result = await _mediator.Send(MediatorRequestFactory.UpdateUserCommand(request), token);
+
             return Ok(result);
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Upnodo.BuildingBlocks.Application.Contracts;
 using Upnodo.Features.Mood.Application.UpdateMoodRecord;
@@ -15,7 +16,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
             _moodRecordRepository = moodRecordRepository;
         }
 
-        public Task<UpdateMoodRecordResponse> RunAsync<T>(T request)
+        public Task<UpdateMoodRecordResponse> RunAsync<T>(T request, CancellationToken token)
         {
             if (request is not UpdateMoodRecordCommand command)
             {

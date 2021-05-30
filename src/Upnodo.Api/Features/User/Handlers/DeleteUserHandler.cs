@@ -15,9 +15,9 @@ namespace Upnodo.Api.Features.User.Handlers
             _deleteUserService = deleteUserService;
         }
 
-        public async Task<DeleteUserResponse> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
+        public async Task<DeleteUserResponse> Handle(DeleteUserCommand request, CancellationToken token)
         {
-            return await _deleteUserService.RunAsync(request);
+            return await _deleteUserService.RunAsync(request, token);
         }
     }
 }

@@ -15,9 +15,9 @@ namespace Upnodo.Api.Features.Mood.Handlers
             _getMoodRecordByMoodRecordIdService = getMoodRecordByMoodRecordIdService;
         }
 
-        public async Task<GetMoodRecordByMoodRecordIdResponse> Handle(GetMoodRecordByMoodRecordIdQuery request, CancellationToken cancellationToken)
+        public async Task<GetMoodRecordByMoodRecordIdResponse> Handle(GetMoodRecordByMoodRecordIdQuery request, CancellationToken token)
         {
-            return await _getMoodRecordByMoodRecordIdService.RunAsync(request);
+            return await _getMoodRecordByMoodRecordIdService.RunAsync(request, token);
         }
     }
 }

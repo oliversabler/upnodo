@@ -15,9 +15,9 @@ namespace Upnodo.Api.Features.Mood.Handlers
             _deleteMoodRecordService = deleteMoodRecordService;
         }
 
-        public async Task<DeleteMoodRecordResponse> Handle(DeleteMoodRecordCommand request, CancellationToken cancellationToken)
+        public async Task<DeleteMoodRecordResponse> Handle(DeleteMoodRecordCommand request, CancellationToken token)
         {
-            return await _deleteMoodRecordService.RunAsync(request);
+            return await _deleteMoodRecordService.RunAsync(request, token);
         }
     }
 }

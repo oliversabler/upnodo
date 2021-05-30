@@ -15,9 +15,9 @@ namespace Upnodo.Api.Features.User.Handlers
             _updateUserService = updateUserService;
         }
 
-        public async Task<UpdateUserResponse> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+        public async Task<UpdateUserResponse> Handle(UpdateUserCommand request, CancellationToken token)
         {
-            return await _updateUserService.RunAsync(request);
+            return await _updateUserService.RunAsync(request, token);
         }
     }
 }

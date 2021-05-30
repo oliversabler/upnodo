@@ -15,9 +15,9 @@ namespace Upnodo.Api.Features.Mood.Handlers
             _updateMoodRecordService = updateMoodRecordService;
         }
 
-        public async Task<UpdateMoodRecordResponse> Handle(UpdateMoodRecordCommand request, CancellationToken cancellationToken)
+        public async Task<UpdateMoodRecordResponse> Handle(UpdateMoodRecordCommand request, CancellationToken token)
         {
-            return await _updateMoodRecordService.RunAsync(request);
+            return await _updateMoodRecordService.RunAsync(request, token);
         }
     }
 }
