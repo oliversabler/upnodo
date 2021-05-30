@@ -16,7 +16,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 
         public Task<DeleteMoodRecordResponse> RunAsync<T>(T request)
         {
-            if (!(request is DeleteMoodRecordCommand command))
+            if (request is not DeleteMoodRecordCommand command)
             {
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(DeleteMoodRecordCommand)}");
             }
