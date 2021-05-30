@@ -6,6 +6,7 @@ Track every day with up, normal or down.
 - [x] Create docker-compose file
 - [ ] Fix Models and Repositories, not working properly anymore
 - [ ] Fix https binding
+- [ ] Make async
 - [ ] Make sure some fields are unique in MongoDb
 - [ ] Add analyzers and .editorconfig
 - [ ] Nullable enable?
