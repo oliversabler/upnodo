@@ -16,39 +16,51 @@ namespace Upnodo.Features.Mood.Domain
         public DateTime DateUpdated { get; private init; }
 
         [BsonElement(Constants.Elements.Mood)]
-        public Mood Mood { get; private init; }
+        public MoodStatus MoodStatus { get; private init; }
         
         [BsonElement(Constants.Elements.MoodRecordId)]
         public string MoodRecordId { get; private init; } = default!;
 
         [BsonElement(Constants.Elements.UserId)]
-        public string UserId { get; init; } = default!;
+        public User User { get; init; } = default!;
 
         public static MoodRecord CreateMood(
             DateTime dateCreated,
-            Mood mood,
+            MoodStatus moodStatus,
             string moodRecordId,
-            string userId)
+            string userId,
+            string username,
+            string email)
         {
             return new()
             {
                 DateCreated = dateCreated,
-                Mood = mood,
+                MoodStatus = moodStatus,
                 MoodRecordId = moodRecordId,
-                UserId = userId
+                User = CreateUser(userId, username, email)
             };
         }
 
         public static MoodRecord UpdateMood(
             DateTime dateUpdated,
-            Mood mood,
+            MoodStatus moodStatus,
             string moodRecordId)
         {
             return new()
             {
                 DateUpdated = dateUpdated,
-                Mood = mood,
+                MoodStatus = moodStatus,
                 MoodRecordId = moodRecordId
+            };
+        }
+
+        private static User CreateUser(string userId, string username, string email)
+        {
+            return new()
+            {
+                UserId = userId,
+                Username = username,
+                Email = email
             };
         }
     }

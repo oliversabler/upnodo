@@ -23,6 +23,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
             
             var records = _moodRecordRepository.Read(query.UserId);
 
+            // Todo: If records is empty we should return false with describing message
             return Task.FromResult(new GetMoodRecordsByUserIdResponse(true, records));
         }
     }

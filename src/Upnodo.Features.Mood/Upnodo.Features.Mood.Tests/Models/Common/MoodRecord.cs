@@ -1,4 +1,5 @@
 using System;
+using Upnodo.Features.Mood.Domain;
 
 namespace Upnodo.Features.Mood.Tests.Models.Common
 {
@@ -8,7 +9,7 @@ namespace Upnodo.Features.Mood.Tests.Models.Common
 
         public Guid Guid { get; set; }
         
-        public Domain.Mood Mood { get; set; }
+        public MoodStatus MoodStatus { get; set; }
 
         public string UserId { get; set; }
     }

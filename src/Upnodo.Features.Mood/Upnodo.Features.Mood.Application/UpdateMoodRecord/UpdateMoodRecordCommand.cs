@@ -1,20 +1,21 @@
 using System;
 using MediatR;
+using Upnodo.Features.Mood.Domain;
 
 namespace Upnodo.Features.Mood.Application.UpdateMoodRecord
 {
     public class UpdateMoodRecordCommand : IRequest<UpdateMoodRecordResponse>
     {
-        public UpdateMoodRecordCommand(Domain.Mood mood, string moodRecordId)
+        public UpdateMoodRecordCommand(MoodStatus moodStatus, string moodRecordId)
         {
             DateUpdate = DateTime.UtcNow;
-            Mood = mood;
+            MoodStatus = moodStatus;
             MoodRecordId = moodRecordId;
         }
 
         public DateTime DateUpdate { get; }
         
-        public Domain.Mood Mood { get; }
+        public MoodStatus MoodStatus { get; }
         
         public string MoodRecordId { get; }
 

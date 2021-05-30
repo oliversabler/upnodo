@@ -10,7 +10,7 @@ namespace Upnodo.Api.Features.Mood.Configurations
     {
         internal static CreateMoodRecordCommand CreateMoodRecordCommand(CreateMoodRecordRequest recordRequest)
         {
-            return new(recordRequest.Mood, recordRequest.UserId);
+            return new(recordRequest.MoodStatus, recordRequest.UserId, recordRequest.Username, recordRequest.Email);
         }
 
         internal static DeleteMoodRecordCommand DeleteMoodRecordCommand(string moodId)
@@ -30,7 +30,7 @@ namespace Upnodo.Api.Features.Mood.Configurations
         
         internal static UpdateMoodRecordCommand UpdateMoodRecordCommand(UpdateMoodRecordRequest updateMoodRecordRequest)
         {
-            return new(updateMoodRecordRequest.Mood, updateMoodRecordRequest.MoodRecordId);
+            return new(updateMoodRecordRequest.MoodStatus, updateMoodRecordRequest.MoodRecordId);
         }
     }
 }

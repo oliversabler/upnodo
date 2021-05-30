@@ -1,6 +1,6 @@
 namespace Upnodo.Features.Mood.Domain
 {
-    public enum Mood
+    public enum MoodStatus
     {
         Up,
         Neutral,

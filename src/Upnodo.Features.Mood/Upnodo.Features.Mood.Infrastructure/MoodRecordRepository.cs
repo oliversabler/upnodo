@@ -42,7 +42,7 @@ namespace Upnodo.Features.Mood.Infrastructure
             var filter = Builders<MoodRecord>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecord.MoodRecordId);
             var update = Builders<MoodRecord>.Update
                 .Set(Constants.Elements.DateUpdated, moodRecord.DateUpdated)
-                .Set(Constants.Elements.Mood, moodRecord.Mood);
+                .Set(Constants.Elements.Mood, moodRecord.MoodStatus);
 
             _moods.UpdateOneAsync(filter, update);
 

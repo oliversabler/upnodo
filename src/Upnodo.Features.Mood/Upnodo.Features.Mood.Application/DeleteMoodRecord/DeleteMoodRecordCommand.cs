@@ -1,4 +1,3 @@
-using System;
 using MediatR;
 
 namespace Upnodo.Features.Mood.Application.DeleteMoodRecord
