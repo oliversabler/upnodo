@@ -1,7 +1,10 @@
 # upnodo
 Track every day with up, normal or down.
-https://github.com/oliversabler/upnodo/actions/workflows/dotnet-core.yml/badge.svg
-https://github.com/oliversabler/upnodo/actions/workflows/codeql-analysis.yml/badge.svg
+
+![build](https://github.com/oliversabler/upnodo/actions/workflows/dotnet-core.yml/badge.svg)
+![codeql](https://github.com/oliversabler/upnodo/actions/workflows/codeql-analysis.yml/badge.svg)
+
+
 ## Todo
 - [x] Create docker network with upnodo API and MongoDB connection
 - [x] Create docker-compose file
