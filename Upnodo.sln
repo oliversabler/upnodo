@@ -30,11 +30,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upnodo.BuildingBlocks.Application", "src\Upnodo.BuildingBlocks\Upnodo.BuildingBlocks.Application\Upnodo.BuildingBlocks.Application.csproj", "{82FC44FD-F31A-4CCA-A1A6-27D49D07A004}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{4D3C6810-B04A-420D-BA82-BAA421DD32C5}"
-ProjectSection(SolutionItems) = preProject
-	Dockerfile = Dockerfile
-EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
