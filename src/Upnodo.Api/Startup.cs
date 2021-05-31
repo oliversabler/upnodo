@@ -1,3 +1,4 @@
+using System;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -47,7 +48,7 @@ namespace Upnodo.Api
             });
 
             // MediatR
-            services.AddMediatR(typeof(Startup));
+            services.AddMediatR(new[] {typeof(Startup)});
             
             // MongoDb
             services.Configure<UpnodoDatabaseSettings>(
