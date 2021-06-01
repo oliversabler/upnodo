@@ -12,33 +12,32 @@ namespace Upnodo.Api.Middleware.Exceptions
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly ILogger _logger;
+        private readonly ILogger<ExceptionMiddleware> _logger;
+        private readonly AsyncCircuitBreakerPolicy _policy;
         
-        private static readonly AsyncCircuitBreakerPolicy CircuitBreakerPolicy =
-            Policy
-                .Handle<Exception>()
-                .AdvancedCircuitBreakerAsync(
-                    0.5, 
-                    TimeSpan.FromSeconds(10),
-                    10,
-                    TimeSpan.FromSeconds(30));
-
         public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
         {
             _next = next;
             _logger = logger;
+
+            _policy = Policy
+                .Handle<Exception>()
+                .CircuitBreakerAsync(5, TimeSpan.FromSeconds(30));
         }
 
         public async Task InvokeAsync(HttpContext httpContext)
         {
             try
             {
-                if (CircuitBreakerPolicy.CircuitState == CircuitState.Open)
+                if (_policy.CircuitState == CircuitState.Open)
                 {
                     throw new ServiceUnavailableException("Service is unavailable.");
                 }
 
-                await CircuitBreakerPolicy.ExecuteAsync(() => _next(httpContext));
+                await _policy.ExecuteAsync(async () =>
+                {
+                    await _next(httpContext);
+                });
             }
             catch (TaskCanceledException ex)
             {
@@ -57,11 +56,12 @@ namespace Upnodo.Api.Middleware.Exceptions
             httpContext.Response.ContentType = "application/json";
             httpContext.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
 
-            return httpContext.Response.WriteAsync(
-                new GlobalExceptionDetails(
-                        httpContext.Response.StatusCode,
-                        exception.Message)
-                    .ToString());
+            return
+                httpContext.Response.WriteAsync(
+                    new GlobalExceptionDetails(
+                            httpContext.Response.StatusCode,
+                            exception.Message)
+                        .ToString());
         }
     }
 }
