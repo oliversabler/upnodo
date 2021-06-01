@@ -48,7 +48,7 @@ namespace Upnodo.Api
 
             // MediatR
             services.AddMediatR(new[] {typeof(Startup)});
-            
+
             // MongoDb
             services.Configure<UpnodoDatabaseSettings>(
                 Configuration.GetSection(nameof(UpnodoDatabaseSettings)));
