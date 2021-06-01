@@ -5,6 +5,10 @@
         <LangVersion>9</LangVersion>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    </PropertyGroup>
+
     <ItemGroup>
       <ProjectReference Include="..\..\Upnodo.BuildingBlocks\Upnodo.BuildingBlocks.Application\Upnodo.BuildingBlocks.Application.csproj" />
       <ProjectReference Include="..\Upnodo.Features.User.Application\Upnodo.Features.User.Application.csproj" />
