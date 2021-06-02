@@ -8,11 +8,12 @@ Track every day with up, normal or down.
 ## Todo
 - [x] Create docker network with upnodo API and MongoDB connection
 - [x] Create docker-compose file
-- [ ] Fix Models and Repositories, not working properly anymore
+- [x] Fix Models and Repositories, not working properly anymore
+- [ ] Add more logging
 - [ ] Fix https binding
 - [ ] Make async
 - [ ] Make sure some fields are unique in MongoDb
-- [ ] Add analyzers and .editorconfig
+- [x] Add analyzers and .editorconfig
 - [ ] Nullable enable?
 - [ ] Unit Tests
 - [ ] NSwag?
