@@ -9,59 +9,58 @@ namespace Upnodo.Features.Mood.Domain
         [BsonId]
         public ObjectId Id { get; set; }
         
+        [BsonElement(Constants.Elements.MoodRecordId)]
+        public string MoodRecordId { get; }
+
         [BsonElement(Constants.Elements.DateCreated)]
-        public DateTime DateCreated { get; private init; }
+        public DateTime DateCreated { get; }
 
         [BsonElement(Constants.Elements.DateUpdated)]
-        public DateTime DateUpdated { get; private init; }
+        public DateTime DateUpdated { get; }
 
         [BsonElement(Constants.Elements.Mood)]
-        public MoodStatus MoodStatus { get; private init; }
-        
-        [BsonElement(Constants.Elements.MoodRecordId)]
-        public string MoodRecordId { get; private init; } = default!;
+        public MoodStatus MoodStatus { get; }
 
-        [BsonElement(Constants.Elements.UserId)]
-        public User User { get; init; } = default!;
+        [BsonElement(Constants.Elements.User)]
+        public User? User { get; }
+
+        private MoodRecord(string moodRecordId, DateTime dateCreated, MoodStatus moodStatus, User user)
+        {
+            MoodRecordId = moodRecordId;
+            DateCreated = dateCreated;
+            MoodStatus = moodStatus;
+            User = user;
+        }
+
+        private MoodRecord(string moodRecordId, DateTime dateUpdated, MoodStatus moodStatus)
+        {
+            MoodRecordId = moodRecordId;
+            DateUpdated = dateUpdated;
+            MoodStatus = moodStatus;
+        }
 
         public static MoodRecord CreateMood(
+            string moodRecordId,
             DateTime dateCreated,
             MoodStatus moodStatus,
-            string moodRecordId,
             string userId,
             string username,
             string email)
         {
-            return new()
-            {
-                DateCreated = dateCreated,
-                MoodStatus = moodStatus,
-                MoodRecordId = moodRecordId,
-                User = CreateUser(userId, username, email)
-            };
+            return new(moodRecordId, dateCreated, moodStatus, CreateUser(userId, username, email));
         }
 
         public static MoodRecord UpdateMood(
+            string moodRecordId,
             DateTime dateUpdated,
-            MoodStatus moodStatus,
-            string moodRecordId)
+            MoodStatus moodStatus)
         {
-            return new()
-            {
-                DateUpdated = dateUpdated,
-                MoodStatus = moodStatus,
-                MoodRecordId = moodRecordId
-            };
+            return new(moodRecordId, dateUpdated, moodStatus);
         }
 
         private static User CreateUser(string userId, string username, string email)
         {
-            return new()
-            {
-                UserId = userId,
-                Username = username,
-                Email = email
-            };
+            return User.CreateUser(userId, username, email);
         }
     }
 }

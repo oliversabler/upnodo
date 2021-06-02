@@ -30,7 +30,7 @@ namespace Upnodo.Api.Features.Mood.Configurations
         
         internal static UpdateMoodRecordCommand UpdateMoodRecordCommand(UpdateMoodRecordRequest updateMoodRecordRequest)
         {
-            return new(updateMoodRecordRequest.MoodStatus, updateMoodRecordRequest.MoodRecordId);
+            return new(updateMoodRecordRequest.MoodRecordId, updateMoodRecordRequest.MoodStatus);
         }
     }
 }

@@ -24,9 +24,9 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
             }
 
             var moodRecord = MoodRecord.UpdateMood(
+                command.MoodRecordId,
                 command.DateUpdate,
-                command.MoodStatus,
-                command.MoodRecordId);
+                command.MoodStatus);
             
             var response = _moodRecordRepository.Update(moodRecord);
 

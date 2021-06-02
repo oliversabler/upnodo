@@ -7,18 +7,19 @@ namespace Upnodo.Features.Mood.Application.UpdateMoodRecord
 {
     public class UpdateMoodRecordCommand : IRequest<UpdateMoodRecordResponse>
     {
-        public DateTime DateUpdate { get; }
-        
-        public MoodStatus MoodStatus { get; }
-        
         [Required]
         public string MoodRecordId { get; }
-        
-        public UpdateMoodRecordCommand(MoodStatus moodStatus, string moodRecordId)
+
+        public DateTime DateUpdate { get; }
+
+        public MoodStatus MoodStatus { get; }
+
+
+        public UpdateMoodRecordCommand(string moodRecordId, MoodStatus moodStatus)
         {
+            MoodRecordId = moodRecordId;
             DateUpdate = DateTime.UtcNow;
             MoodStatus = moodStatus;
-            MoodRecordId = moodRecordId;
         }
     }
 }

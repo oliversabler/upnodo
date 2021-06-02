@@ -24,9 +24,9 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
             }
 
             var moodRecord = MoodRecord.CreateMood(
+                command.MoodRecordId,
                 command.DateCreated,
                 command.MoodStatus,
-                command.MoodRecordId,
                 command.UserId,
                 command.Username,
                 command.Email);
