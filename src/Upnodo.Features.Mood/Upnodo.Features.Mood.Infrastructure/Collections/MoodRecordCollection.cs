@@ -5,7 +5,6 @@ using Upnodo.Features.Mood.Domain;
 
 namespace Upnodo.Features.Mood.Infrastructure.Collections
 {
-    // Todo: Horrible name, fix
     public class MoodRecordCollection
     {
         [BsonId]
@@ -24,6 +23,6 @@ namespace Upnodo.Features.Mood.Infrastructure.Collections
         public MoodStatus MoodStatus { get; set; }
 
         [BsonElement(Constants.Elements.User)]
-        public MoodRecordCollectionUser User { get; set; }
+        public MoodRecordUserCollection User { get; set; }
     }
 }

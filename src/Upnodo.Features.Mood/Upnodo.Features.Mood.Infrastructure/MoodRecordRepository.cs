@@ -24,7 +24,7 @@ namespace Upnodo.Features.Mood.Infrastructure
                 MoodRecordId = moodRecord.MoodRecordId,
                 DateCreated = moodRecord.DateCreated,
                 MoodStatus = moodRecord.MoodStatus,
-                User = new MoodRecordCollectionUser
+                User = new MoodRecordUserCollection
                 {
                     UserId = moodRecord.User!.UserId,
                     Username = moodRecord.User.Username,
@@ -44,13 +44,13 @@ namespace Upnodo.Features.Mood.Infrastructure
 
         public MoodRecord Read(string moodRecordId)
         {
-            // Todo: Issues with DateCreated / DateUpdated
             var readFilter = Builders<MoodRecordCollection>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
             var moodCollection = _moods.Find(readFilter).FirstOrDefault();
 
             return MoodRecord.CreateMood(
                 moodCollection.MoodRecordId,
                 moodCollection.DateCreated,
+                moodCollection.DateUpdated,
                 moodCollection.MoodStatus,
                 moodCollection.User.UserId!,
                 moodCollection.User.Username!,
@@ -71,9 +71,10 @@ namespace Upnodo.Features.Mood.Infrastructure
             var readFilter =
                 Builders<MoodRecordCollection>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecord.MoodRecordId);
             var moodCollection = _moods.Find(readFilter).FirstOrDefault();
-
+            
             return MoodRecord.UpdateMood(
                 moodCollection.MoodRecordId,
+                moodCollection.DateCreated,
                 moodCollection.DateUpdated,
                 moodCollection.MoodStatus);
         }

@@ -10,7 +10,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
     public class UpdateMoodRecordService : IService<UpdateMoodRecordResponse>
     {
         private readonly MoodRecordRepository _moodRecordRepository;
-        
+
         public UpdateMoodRecordService(MoodRecordRepository moodRecordRepository)
         {
             _moodRecordRepository = moodRecordRepository;
@@ -27,7 +27,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
                 command.MoodRecordId,
                 command.DateUpdate,
                 command.MoodStatus);
-            
+
             var response = _moodRecordRepository.Update(moodRecord);
 
             return Task.FromResult(new UpdateMoodRecordResponse(true, response));
