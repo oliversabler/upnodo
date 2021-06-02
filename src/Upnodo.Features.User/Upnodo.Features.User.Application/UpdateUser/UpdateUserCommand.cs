@@ -5,6 +5,18 @@ namespace Upnodo.Features.User.Application.UpdateUser
 {
     public class UpdateUserCommand : IRequest<UpdateUserResponse>
     {
+        public string Alias { get; }
+
+        public DateTime DateUpdated { get; }
+        
+        public string Email { get; }
+
+        public string Firstname { get; }
+
+        public string Lastname { get; }
+        
+        public string UserId { get; }
+        
         public UpdateUserCommand(
             string alias, 
             string email, 
@@ -19,17 +31,5 @@ namespace Upnodo.Features.User.Application.UpdateUser
             Lastname = lastname;
             UserId = userId;
         }
-
-        public string Alias { get; }
-
-        public DateTime DateUpdated { get; }
-        
-        public string Email { get; }
-
-        public string Firstname { get; }
-
-        public string Lastname { get; }
-        
-        public string UserId { get; }
     }
 }
