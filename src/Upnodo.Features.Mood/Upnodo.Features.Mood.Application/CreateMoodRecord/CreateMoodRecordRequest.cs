@@ -1,15 +1,28 @@
+using System.ComponentModel.DataAnnotations;
 using Upnodo.Features.Mood.Domain;
 
 namespace Upnodo.Features.Mood.Application.CreateMoodRecord
 {
     public class CreateMoodRecordRequest
     {
-        public MoodStatus MoodStatus { get; set; }
+        public CreateMoodRecordRequest(MoodStatus moodStatus, string userId, string username, string email)
+        {
+            MoodStatus = moodStatus;
+            UserId = userId;
+            Username = username;
+            Email = email;
+        }
+
+        [Required]
+        public MoodStatus MoodStatus { get; }
         
-        public string UserId { get; set; }
+        [Required]
+        public string UserId { get; }
         
-        public string Username { get; set; }
+        [Required]
+        public string Username { get; }
         
-        public string Email { get; set; }
+        [Required]
+        public string Email { get; }
     }
 }

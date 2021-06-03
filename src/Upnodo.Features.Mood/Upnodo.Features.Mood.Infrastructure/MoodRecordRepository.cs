@@ -26,9 +26,9 @@ namespace Upnodo.Features.Mood.Infrastructure
                 MoodStatus = moodRecord.MoodStatus,
                 User = new MoodRecordUserCollection
                 {
-                    UserId = moodRecord.User!.UserId,
-                    Username = moodRecord.User.Username,
-                    Email = moodRecord.User.Email
+                    UserId = moodRecord.User!.UserId!,
+                    Username = moodRecord.User!.Username!,
+                    Email = moodRecord.User!.Email!
                 }
             });
 
