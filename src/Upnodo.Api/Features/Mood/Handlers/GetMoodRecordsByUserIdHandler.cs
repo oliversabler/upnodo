@@ -17,6 +17,7 @@ namespace Upnodo.Api.Features.Mood.Handlers
 
         public async Task<GetMoodRecordsByUserIdResponse> Handle(GetMoodRecordsByUserIdQuery request, CancellationToken token)
         {
+            
             return await _getMoodRecordsByIdService.RunAsync(request, token);
         }
     }
