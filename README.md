@@ -9,6 +9,7 @@ Track every day with up, normal or down.
 - [x] Create docker network with upnodo API and MongoDB connection
 - [x] Create docker-compose file
 - [x] Fix Models and Repositories, not working properly anymore
+- [ ] Caching, take a look at https://codewithmukesh.com/blog/caching-with-mediatr-in-aspnet-core/
 - [ ] Add more logging
 - [ ] Fix https binding
 - [ ] Make async
