@@ -1,3 +1,5 @@
+using System.Text.Json;
+using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using Upnodo.BuildingBlocks.Application.Configurations;
 using Upnodo.Features.Mood.Domain;
@@ -8,9 +10,13 @@ namespace Upnodo.Features.Mood.Infrastructure
     public class MoodRecordRepository
     {
         private readonly IMongoCollection<MoodRecordCollection> _moods;
+        private readonly ILogger<MoodRecordRepository> _logger;
 
-        public MoodRecordRepository(IUpnodoDatabaseSettings settings)
+        public MoodRecordRepository(
+            IUpnodoDatabaseSettings settings, 
+            ILogger<MoodRecordRepository> logger)
         {
+            _logger = logger;
             var client = new MongoClient(settings.ConnectionString);
             var db = client.GetDatabase(settings.DatabaseName);
 
@@ -19,6 +25,7 @@ namespace Upnodo.Features.Mood.Infrastructure
 
         public MoodRecord Create(MoodRecord moodRecord)
         {
+            _logger.LogTrace($"{nameof(Create)} in {nameof(MoodRecordRepository)} running. Creating {nameof(moodRecord)} body: {JsonSerializer.Serialize(moodRecord)}");
             _moods.InsertOne(new MoodRecordCollection
             {
                 MoodRecordId = moodRecord.MoodRecordId,
@@ -37,6 +44,7 @@ namespace Upnodo.Features.Mood.Infrastructure
 
         public void Delete(string moodRecordId)
         {
+            _logger.LogTrace($"{nameof(Delete)} in {nameof(MoodRecordRepository)} running. Deleting {nameof(moodRecordId)}: {moodRecordId}");
             var deleteFilter = Builders<MoodRecordCollection>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
 
             _moods.DeleteOne(deleteFilter);
@@ -44,6 +52,8 @@ namespace Upnodo.Features.Mood.Infrastructure
 
         public MoodRecord Read(string moodRecordId)
         {
+            _logger.LogTrace($"{nameof(Read)} in {nameof(MoodRecordRepository)} running. Reading {nameof(moodRecordId)}: {moodRecordId}");
+
             var readFilter = Builders<MoodRecordCollection>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
             var moodCollection = _moods.Find(readFilter).FirstOrDefault();
 
@@ -59,6 +69,8 @@ namespace Upnodo.Features.Mood.Infrastructure
 
         public MoodRecord Update(MoodRecord moodRecord)
         {
+            _logger.LogTrace($"{nameof(Update)} in {nameof(MoodRecordRepository)} running. Updating {nameof(moodRecord)} body: {JsonSerializer.Serialize(moodRecord)}");
+
             var filter =
                 Builders<MoodRecordCollection>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecord.MoodRecordId);
             var update = Builders<MoodRecordCollection>.Update
