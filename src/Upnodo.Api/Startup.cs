@@ -9,6 +9,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Upnodo.Api.Features.Mood.Configurations;
 using Upnodo.Api.Features.User.Configurations;
+using Upnodo.Api.Filters;
 using Upnodo.Api.Middleware.Exceptions;
 using Upnodo.BuildingBlocks.Application.Configurations;
 
@@ -44,6 +45,7 @@ namespace Upnodo.Api
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo {Title = "Upnodo Api", Version = "v1"});
+                options.SchemaFilter<IgnoreReadOnlySchemaFilter>();
             });
 
             // MediatR
