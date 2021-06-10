@@ -69,21 +69,25 @@ namespace Upnodo.Features.Mood.Infrastructure
                 moodCollection.User.Email!);
         }
 
-        public MoodRecord Update(MoodRecord moodRecord)
+        public async Task<MoodRecord> UpdateAsync(MoodRecord moodRecord)
         {
-            _logger.LogTrace($"{nameof(Update)} in {nameof(MoodRecordRepository)} running. Updating {nameof(moodRecord)} body: {JsonSerializer.Serialize(moodRecord)}");
+            _logger.LogTrace($"{nameof(UpdateAsync)} in {nameof(MoodRecordRepository)} running. Updating {nameof(moodRecord)} body: {JsonSerializer.Serialize(moodRecord)}");
 
-            var filter =
-                Builders<MoodRecordCollection>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecord.MoodRecordId);
+            var filter = Builders<MoodRecordCollection>.Filter.Eq(
+                Constants.Elements.MoodRecordId, 
+                moodRecord.MoodRecordId);
+            
             var update = Builders<MoodRecordCollection>.Update
                 .Set(Constants.Elements.DateUpdated, moodRecord.DateUpdated)
                 .Set(Constants.Elements.Mood, moodRecord.MoodStatus);
             
-            _moods.UpdateOneAsync(filter, update);
+            await _moods.UpdateOneAsync(filter, update);
 
             // Not optimal, does not return the updated document at all times
-            var readFilter =
-                Builders<MoodRecordCollection>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecord.MoodRecordId);
+            _logger.LogTrace($"Fetching updated {nameof(moodRecord)}");
+            var readFilter = Builders<MoodRecordCollection>.Filter.Eq(
+                Constants.Elements.MoodRecordId, 
+                moodRecord.MoodRecordId);
             var moodCollection = _moods.Find(readFilter).FirstOrDefault();
             
             return MoodRecord.UpdateMood(
