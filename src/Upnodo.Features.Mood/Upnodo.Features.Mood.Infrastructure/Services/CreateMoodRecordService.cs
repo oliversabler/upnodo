@@ -22,7 +22,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
             _logger = logger;
         }
 
-        public Task<CreateMoodRecordResponse> RunAsync<T>(T request, CancellationToken token)
+        public async Task<CreateMoodRecordResponse> RunAsync<T>(T request, CancellationToken token)
         {
             _logger.LogTrace($"{nameof(RunAsync)} in {nameof(CreateMoodRecordService)} running.");
 
@@ -41,9 +41,9 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
                 command.Username,
                 command.Email);
 
-            var response = _moodRecordRepository.Create(moodRecord);
+            var response = await _moodRecordRepository.CreateAsync(moodRecord);
 
-            return Task.FromResult(new CreateMoodRecordResponse(true, response));
+            return new CreateMoodRecordResponse(true, response);
         }
     }
 }

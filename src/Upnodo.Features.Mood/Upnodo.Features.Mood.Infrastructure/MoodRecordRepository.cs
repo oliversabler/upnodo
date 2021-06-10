@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using Upnodo.BuildingBlocks.Application.Configurations;
@@ -23,10 +24,10 @@ namespace Upnodo.Features.Mood.Infrastructure
             _moods = db.GetCollection<MoodRecordCollection>(settings.MoodsCollectionName);
         }
 
-        public MoodRecord Create(MoodRecord moodRecord)
+        public async Task<MoodRecord> CreateAsync(MoodRecord moodRecord)
         {
-            _logger.LogTrace($"{nameof(Create)} in {nameof(MoodRecordRepository)} running. Creating {nameof(moodRecord)} body: {JsonSerializer.Serialize(moodRecord)}");
-            _moods.InsertOne(new MoodRecordCollection
+            _logger.LogTrace($"{nameof(CreateAsync)} in {nameof(MoodRecordRepository)} running. Creating {nameof(moodRecord)} body: {JsonSerializer.Serialize(moodRecord)}");
+            await _moods.InsertOneAsync(new MoodRecordCollection
             {
                 MoodRecordId = moodRecord.MoodRecordId,
                 DateCreated = moodRecord.DateCreated,
