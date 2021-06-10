@@ -45,13 +45,13 @@ Setup environment (users)
 - [x] Create docker network with upnodo API and MongoDB connection
 - [x] Create docker-compose file
 - [x] Fix Models and Repositories, not working properly anymore
-- [ ] Caching, take a look at https://codewithmukesh.com/blog/caching-with-mediatr-in-aspnet-core/
-- [ ] Add more logging
-- [ ] Fix https binding
-- [ ] Make async
-- [ ] Test Coyote https://github.com/microsoft/coyote/
-- [ ] Make sure some fields are unique in MongoDb
 - [x] Add analyzers and .editorconfig
-- [ ] Nullable enable?
+- [x] Add more logging
+- [ ] Make async
+- [ ] Caching, take a look at https://codewithmukesh.com/blog/caching-with-mediatr-in-aspnet-core/
+- [ ] Test Coyote https://github.com/microsoft/coyote/
+- [ ] Fix https binding
+- [ ] Make sure some fields are unique in MongoDb
 - [ ] Unit Tests
+- [ ] Nullable enable?
 - [ ] NSwag?
