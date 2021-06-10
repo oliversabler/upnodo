@@ -4,20 +4,6 @@ Track every day with up, normal or down.
 ![build](https://github.com/oliversabler/upnodo/actions/workflows/dotnet-core.yml/badge.svg)
 ![codeql](https://github.com/oliversabler/upnodo/actions/workflows/codeql-analysis.yml/badge.svg)
 
-
-## Todo
-- [x] Create docker network with upnodo API and MongoDB connection
-- [x] Create docker-compose file
-- [x] Fix Models and Repositories, not working properly anymore
-- [ ] Add more logging
-- [ ] Fix https binding
-- [ ] Make async
-- [ ] Make sure some fields are unique in MongoDb
-- [x] Add analyzers and .editorconfig
-- [ ] Nullable enable?
-- [ ] Unit Tests
-- [ ] NSwag?
-
 ## Purpose
 The purpose of this repository is to test architectural and technological ideas. 
 
@@ -54,3 +40,18 @@ Setup environment (users)
    - `db.users.createIndex({ "email": 1 }, { unique: true })`
    - `db.users.createIndex({ "alias": 1 }, { unique: true })`
    - `db.users.createIndex({ "userId": 1 }, { unique: true })`
+
+## Todo
+- [x] Create docker network with upnodo API and MongoDB connection
+- [x] Create docker-compose file
+- [x] Fix Models and Repositories, not working properly anymore
+- [ ] Caching, take a look at https://codewithmukesh.com/blog/caching-with-mediatr-in-aspnet-core/
+- [ ] Add more logging
+- [ ] Fix https binding
+- [ ] Make async
+- [ ] Test Coyote https://github.com/microsoft/coyote/
+- [ ] Make sure some fields are unique in MongoDb
+- [x] Add analyzers and .editorconfig
+- [ ] Nullable enable?
+- [ ] Unit Tests
+- [ ] NSwag?
