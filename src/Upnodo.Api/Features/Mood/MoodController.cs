@@ -52,15 +52,6 @@ namespace Upnodo.Api.Features.Mood
             return Ok(result);
         }
 
-        // Todo: Add (pagination)
-        // [HttpGet("{userId}")]
-        // public async Task<IActionResult> GetMoodRecordsByUserId(string userId)
-        // {
-        //     var result = await _mediator.Send(MediatorRequestFactory.GetMoodRecordsByUserIdQuery(userId));
-        //
-        //     return Ok(result);
-        // }
-
         [HttpPut]
         public async Task<IActionResult> UpdateMoodRecord([FromBody] UpdateMoodRecordRequest request,
             CancellationToken token)
