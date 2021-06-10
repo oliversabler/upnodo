@@ -21,7 +21,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
             _logger = logger;
         }
 
-        public Task<DeleteMoodRecordResponse> RunAsync<T>(T request, CancellationToken token)
+        public async Task<DeleteMoodRecordResponse> RunAsync<T>(T request, CancellationToken token)
         {
             _logger.LogTrace($"{nameof(RunAsync)} in {nameof(DeleteMoodRecordService)} running.");
 
@@ -31,9 +31,9 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(DeleteMoodRecordCommand)}");
             }
             
-            _moodRecordRepository.Delete(command.MoodId);
+            await _moodRecordRepository.DeleteAsync(command.MoodId);
 
-            return Task.FromResult(new DeleteMoodRecordResponse(true, string.Empty));
+            return new DeleteMoodRecordResponse(true, string.Empty);
         }
     }
 }
