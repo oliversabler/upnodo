@@ -21,7 +21,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
             _logger = logger;
         }
 
-        public Task<GetMoodRecordByMoodRecordIdResponse> RunAsync<T>(T request, CancellationToken token)
+        public async Task<GetMoodRecordByMoodRecordIdResponse> RunAsync<T>(T request, CancellationToken token)
         {
             _logger.LogTrace($"{nameof(RunAsync)} in {nameof(GetMoodRecordByMoodRecordIdService)} running.");
 
@@ -31,9 +31,9 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(GetMoodRecordByMoodRecordIdQuery)}");
             }
 
-            var records = _moodRecordRepository.Read(query.MoodRecordId);
+            var records = await _moodRecordRepository.ReadAsync(query.MoodRecordId);
 
-            return Task.FromResult(new GetMoodRecordByMoodRecordIdResponse(true, records));
+            return new GetMoodRecordByMoodRecordIdResponse(true, records);
         }
     }
 }

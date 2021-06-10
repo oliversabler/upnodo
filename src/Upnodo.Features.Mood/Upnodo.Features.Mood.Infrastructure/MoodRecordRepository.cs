@@ -51,12 +51,13 @@ namespace Upnodo.Features.Mood.Infrastructure
             await _moods.DeleteOneAsync(deleteFilter);
         }
 
-        public MoodRecord Read(string moodRecordId)
+        public async Task<MoodRecord> ReadAsync(string moodRecordId)
         {
-            _logger.LogTrace($"{nameof(Read)} in {nameof(MoodRecordRepository)} running. Reading {nameof(moodRecordId)}: {moodRecordId}");
+            _logger.LogTrace($"{nameof(ReadAsync)} in {nameof(MoodRecordRepository)} running. Reading {nameof(moodRecordId)}: {moodRecordId}");
 
             var readFilter = Builders<MoodRecordCollection>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
-            var moodCollection = _moods.Find(readFilter).FirstOrDefault();
+            var result = await _moods.FindAsync(readFilter);
+            var moodCollection = result.FirstOrDefault();
 
             return MoodRecord.CreateMood(
                 moodCollection.MoodRecordId,
