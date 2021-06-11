@@ -47,7 +47,7 @@ Setup environment (users)
 - [x] Fix Models and Repositories, not working properly anymore
 - [x] Add analyzers and .editorconfig
 - [x] Add more logging
-- [ ] Make async
+- [x] Make async
 - [ ] Caching, take a look at https://codewithmukesh.com/blog/caching-with-mediatr-in-aspnet-core/
 - [ ] Test Coyote https://github.com/microsoft/coyote/
 - [ ] Fix https binding
