@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Upnodo.Api.Behavior;
 using Upnodo.Api.Features.Mood.Configurations;
 using Upnodo.Api.Features.User.Configurations;
 using Upnodo.Api.Filters;
@@ -50,7 +51,8 @@ namespace Upnodo.Api
 
             // MediatR
             services.AddMediatR(new[] {typeof(Startup)});
-
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+            
             // MongoDb
             services.Configure<UpnodoDatabaseSettings>(
                 Configuration.GetSection(nameof(UpnodoDatabaseSettings)));

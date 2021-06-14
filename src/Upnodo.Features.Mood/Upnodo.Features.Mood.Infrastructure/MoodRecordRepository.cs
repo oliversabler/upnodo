@@ -45,7 +45,7 @@ namespace Upnodo.Features.Mood.Infrastructure
 
         public async Task DeleteAsync(string moodRecordId)
         {
-            _logger.LogTrace($"{nameof(DeleteAsync)} in {nameof(MoodRecordRepository)} running. Deleting {nameof(moodRecordId)}: {moodRecordId}");
+            _logger.LogTrace($"{nameof(DeleteAsync)} in {nameof(MoodRecordRepository)}. Deleting {nameof(moodRecordId)}: {moodRecordId}");
             var deleteFilter = Builders<MoodRecordCollection>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
 
             await _moods.DeleteOneAsync(deleteFilter);
@@ -53,7 +53,7 @@ namespace Upnodo.Features.Mood.Infrastructure
 
         public async Task<MoodRecord> ReadAsync(string moodRecordId)
         {
-            _logger.LogTrace($"{nameof(ReadAsync)} in {nameof(MoodRecordRepository)} running. Reading {nameof(moodRecordId)}: {moodRecordId}");
+            _logger.LogTrace($"{nameof(ReadAsync)} in {nameof(MoodRecordRepository)}. Reading {nameof(moodRecordId)}: {moodRecordId}");
 
             var readFilter = Builders<MoodRecordCollection>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
             var result = await _moods.FindAsync(readFilter);
@@ -71,7 +71,7 @@ namespace Upnodo.Features.Mood.Infrastructure
 
         public async Task<MoodRecord> UpdateAsync(MoodRecord moodRecord)
         {
-            _logger.LogTrace($"{nameof(UpdateAsync)} in {nameof(MoodRecordRepository)} running. Updating {nameof(moodRecord)} body: {JsonSerializer.Serialize(moodRecord)}");
+            _logger.LogTrace($"{nameof(UpdateAsync)} in {nameof(MoodRecordRepository)}. Updating {nameof(moodRecord)} body: {JsonSerializer.Serialize(moodRecord)}");
 
             var filter = Builders<MoodRecordCollection>.Filter.Eq(
                 Constants.Elements.MoodRecordId, 
@@ -90,11 +90,15 @@ namespace Upnodo.Features.Mood.Infrastructure
                 moodRecord.MoodRecordId);
             var moodCollection = _moods.Find(readFilter).FirstOrDefault();
             
-            return MoodRecord.UpdateMood(
+            var updatedMoodRecord = MoodRecord.UpdateMood(
                 moodCollection.MoodRecordId,
                 moodCollection.DateCreated,
                 moodCollection.DateUpdated,
                 moodCollection.MoodStatus);
+            
+            _logger.LogTrace($"Fetched updated {nameof(moodRecord)}. Body: {JsonSerializer.Serialize(updatedMoodRecord)}");
+            
+            return updatedMoodRecord;
         }
     }
 }
