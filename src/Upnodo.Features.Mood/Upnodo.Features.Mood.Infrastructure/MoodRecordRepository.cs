@@ -80,7 +80,7 @@ namespace Upnodo.Features.Mood.Infrastructure
         
         public async Task<List<MoodRecord>> ReadLatestAsync(int numberOfMoodRecords)
         {
-            _logger.LogTrace($"{nameof(ReadAsync)} in {nameof(MoodRecordRepository)}. Reading {nameof(numberOfMoodRecords)}: {numberOfMoodRecords}");
+            _logger.LogTrace($"{nameof(ReadAsync)} in {nameof(MoodRecordRepository)}. Reading {nameof(numberOfMoodRecords)}: {numberOfMoodRecords.ToString()}");
 
             var result = await _moods.Find(_ => true)
                 .SortByDescending(f => f.DateCreated)

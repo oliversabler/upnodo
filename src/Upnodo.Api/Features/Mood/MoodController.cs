@@ -71,7 +71,7 @@ namespace Upnodo.Api.Features.Mood
         [HttpGet("{numberOfMoodRecords:int}")]
         public async Task<IActionResult> GetLatestCreatedMoodRecords(int numberOfMoodRecords, CancellationToken token)
         {
-            _logger.LogTrace($"{nameof(GetLatestCreatedMoodRecords)} numberOfMoodRecords: {numberOfMoodRecords}");
+            _logger.LogTrace($"{nameof(GetLatestCreatedMoodRecords)} numberOfMoodRecords: {numberOfMoodRecords.ToString()}");
             var result = await _mediator.Send(
                 MediatorRequestFactory.GetLatestCreatedMoodRecordsQuery(numberOfMoodRecords),
                 token);
