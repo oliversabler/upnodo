@@ -24,9 +24,11 @@ namespace Upnodo.Api.Features.Mood.Configurations
             return new(moodId);
         }
         
-        internal static GetMoodRecordByMoodRecordIdQuery GetMoodRecordByMoodRecordIdQuery(string userId)
+        internal static GetMoodRecordByMoodRecordIdQuery GetMoodRecordByMoodRecordIdQuery(
+            string userId,
+            bool bypassCache)
         {
-            return new(userId);
+            return new(userId, bypassCache);
         }
 
         internal static GetLatestCreatedMoodRecordsQuery GetLatestCreatedMoodRecordsQuery(int totalNumberOfMoodRecords)

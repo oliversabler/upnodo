@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Newtonsoft.Json;
 using NUnit.Framework;
 using Upnodo.Features.Mood.Tests.Models;
 using Upnodo.Features.Mood.Tests.Models.Common;

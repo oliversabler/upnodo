@@ -27,7 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Upnodo.Api\Upnodo.Api.csproj" />
+      <ProjectReference Include="..\Upnodo.Features.Mood.Domain\Upnodo.Features.Mood.Domain.csproj" />
     </ItemGroup>
 
 </Project>

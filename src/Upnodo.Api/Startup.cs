@@ -44,11 +44,14 @@ namespace Upnodo.Api
                     });
             });
 
+            services.AddMemoryCache();
+
+            // Swagger
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo {Title = "Upnodo Api", Version = "v1"});
                 options.SchemaFilter<IgnoreReadOnlySchemaFilter>();
-                
+
                 var filePath = Path.Combine(System.AppContext.BaseDirectory, "Upnodo.Api.xml");
                 options.IncludeXmlComments(filePath);
             });
@@ -56,7 +59,8 @@ namespace Upnodo.Api
             // MediatR
             services.AddMediatR(new[] {typeof(Startup)});
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
-            
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheBehavior<,>));
+
             // MongoDb
             services.Configure<UpnodoDatabaseSettings>(
                 Configuration.GetSection(nameof(UpnodoDatabaseSettings)));
@@ -87,7 +91,11 @@ namespace Upnodo.Api
 
             // Swagger documentation
             app.UseSwagger();
-            app.UseSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "Upnodo Api v1"); });
+            app.UseSwaggerUI(options =>
+            {
+                options.DisplayRequestDuration();
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Upnodo Api v1");
+            });
 
             // Custom Middleware for handling global exceptions
             app.UseMiddleware<ExceptionMiddleware>();

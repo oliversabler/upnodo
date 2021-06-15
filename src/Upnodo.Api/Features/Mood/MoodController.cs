@@ -58,11 +58,15 @@ namespace Upnodo.Api.Features.Mood
             return NoContent();
         }
 
-        [HttpGet("{moodRecordId}")]
-        public async Task<IActionResult> GetMoodRecordsByMoodRecordId(string moodRecordId, CancellationToken token)
+        [HttpGet("{moodRecordId}, {bypassCache:bool}")]
+        public async Task<IActionResult> GetMoodRecordsByMoodRecordId(
+            string moodRecordId, 
+            bool bypassCache,
+            CancellationToken token)
         {
             _logger.LogTrace($"{nameof(GetMoodRecordsByMoodRecordId)} moodRecordId: {moodRecordId}");
-            var result = await _mediator.Send(MediatorRequestFactory.GetMoodRecordByMoodRecordIdQuery(moodRecordId),
+            var result = await _mediator.Send(
+                MediatorRequestFactory.GetMoodRecordByMoodRecordIdQuery(moodRecordId, bypassCache),
                 token);
 
             return Ok(result);

@@ -1,6 +1,5 @@
 using System.Threading;
 using System.Threading.Tasks;
-using DnsClient.Internal;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Contracts;
