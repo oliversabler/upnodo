@@ -8,11 +8,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using Upnodo.Api.Behaviors;
 using Upnodo.Api.Features.Mood.Configurations;
 using Upnodo.Api.Features.User.Configurations;
 using Upnodo.Api.Filters;
 using Upnodo.Api.Middleware.Exceptions;
+using Upnodo.Api.PipelineBehaviors;
 using Upnodo.BuildingBlocks.Application.Configurations;
 
 namespace Upnodo.Api
