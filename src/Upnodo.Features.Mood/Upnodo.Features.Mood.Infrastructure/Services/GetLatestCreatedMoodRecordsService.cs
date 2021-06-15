@@ -14,7 +14,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
         private readonly ILogger<GetMoodRecordByMoodRecordIdService> _logger;
 
         public GetLatestCreatedMoodRecordsService(
-            MoodRecordRepository moodRecordRepository, 
+            MoodRecordRepository moodRecordRepository,
             ILogger<GetMoodRecordByMoodRecordIdService> logger)
         {
             _moodRecordRepository = moodRecordRepository;
@@ -27,8 +27,12 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 
             if (request is not GetLatestCreatedMoodRecordsQuery query)
             {
-                _logger.LogError($"{nameof(request)} with body: {JsonSerializer.Serialize(request)} is not of type {typeof(GetLatestCreatedMoodRecordsQuery)}");
-                throw new ArgumentException($"{nameof(request)} is not of type {typeof(GetLatestCreatedMoodRecordsQuery)}");
+                _logger.LogError(
+                    $"{nameof(request)} with body: {JsonSerializer.Serialize(request)} " +
+                    $"is not of type {typeof(GetLatestCreatedMoodRecordsQuery)}");
+
+                throw new ArgumentException(
+                    $"{nameof(request)} is not of type {typeof(GetLatestCreatedMoodRecordsQuery)}");
             }
 
             var records = await _moodRecordRepository.ReadLatestAsync(query.TotalNumberOfMoodRecords);

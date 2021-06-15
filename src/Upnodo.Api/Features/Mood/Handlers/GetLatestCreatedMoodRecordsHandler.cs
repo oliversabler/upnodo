@@ -7,20 +7,23 @@ using Upnodo.Features.Mood.Application.GetLatestCreatedMoodRecords;
 
 namespace Upnodo.Api.Features.Mood.Handlers
 {
-    public class GetLatestCreatedMoodRecordsHandler : IRequestHandler<GetLatestCreatedMoodRecordsQuery, GetLatestCreatedMoodRecordsResponse>
+    public class GetLatestCreatedMoodRecordsHandler :
+        IRequestHandler<GetLatestCreatedMoodRecordsQuery, GetLatestCreatedMoodRecordsResponse>
     {
         private readonly IService<GetLatestCreatedMoodRecordsResponse> _getLatestCreatedMoodRecordsService;
         private readonly ILogger<GetLatestCreatedMoodRecordsHandler> _logger;
 
         public GetLatestCreatedMoodRecordsHandler(
-            IService<GetLatestCreatedMoodRecordsResponse> getLatestCreatedMoodRecordsService, 
+            IService<GetLatestCreatedMoodRecordsResponse> getLatestCreatedMoodRecordsService,
             ILogger<GetLatestCreatedMoodRecordsHandler> logger)
         {
             _getLatestCreatedMoodRecordsService = getLatestCreatedMoodRecordsService;
             _logger = logger;
         }
 
-        public async Task<GetLatestCreatedMoodRecordsResponse> Handle(GetLatestCreatedMoodRecordsQuery request, CancellationToken token)
+        public async Task<GetLatestCreatedMoodRecordsResponse> Handle(
+            GetLatestCreatedMoodRecordsQuery request,
+            CancellationToken token)
         {
             _logger.LogTrace($"{nameof(GetLatestCreatedMoodRecordsHandler)} running.");
             return await _getLatestCreatedMoodRecordsService.RunAsync(request, token);

@@ -15,7 +15,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
         private readonly ILogger<UpdateMoodRecordService> _logger;
 
         public UpdateMoodRecordService(
-            MoodRecordRepository moodRecordRepository, 
+            MoodRecordRepository moodRecordRepository,
             ILogger<UpdateMoodRecordService> logger)
         {
             _moodRecordRepository = moodRecordRepository;
@@ -28,7 +28,10 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 
             if (request is not UpdateMoodRecordCommand command)
             {
-                _logger.LogError($"{nameof(request)} with body: {JsonSerializer.Serialize(request)} is not of type {typeof(UpdateMoodRecordCommand)}");
+                _logger.LogError(
+                    $"{nameof(request)} with body: {JsonSerializer.Serialize(request)} " +
+                    $"is not of type {typeof(UpdateMoodRecordCommand)}");
+                
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(UpdateMoodRecordCommand)}");
             }
 

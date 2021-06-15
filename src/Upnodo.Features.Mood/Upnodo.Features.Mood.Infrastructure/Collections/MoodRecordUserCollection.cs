@@ -3,7 +3,6 @@ using Upnodo.Features.Mood.Domain;
 
 namespace Upnodo.Features.Mood.Infrastructure.Collections
 {
-    // Todo: Need better name
     public class MoodRecordUserCollection
     {
         [BsonElement(Constants.Elements.UserId)]

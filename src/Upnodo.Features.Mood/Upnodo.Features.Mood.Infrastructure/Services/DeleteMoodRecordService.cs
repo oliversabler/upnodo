@@ -14,7 +14,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
         private readonly ILogger<DeleteMoodRecordService> _logger;
 
         public DeleteMoodRecordService(
-            MoodRecordRepository moodRecordRepository, 
+            MoodRecordRepository moodRecordRepository,
             ILogger<DeleteMoodRecordService> logger)
         {
             _moodRecordRepository = moodRecordRepository;
@@ -27,10 +27,13 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 
             if (request is not DeleteMoodRecordCommand command)
             {
-                _logger.LogError($"{nameof(request)} with body: {JsonSerializer.Serialize(request)} is not of type {typeof(DeleteMoodRecordCommand)}");
+                _logger.LogError(
+                    $"{nameof(request)} with body: {JsonSerializer.Serialize(request)} " +
+                    $"is not of type {typeof(DeleteMoodRecordCommand)}");
+
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(DeleteMoodRecordCommand)}");
             }
-            
+
             await _moodRecordRepository.DeleteAsync(command.MoodId);
 
             return new DeleteMoodRecordResponse(true, string.Empty);

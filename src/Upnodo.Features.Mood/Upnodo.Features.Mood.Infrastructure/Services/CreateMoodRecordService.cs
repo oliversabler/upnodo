@@ -28,7 +28,10 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 
             if (request is not CreateMoodRecordCommand command)
             {
-                _logger.LogError($"{nameof(request)} with body: {JsonSerializer.Serialize(request)} is not of type {typeof(CreateMoodRecordCommand)}");
+                _logger.LogError(
+                    $"{nameof(request)} with body: {JsonSerializer.Serialize(request)} " +
+                    $"is not of type {typeof(CreateMoodRecordCommand)}");
+
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(CreateMoodRecordCommand)}");
             }
 

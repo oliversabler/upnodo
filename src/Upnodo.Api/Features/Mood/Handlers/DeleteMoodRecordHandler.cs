@@ -13,7 +13,7 @@ namespace Upnodo.Api.Features.Mood.Handlers
         private readonly ILogger<DeleteMoodRecordHandler> _logger;
 
         public DeleteMoodRecordHandler(
-            IService<DeleteMoodRecordResponse> deleteMoodRecordService, 
+            IService<DeleteMoodRecordResponse> deleteMoodRecordService,
             ILogger<DeleteMoodRecordHandler> logger)
         {
             _deleteMoodRecordService = deleteMoodRecordService;

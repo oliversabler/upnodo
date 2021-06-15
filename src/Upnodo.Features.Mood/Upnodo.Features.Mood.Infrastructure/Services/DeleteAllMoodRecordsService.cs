@@ -27,7 +27,10 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 
             if (request is not DeleteAllMoodRecordsCommand command)
             {
-                _logger.LogError($"{nameof(request)} with body: {JsonSerializer.Serialize(request)} is not of type {typeof(DeleteAllMoodRecordsCommand)}");
+                _logger.LogError(
+                    $"{nameof(request)} with body: {JsonSerializer.Serialize(request)} " +
+                    $"is not of type {typeof(DeleteAllMoodRecordsCommand)}");
+
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(DeleteAllMoodRecordsCommand)}");
             }
 

@@ -7,7 +7,8 @@ using Upnodo.Features.Mood.Application.DeleteAllMoodRecords;
 
 namespace Upnodo.Api.Features.Mood.Handlers
 {
-    public class DeleteAllMoodRecordsHandler : IRequestHandler<DeleteAllMoodRecordsCommand, DeleteAllMoodRecordsResponse>
+    public class DeleteAllMoodRecordsHandler : 
+        IRequestHandler<DeleteAllMoodRecordsCommand, DeleteAllMoodRecordsResponse>
     {
         private readonly IService<DeleteAllMoodRecordsResponse> _deleteAllMoodRecordsService;
         private readonly ILogger<DeleteAllMoodRecordsHandler> _logger;

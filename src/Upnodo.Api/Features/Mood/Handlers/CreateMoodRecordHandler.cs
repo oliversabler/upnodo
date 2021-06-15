@@ -13,7 +13,7 @@ namespace Upnodo.Api.Features.Mood.Handlers
         private readonly ILogger<CreateMoodRecordHandler> _logger;
 
         public CreateMoodRecordHandler(
-            IService<CreateMoodRecordResponse> createMoodRecordService, 
+            IService<CreateMoodRecordResponse> createMoodRecordService,
             ILogger<CreateMoodRecordHandler> logger)
         {
             _createMoodRecordService = createMoodRecordService;
