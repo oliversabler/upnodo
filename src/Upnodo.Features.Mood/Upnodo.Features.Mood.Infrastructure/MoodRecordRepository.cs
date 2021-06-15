@@ -50,6 +50,12 @@ namespace Upnodo.Features.Mood.Infrastructure
 
             await _moods.DeleteOneAsync(deleteFilter);
         }
+        
+        public async Task DeleteAllAsync()
+        {
+            _logger.LogTrace($"{nameof(DeleteAllAsync)} in {nameof(MoodRecordRepository)}. Deleting all mood records");
+            await _moods.DeleteManyAsync(_ => true);
+        }
 
         public async Task<MoodRecord> ReadAsync(string moodRecordId)
         {

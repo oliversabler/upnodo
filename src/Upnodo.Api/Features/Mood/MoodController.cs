@@ -24,13 +24,24 @@ namespace Upnodo.Api.Features.Mood
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateMoodRecord([FromBody] CreateMoodRecordRequest request,
+        public async Task<IActionResult> CreateMoodRecord(
+            [FromBody] CreateMoodRecordRequest request,
             CancellationToken token)
         {
             _logger.LogTrace($"{nameof(CreateMoodRecord)} request body: {JsonSerializer.Serialize(request)}");
             var result = await _mediator.Send(MediatorRequestFactory.CreateMoodRecordCommand(request), token);
 
             return Ok(result);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAllMoodRecords(CancellationToken token)
+        {
+            _logger.LogTrace($"{nameof(DeleteAllMoodRecords)}");
+            await _mediator.Send(MediatorRequestFactory.DeleteAllMoodRecordsCommand(), token);
+
+            return NoContent();
+
         }
 
         [HttpDelete("{moodRecordId}")]
@@ -51,9 +62,12 @@ namespace Upnodo.Api.Features.Mood
 
             return Ok(result);
         }
+        
+        // Todo: Get the latest X number of MoodRecords registered
 
         [HttpPut]
-        public async Task<IActionResult> UpdateMoodRecord([FromBody] UpdateMoodRecordRequest request,
+        public async Task<IActionResult> UpdateMoodRecord(
+            [FromBody] UpdateMoodRecordRequest request,
             CancellationToken token)
         {
             _logger.LogTrace($"{nameof(UpdateMoodRecord)} request body: {request}");

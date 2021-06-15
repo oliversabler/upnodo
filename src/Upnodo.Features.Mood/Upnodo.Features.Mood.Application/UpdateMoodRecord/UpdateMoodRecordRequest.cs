@@ -6,12 +6,6 @@ namespace Upnodo.Features.Mood.Application.UpdateMoodRecord
 {
     public class UpdateMoodRecordRequest
     {
-        public UpdateMoodRecordRequest(MoodStatus moodStatus, string moodRecordId)
-        {
-            MoodStatus = moodStatus;
-            MoodRecordId = moodRecordId;
-        }
-
         [Required]
         [NotNull, DisallowNull]
         public MoodStatus MoodStatus { get; }
@@ -19,5 +13,11 @@ namespace Upnodo.Features.Mood.Application.UpdateMoodRecord
         [Required]
         [NotNull, DisallowNull]
         public string MoodRecordId { get; }
+        
+        public UpdateMoodRecordRequest(MoodStatus moodStatus, string moodRecordId)
+        {
+            MoodStatus = moodStatus;
+            MoodRecordId = moodRecordId;
+        }
     }
 }
