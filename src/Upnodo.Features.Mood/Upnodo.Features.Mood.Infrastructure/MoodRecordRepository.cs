@@ -1,6 +1,9 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Upnodo.BuildingBlocks.Application.Configurations;
 using Upnodo.Features.Mood.Domain;
@@ -63,16 +66,37 @@ namespace Upnodo.Features.Mood.Infrastructure
 
             var readFilter = Builders<MoodRecordCollection>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
             var result = await _moods.FindAsync(readFilter);
-            var moodCollection = result.FirstOrDefault();
+            var moodRecordCollection = result.FirstOrDefault();
 
             return MoodRecord.CreateMood(
-                moodCollection.MoodRecordId,
-                moodCollection.DateCreated,
-                moodCollection.DateUpdated,
-                moodCollection.MoodStatus,
-                moodCollection.User.UserId!,
-                moodCollection.User.Username!,
-                moodCollection.User.Email!);
+                moodRecordCollection.MoodRecordId,
+                moodRecordCollection.DateCreated,
+                moodRecordCollection.DateUpdated,
+                moodRecordCollection.MoodStatus,
+                moodRecordCollection.User.UserId!,
+                moodRecordCollection.User.Username!,
+                moodRecordCollection.User.Email!);
+        }
+        
+        public async Task<List<MoodRecord>> ReadLatestAsync(int numberOfMoodRecords)
+        {
+            _logger.LogTrace($"{nameof(ReadAsync)} in {nameof(MoodRecordRepository)}. Reading {nameof(numberOfMoodRecords)}: {numberOfMoodRecords}");
+
+            var result = await _moods.Find(_ => true)
+                .SortByDescending(f => f.DateCreated)
+                .Limit(numberOfMoodRecords)
+                .ToListAsync();
+
+            return result.Select(moodRecordCollection => 
+                MoodRecord.CreateMood(
+                    moodRecordCollection.MoodRecordId, 
+                    moodRecordCollection.DateCreated, 
+                    moodRecordCollection.DateUpdated, 
+                    moodRecordCollection.MoodStatus, 
+                    moodRecordCollection.User.UserId!, 
+                    moodRecordCollection.User.Username!, 
+                    moodRecordCollection.User.Email!))
+                .ToList();
         }
 
         public async Task<MoodRecord> UpdateAsync(MoodRecord moodRecord)

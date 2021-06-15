@@ -47,7 +47,6 @@ namespace Upnodo.Api.Features.Mood
             await _mediator.Send(MediatorRequestFactory.DeleteAllMoodRecordsCommand(), token);
 
             return NoContent();
-
         }
 
         [HttpDelete("{moodRecordId}")]
@@ -68,8 +67,17 @@ namespace Upnodo.Api.Features.Mood
 
             return Ok(result);
         }
-        
-        // Todo: Get the latest X number of MoodRecords registered
+
+        [HttpGet("{numberOfMoodRecords:int}")]
+        public async Task<IActionResult> GetLatestCreatedMoodRecords(int numberOfMoodRecords, CancellationToken token)
+        {
+            _logger.LogTrace($"{nameof(GetLatestCreatedMoodRecords)} numberOfMoodRecords: {numberOfMoodRecords}");
+            var result = await _mediator.Send(
+                MediatorRequestFactory.GetLatestCreatedMoodRecordsQuery(numberOfMoodRecords),
+                token);
+
+            return Ok(result);
+        }
 
         [HttpPut]
         public async Task<IActionResult> UpdateMoodRecord(
