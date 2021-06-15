@@ -1,3 +1,4 @@
+using System.IO;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -47,6 +48,9 @@ namespace Upnodo.Api
             {
                 options.SwaggerDoc("v1", new OpenApiInfo {Title = "Upnodo Api", Version = "v1"});
                 options.SchemaFilter<IgnoreReadOnlySchemaFilter>();
+                
+                var filePath = Path.Combine(System.AppContext.BaseDirectory, "Upnodo.Api.xml");
+                options.IncludeXmlComments(filePath);
             });
 
             // MediatR

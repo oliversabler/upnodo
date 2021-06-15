@@ -34,6 +34,12 @@ namespace Upnodo.Api.Features.Mood
             return Ok(result);
         }
 
+        /// <summary>
+        /// Use with caution, this request removes all previous saved mood records.
+        /// </summary>
+        /// <remarks>Warning!</remarks>
+        /// <param name="token"></param>
+        /// <returns></returns>
         [HttpDelete]
         public async Task<IActionResult> DeleteAllMoodRecords(CancellationToken token)
         {
