@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Upnodo.Api.Features.Mood.Configurations;
 using Upnodo.Features.Mood.Application.CreateMoodRecord;
+using Upnodo.Features.Mood.Application.GetMoodRecordByRecordId;
 using Upnodo.Features.Mood.Application.UpdateMoodRecord;
 
 namespace Upnodo.Api.Features.Mood
 {
     [ApiController]
+    [Produces("application/json")]
     [Route("api/mood/")]
     public class MoodController : Controller
     {
@@ -23,7 +25,7 @@ namespace Upnodo.Api.Features.Mood
             _logger = logger;
         }
 
-        [HttpPost]
+        [HttpPost("create", Name = nameof(CreateMoodRecord))]
         public async Task<IActionResult> CreateMoodRecord(
             [FromBody] CreateMoodRecordRequest request,
             CancellationToken token)
@@ -40,7 +42,7 @@ namespace Upnodo.Api.Features.Mood
         /// <remarks>Warning!</remarks>
         /// <param name="token"></param>
         /// <returns></returns>
-        [HttpDelete]
+        [HttpDelete("delete", Name = nameof(DeleteAllMoodRecords))]
         public async Task<IActionResult> DeleteAllMoodRecords(CancellationToken token)
         {
             _logger.LogTrace($"{nameof(DeleteAllMoodRecords)}");
@@ -49,7 +51,7 @@ namespace Upnodo.Api.Features.Mood
             return NoContent();
         }
 
-        [HttpDelete("{moodRecordId}")]
+        [HttpDelete("delete/{moodRecordId}", Name = nameof(DeleteMoodRecord))]
         public async Task<IActionResult> DeleteMoodRecord(string moodRecordId, CancellationToken token)
         {
             _logger.LogTrace($"{nameof(DeleteMoodRecord)} moodRecordId: {moodRecordId}");
@@ -58,26 +60,26 @@ namespace Upnodo.Api.Features.Mood
             return NoContent();
         }
 
-        [HttpGet("{moodRecordId}, {bypassCache:bool}")]
+        [HttpPost("read", Name = nameof(GetMoodRecordsByMoodRecordId))]
         public async Task<IActionResult> GetMoodRecordsByMoodRecordId(
-            string moodRecordId, 
-            bool bypassCache,
+            [FromBody] GetMoodRecordByMoodRecordIdRequest request,
             CancellationToken token)
         {
-            _logger.LogTrace($"{nameof(GetMoodRecordsByMoodRecordId)} moodRecordId: {moodRecordId}");
+            _logger.LogTrace(
+                $"{nameof(GetMoodRecordsByMoodRecordId)} request body: {JsonSerializer.Serialize(request)}");
             var result = await _mediator.Send(
-                MediatorRequestFactory.GetMoodRecordByMoodRecordIdQuery(moodRecordId, bypassCache),
+                MediatorRequestFactory.GetMoodRecordByMoodRecordIdQuery(request),
                 token);
 
             return Ok(result);
         }
 
-        [HttpGet("{numberOfMoodRecords:int}")]
+        [HttpGet("read/{numberOfMoodRecords:int}", Name = nameof(GetLatestCreatedMoodRecords))]
         public async Task<IActionResult> GetLatestCreatedMoodRecords(int numberOfMoodRecords, CancellationToken token)
         {
             _logger.LogTrace(
                 $"{nameof(GetLatestCreatedMoodRecords)} numberOfMoodRecords: {numberOfMoodRecords.ToString()}");
-            
+
             var result = await _mediator.Send(
                 MediatorRequestFactory.GetLatestCreatedMoodRecordsQuery(numberOfMoodRecords),
                 token);
@@ -85,7 +87,7 @@ namespace Upnodo.Api.Features.Mood
             return Ok(result);
         }
 
-        [HttpPut]
+        [HttpPut("update", Name = nameof(UpdateMoodRecord))]
         public async Task<IActionResult> UpdateMoodRecord(
             [FromBody] UpdateMoodRecordRequest request,
             CancellationToken token)

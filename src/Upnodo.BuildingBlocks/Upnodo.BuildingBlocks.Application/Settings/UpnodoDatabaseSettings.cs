@@ -1,4 +1,4 @@
-namespace Upnodo.BuildingBlocks.Application.Configurations
+namespace Upnodo.BuildingBlocks.Application.Settings
 {
     public class UpnodoDatabaseSettings : IUpnodoDatabaseSettings
     {

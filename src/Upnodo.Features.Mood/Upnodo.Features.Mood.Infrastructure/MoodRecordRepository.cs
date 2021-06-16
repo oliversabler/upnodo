@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using Upnodo.BuildingBlocks.Application.Configurations;
+using Upnodo.BuildingBlocks.Application.Settings;
 using Upnodo.Features.Mood.Domain;
 using Upnodo.Features.Mood.Infrastructure.Collections;
 

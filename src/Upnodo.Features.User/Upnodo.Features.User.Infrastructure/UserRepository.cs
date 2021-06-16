@@ -1,5 +1,5 @@
 using MongoDB.Driver;
-using Upnodo.BuildingBlocks.Application.Configurations;
+using Upnodo.BuildingBlocks.Application.Settings;
 
 namespace Upnodo.Features.User.Infrastructure
 {

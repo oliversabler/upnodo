@@ -30,21 +30,26 @@ namespace Upnodo.Api.PipelineBehaviors
             CancellationToken token, 
             RequestHandlerDelegate<TResponse> next)
         {
+            if (request?.Cache == null)
+            {
+                return await next();
+            }
+            
             TResponse response;
             
-            if (request.BypassCache) 
+            if (request.Cache.BypassCache) 
                 return await next();
 
-            var cachedResponse = await _cache.GetAsync(request.CacheKey, token);
+            var cachedResponse = await _cache.GetAsync(request.Cache.CacheKey, token);
             if (cachedResponse != null)
             {
                 response = JsonSerializer.Deserialize<TResponse>(Encoding.Default.GetString(cachedResponse))!;
-                _logger.LogInformation($"Fetched from Cache: {request.CacheKey}.");
+                _logger.LogInformation($"Fetched from Cache: {request.Cache.CacheKey}.");
             }
             else
             {
                 response = await GetResponseAndAddToCache(request, token, next);
-                _logger.LogInformation($"Added to cache: {request.CacheKey}.");
+                _logger.LogInformation($"Added to cache: {request.Cache.CacheKey}.");
             }
             
             return response;
@@ -66,7 +71,7 @@ namespace Upnodo.Api.PipelineBehaviors
                 
             var serializedData = Encoding.Default.GetBytes(JsonSerializer.Serialize(response));
                 
-            await _cache.SetAsync(request.CacheKey, serializedData, options, token);
+            await _cache.SetAsync(request.Cache!.CacheKey, serializedData, options, token);
                 
             return response;
         }

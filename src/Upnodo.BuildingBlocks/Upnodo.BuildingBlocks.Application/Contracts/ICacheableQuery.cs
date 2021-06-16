@@ -1,9 +1,9 @@
+using Upnodo.BuildingBlocks.Application.Models;
+
 namespace Upnodo.BuildingBlocks.Application.Contracts
 {
     public interface ICacheableQuery
     {
-        public string CacheKey { get; }
-        
-        public bool BypassCache { get; }
+        public Cache? Cache { get; set; }
     }
 }

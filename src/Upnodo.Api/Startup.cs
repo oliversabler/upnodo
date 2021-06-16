@@ -1,4 +1,5 @@
 using System.IO;
+using System.Linq;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,7 +14,7 @@ using Upnodo.Api.Features.User.Configurations;
 using Upnodo.Api.Filters;
 using Upnodo.Api.Middleware.Exceptions;
 using Upnodo.Api.PipelineBehaviors;
-using Upnodo.BuildingBlocks.Application.Configurations;
+using Upnodo.BuildingBlocks.Application.Settings;
 
 namespace Upnodo.Api
 {

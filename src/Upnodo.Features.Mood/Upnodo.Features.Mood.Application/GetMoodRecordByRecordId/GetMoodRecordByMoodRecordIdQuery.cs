@@ -1,5 +1,6 @@
 using MediatR;
 using Upnodo.BuildingBlocks.Application.Contracts;
+using Upnodo.BuildingBlocks.Application.Models;
 
 namespace Upnodo.Features.Mood.Application.GetMoodRecordByRecordId
 {
@@ -7,14 +8,20 @@ namespace Upnodo.Features.Mood.Application.GetMoodRecordByRecordId
     {
         public string MoodRecordId { get; }
 
-        public string CacheKey { get; }
-        public bool BypassCache { get; }
+        public Cache? Cache { get; set; }
 
-        public GetMoodRecordByMoodRecordIdQuery(string moodRecordId, bool bypassCache)
+        public GetMoodRecordByMoodRecordIdQuery(string moodRecordId, Cache? cache)
         {
-            CacheKey = moodRecordId;
             MoodRecordId = moodRecordId;
-            BypassCache = bypassCache;
+
+            if (cache != null)
+            {
+                Cache = new Cache
+                {
+                    CacheKey = moodRecordId,
+                    BypassCache = cache.BypassCache
+                };
+            }
         }
     }
 }
