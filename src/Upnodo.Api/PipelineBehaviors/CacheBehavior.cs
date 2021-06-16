@@ -17,6 +17,7 @@ namespace Upnodo.Api.PipelineBehaviors
         private readonly ILogger<CacheBehavior<TRequest, TResponse>> _logger;
         
         private const int AbsoluteExpiration = 15;
+        private const int SlidingExpiration = 3;
 
         public CacheBehavior(IDistributedCache cache, ILogger<CacheBehavior<TRequest, TResponse>> logger)
         {
@@ -33,24 +34,7 @@ namespace Upnodo.Api.PipelineBehaviors
             
             if (request.BypassCache) 
                 return await next();
-            
-            async Task<TResponse> GetResponseAndAddToCache()
-            {
-                response = await next();
-                var slidingExpiration = TimeSpan.FromMinutes(AbsoluteExpiration);
-                
-                var options = new DistributedCacheEntryOptions
-                {
-                    SlidingExpiration = slidingExpiration
-                };
-                
-                var serializedData = Encoding.Default.GetBytes(JsonSerializer.Serialize(response));
-                
-                await _cache.SetAsync(request.CacheKey, serializedData, options, token);
-                
-                return response;
-            }
-            
+
             var cachedResponse = await _cache.GetAsync(request.CacheKey, token);
             if (cachedResponse != null)
             {
@@ -59,11 +43,32 @@ namespace Upnodo.Api.PipelineBehaviors
             }
             else
             {
-                response = await GetResponseAndAddToCache();
+                response = await GetResponseAndAddToCache(request, token, next);
                 _logger.LogInformation($"Added to cache: {request.CacheKey}.");
             }
             
-            return response!;
+            return response;
+        }
+        
+        private async Task<TResponse> GetResponseAndAddToCache(
+            TRequest request, 
+            CancellationToken token, 
+            RequestHandlerDelegate<TResponse> next)
+        {
+            var response = await next();
+
+            var options = new DistributedCacheEntryOptions
+            {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(AbsoluteExpiration),
+                SlidingExpiration = TimeSpan.FromMinutes(SlidingExpiration),
+                
+            };
+                
+            var serializedData = Encoding.Default.GetBytes(JsonSerializer.Serialize(response));
+                
+            await _cache.SetAsync(request.CacheKey, serializedData, options, token);
+                
+            return response;
         }
     }
 }
