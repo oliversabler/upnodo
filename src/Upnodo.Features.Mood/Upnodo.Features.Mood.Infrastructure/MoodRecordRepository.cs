@@ -3,28 +3,27 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using MongoDB.Bson;
 using MongoDB.Driver;
-using Upnodo.BuildingBlocks.Application.Settings;
+using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.Features.Mood.Domain;
-using Upnodo.Features.Mood.Infrastructure.Collections;
+using Upnodo.Features.Mood.Infrastructure.DTO;
 
 namespace Upnodo.Features.Mood.Infrastructure
 {
     public class MoodRecordRepository
     {
-        private readonly IMongoCollection<MoodRecordCollection> _moods;
+        private readonly IMongoCollection<MoodRecordDto> _moods;
         private readonly ILogger<MoodRecordRepository> _logger;
 
         public MoodRecordRepository(
-            IUpnodoDatabaseSettings settings,
+            IDatabaseSettings settings,
             ILogger<MoodRecordRepository> logger)
         {
             _logger = logger;
             var client = new MongoClient(settings.ConnectionString);
             var db = client.GetDatabase(settings.DatabaseName);
 
-            _moods = db.GetCollection<MoodRecordCollection>(settings.MoodsCollectionName);
+            _moods = db.GetCollection<MoodRecordDto>(settings.MoodsCollectionName);
         }
 
         public async Task<MoodRecord> CreateAsync(MoodRecord moodRecord)
@@ -33,18 +32,20 @@ namespace Upnodo.Features.Mood.Infrastructure
                 $"{nameof(CreateAsync)} in {nameof(MoodRecordRepository)} running. " +
                 $"Creating {nameof(moodRecord)} body: {JsonSerializer.Serialize(moodRecord)}");
             
-            await _moods.InsertOneAsync(new MoodRecordCollection
+            await _moods.InsertOneAsync(new MoodRecordDto
             {
                 MoodRecordId = moodRecord.MoodRecordId,
                 DateCreated = moodRecord.DateCreated,
                 MoodStatus = moodRecord.MoodStatus,
-                User = new MoodRecordUserCollection
+                User = new UserDto
                 {
                     UserId = moodRecord.User!.UserId!,
                     Username = moodRecord.User!.Username!,
                     Email = moodRecord.User!.Email!
                 }
             });
+            
+            // Todo: Fetch the inserted document instead
 
             return moodRecord;
         }
@@ -55,7 +56,7 @@ namespace Upnodo.Features.Mood.Infrastructure
                 $"{nameof(DeleteAsync)} in {nameof(MoodRecordRepository)}. " +
                 $"Deleting {nameof(moodRecordId)}: {moodRecordId}");
             
-            var deleteFilter = Builders<MoodRecordCollection>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
+            var deleteFilter = Builders<MoodRecordDto>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
 
             await _moods.DeleteOneAsync(deleteFilter);
         }
@@ -72,7 +73,7 @@ namespace Upnodo.Features.Mood.Infrastructure
                 $"{nameof(ReadAsync)} in {nameof(MoodRecordRepository)}. " +
                 $"Reading {nameof(moodRecordId)}: {moodRecordId}");
 
-            var readFilter = Builders<MoodRecordCollection>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
+            var readFilter = Builders<MoodRecordDto>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
             var result = await _moods.FindAsync(readFilter);
             var moodRecordCollection = result.FirstOrDefault();
 
@@ -115,11 +116,11 @@ namespace Upnodo.Features.Mood.Infrastructure
                 $"{nameof(UpdateAsync)} in {nameof(MoodRecordRepository)}. " +
                 $"Updating {nameof(moodRecord)} body: {JsonSerializer.Serialize(moodRecord)}");
 
-            var filter = Builders<MoodRecordCollection>.Filter.Eq(
+            var filter = Builders<MoodRecordDto>.Filter.Eq(
                 Constants.Elements.MoodRecordId,
                 moodRecord.MoodRecordId);
 
-            var update = Builders<MoodRecordCollection>.Update
+            var update = Builders<MoodRecordDto>.Update
                 .Set(Constants.Elements.DateUpdated, moodRecord.DateUpdated)
                 .Set(Constants.Elements.Mood, moodRecord.MoodStatus);
 
@@ -128,7 +129,7 @@ namespace Upnodo.Features.Mood.Infrastructure
             // Not optimal, does not return the updated document at all times
             _logger.LogTrace($"Fetching updated {nameof(moodRecord)}");
             
-            var readFilter = Builders<MoodRecordCollection>.Filter.Eq(
+            var readFilter = Builders<MoodRecordDto>.Filter.Eq(
                 Constants.Elements.MoodRecordId,
                 moodRecord.MoodRecordId);
             var moodCollection = _moods.Find(readFilter).FirstOrDefault();

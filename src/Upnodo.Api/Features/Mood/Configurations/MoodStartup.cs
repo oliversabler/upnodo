@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.BuildingBlocks.Application.Contracts;
 using Upnodo.Features.Mood.Application.CreateMoodRecord;
 using Upnodo.Features.Mood.Application.DeleteAllMoodRecords;

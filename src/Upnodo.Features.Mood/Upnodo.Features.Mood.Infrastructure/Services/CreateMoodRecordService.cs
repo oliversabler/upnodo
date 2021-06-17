@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using Upnodo.BuildingBlocks.Application.Contracts;
+using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.Features.Mood.Application.CreateMoodRecord;
 using Upnodo.Features.Mood.Domain;
 

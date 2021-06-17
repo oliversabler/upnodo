@@ -1,6 +1,6 @@
 using System;
 
-namespace Upnodo.BuildingBlocks.Application.Exceptions
+namespace Upnodo.Api.Middleware.Exceptions
 {
     public class ServiceUnavailableException : Exception
     {

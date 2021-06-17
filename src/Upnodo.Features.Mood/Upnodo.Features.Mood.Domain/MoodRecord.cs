@@ -4,6 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Upnodo.Features.Mood.Domain
 {
+    // Todo: I feel like we dont need these domain models
     public class MoodRecord
     {
         [BsonId]

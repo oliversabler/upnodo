@@ -1,6 +1,8 @@
+using Upnodo.BuildingBlocks.Application.Abstractions;
+
 namespace Upnodo.BuildingBlocks.Application.Settings
 {
-    public class UpnodoDatabaseSettings : IUpnodoDatabaseSettings
+    public class DatabaseSettings : IDatabaseSettings
     {
         public string ConnectionString { get; set; } = default!;
         

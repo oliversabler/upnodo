@@ -14,6 +14,7 @@ using Upnodo.Api.Features.User.Configurations;
 using Upnodo.Api.Filters;
 using Upnodo.Api.Middleware.Exceptions;
 using Upnodo.Api.PipelineBehaviors;
+using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.BuildingBlocks.Application.Settings;
 
 namespace Upnodo.Api
@@ -63,11 +64,11 @@ namespace Upnodo.Api
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheBehavior<,>));
 
             // MongoDb
-            services.Configure<UpnodoDatabaseSettings>(
-                Configuration.GetSection(nameof(UpnodoDatabaseSettings)));
+            services.Configure<DatabaseSettings>(
+                Configuration.GetSection(nameof(DatabaseSettings)));
 
-            services.AddSingleton<IUpnodoDatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<UpnodoDatabaseSettings>>().Value);
+            services.AddSingleton<IDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
 
             // Services
             services.AddMood();

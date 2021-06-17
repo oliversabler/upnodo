@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Polly;
 using Polly.CircuitBreaker;
-using Upnodo.BuildingBlocks.Application.Exceptions;
 
 #pragma warning disable HAA0301, HAA0302, HAA0303
 namespace Upnodo.Api.Middleware.Exceptions

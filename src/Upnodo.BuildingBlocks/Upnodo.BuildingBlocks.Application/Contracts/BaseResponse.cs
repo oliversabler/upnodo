@@ -1,3 +1,5 @@
+using Upnodo.BuildingBlocks.Application.Abstractions;
+
 namespace Upnodo.BuildingBlocks.Application.Contracts
 {
     public class BaseResponse : IResponse

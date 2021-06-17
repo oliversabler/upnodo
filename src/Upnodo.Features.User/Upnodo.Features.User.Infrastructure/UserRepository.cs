@@ -1,4 +1,5 @@
 using MongoDB.Driver;
+using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.BuildingBlocks.Application.Settings;
 
 namespace Upnodo.Features.User.Infrastructure
@@ -7,7 +8,7 @@ namespace Upnodo.Features.User.Infrastructure
     {
         private readonly IMongoCollection<Domain.User> _users;
 
-        public UserRepository(IUpnodoDatabaseSettings settings)
+        public UserRepository(IDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var db = client.GetDatabase(settings.DatabaseName);
