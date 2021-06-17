@@ -6,19 +6,20 @@ using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.BuildingBlocks.Application.Contracts;
 using Upnodo.Features.Mood.Application.DeleteAllMoodRecords;
+using Upnodo.Features.Mood.Infrastructure.Repositories;
 
 namespace Upnodo.Features.Mood.Infrastructure.Services
 {
     public class DeleteAllMoodRecordsService : IService<DeleteAllMoodRecordsResponse>
     {
-        private readonly MoodRecordRepository _moodRecordRepository;
+        private readonly MongoDbRepository _mongoDbRepository;
         private readonly ILogger<DeleteMoodRecordService> _logger;
 
         public DeleteAllMoodRecordsService(
-            MoodRecordRepository moodRecordRepository,
+            MongoDbRepository mongoDbRepository,
             ILogger<DeleteMoodRecordService> logger)
         {
-            _moodRecordRepository = moodRecordRepository;
+            _mongoDbRepository = mongoDbRepository;
             _logger = logger;
         }
 
@@ -35,7 +36,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(DeleteAllMoodRecordsCommand)}");
             }
 
-            await _moodRecordRepository.DeleteAllAsync();
+            await _mongoDbRepository.DeleteAllAsync();
 
             return new DeleteAllMoodRecordsResponse(true, string.Empty);
         }

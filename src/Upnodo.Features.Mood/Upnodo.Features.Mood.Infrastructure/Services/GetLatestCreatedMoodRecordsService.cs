@@ -6,19 +6,20 @@ using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.BuildingBlocks.Application.Contracts;
 using Upnodo.Features.Mood.Application.GetLatestCreatedMoodRecords;
+using Upnodo.Features.Mood.Infrastructure.Repositories;
 
 namespace Upnodo.Features.Mood.Infrastructure.Services
 {
     public class GetLatestCreatedMoodRecordsService : IService<GetLatestCreatedMoodRecordsResponse>
     {
-        private readonly MoodRecordRepository _moodRecordRepository;
+        private readonly MongoDbRepository _mongoDbRepository;
         private readonly ILogger<GetMoodRecordByMoodRecordIdService> _logger;
 
         public GetLatestCreatedMoodRecordsService(
-            MoodRecordRepository moodRecordRepository,
+            MongoDbRepository mongoDbRepository,
             ILogger<GetMoodRecordByMoodRecordIdService> logger)
         {
-            _moodRecordRepository = moodRecordRepository;
+            _mongoDbRepository = mongoDbRepository;
             _logger = logger;
         }
 
@@ -36,7 +37,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
                     $"{nameof(request)} is not of type {typeof(GetLatestCreatedMoodRecordsQuery)}");
             }
 
-            var records = await _moodRecordRepository.ReadLatestAsync(query.TotalNumberOfMoodRecords);
+            var records = await _mongoDbRepository.ReadLatestAsync(query.TotalNumberOfMoodRecords);
 
             return new GetLatestCreatedMoodRecordsResponse(true, records);
         }

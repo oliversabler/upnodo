@@ -2,7 +2,7 @@ using Upnodo.BuildingBlocks.Application.Abstractions;
 
 namespace Upnodo.BuildingBlocks.Application.Settings
 {
-    public class DatabaseSettings : IDatabaseSettings
+    public class MongoDbSettings : IMongoDbSettings
     {
         public string ConnectionString { get; set; } = default!;
         

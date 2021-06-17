@@ -7,19 +7,20 @@ using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.BuildingBlocks.Application.Contracts;
 using Upnodo.Features.Mood.Application.UpdateMoodRecord;
 using Upnodo.Features.Mood.Domain;
+using Upnodo.Features.Mood.Infrastructure.Repositories;
 
 namespace Upnodo.Features.Mood.Infrastructure.Services
 {
     public class UpdateMoodRecordService : IService<UpdateMoodRecordResponse>
     {
-        private readonly MoodRecordRepository _moodRecordRepository;
+        private readonly MongoDbRepository _mongoDbRepository;
         private readonly ILogger<UpdateMoodRecordService> _logger;
 
         public UpdateMoodRecordService(
-            MoodRecordRepository moodRecordRepository,
+            MongoDbRepository mongoDbRepository,
             ILogger<UpdateMoodRecordService> logger)
         {
-            _moodRecordRepository = moodRecordRepository;
+            _mongoDbRepository = mongoDbRepository;
             _logger = logger;
         }
 
@@ -41,7 +42,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
                 command.DateUpdate,
                 command.MoodStatus);
 
-            var response = await _moodRecordRepository.UpdateAsync(moodRecord);
+            var response = await _mongoDbRepository.UpdateAsync(moodRecord);
 
             return new UpdateMoodRecordResponse(true, response);
         }

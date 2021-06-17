@@ -5,9 +5,9 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Upnodo.Api.Features.Mood.Configurations;
-using Upnodo.Features.Mood.Application.CreateMoodRecord;
 using Upnodo.Features.Mood.Application.GetMoodRecordByRecordId;
 using Upnodo.Features.Mood.Application.UpdateMoodRecord;
+using Upnodo.Features.Mood.Domain.Models.CreateMoodRecord;
 
 namespace Upnodo.Api.Features.Mood
 {

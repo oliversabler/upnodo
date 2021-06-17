@@ -1,11 +1,9 @@
 using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using Upnodo.Features.Mood.Domain;
 
-namespace Upnodo.Features.Mood.Infrastructure.DTO
+namespace Upnodo.Features.Mood.Domain.DTO
 {
-    // Todo: Should we take a look at AutoMapper?
     public class MoodRecordDto
     {
         [BsonId]

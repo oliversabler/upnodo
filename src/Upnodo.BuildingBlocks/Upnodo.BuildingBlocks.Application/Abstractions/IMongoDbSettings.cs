@@ -1,6 +1,6 @@
 namespace Upnodo.BuildingBlocks.Application.Abstractions
 {
-    public interface IDatabaseSettings
+    public interface IMongoDbSettings
     {
         public string ConnectionString { get; set; }
         

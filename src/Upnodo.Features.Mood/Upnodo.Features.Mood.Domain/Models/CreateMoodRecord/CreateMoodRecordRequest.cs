@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using Upnodo.Features.Mood.Domain;
 
-namespace Upnodo.Features.Mood.Application.CreateMoodRecord
+namespace Upnodo.Features.Mood.Domain.Models.CreateMoodRecord
 {
     public class CreateMoodRecordRequest
     {

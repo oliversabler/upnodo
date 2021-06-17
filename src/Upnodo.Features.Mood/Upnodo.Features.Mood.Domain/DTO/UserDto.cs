@@ -1,4 +1,4 @@
-namespace Upnodo.Features.Mood.Infrastructure.DTO
+namespace Upnodo.Features.Mood.Domain.DTO
 {
     public class UserDto
     {

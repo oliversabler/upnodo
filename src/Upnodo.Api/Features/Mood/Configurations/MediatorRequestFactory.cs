@@ -1,9 +1,9 @@
-using Upnodo.Features.Mood.Application.CreateMoodRecord;
 using Upnodo.Features.Mood.Application.DeleteAllMoodRecords;
 using Upnodo.Features.Mood.Application.DeleteMoodRecord;
 using Upnodo.Features.Mood.Application.GetLatestCreatedMoodRecords;
 using Upnodo.Features.Mood.Application.GetMoodRecordByRecordId;
 using Upnodo.Features.Mood.Application.UpdateMoodRecord;
+using Upnodo.Features.Mood.Domain.Models.CreateMoodRecord;
 
 namespace Upnodo.Api.Features.Mood.Configurations
 {

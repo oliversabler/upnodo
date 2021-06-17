@@ -6,18 +6,18 @@ using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.Features.Mood.Domain;
-using Upnodo.Features.Mood.Infrastructure.DTO;
+using Upnodo.Features.Mood.Domain.DTO;
 
-namespace Upnodo.Features.Mood.Infrastructure
+namespace Upnodo.Features.Mood.Infrastructure.Repositories
 {
-    public class MoodRecordRepository
+    public class MongoDbRepository
     {
         private readonly IMongoCollection<MoodRecordDto> _moods;
-        private readonly ILogger<MoodRecordRepository> _logger;
+        private readonly ILogger<MongoDbRepository> _logger;
 
-        public MoodRecordRepository(
-            IDatabaseSettings settings,
-            ILogger<MoodRecordRepository> logger)
+        public MongoDbRepository(
+            IMongoDbSettings settings,
+            ILogger<MongoDbRepository> logger)
         {
             _logger = logger;
             var client = new MongoClient(settings.ConnectionString);
@@ -29,7 +29,7 @@ namespace Upnodo.Features.Mood.Infrastructure
         public async Task<MoodRecord> CreateAsync(MoodRecord moodRecord)
         {
             _logger.LogTrace(
-                $"{nameof(CreateAsync)} in {nameof(MoodRecordRepository)} running. " +
+                $"{nameof(CreateAsync)} in {nameof(MongoDbRepository)} running. " +
                 $"Creating {nameof(moodRecord)} body: {JsonSerializer.Serialize(moodRecord)}");
             
             await _moods.InsertOneAsync(new MoodRecordDto
@@ -53,7 +53,7 @@ namespace Upnodo.Features.Mood.Infrastructure
         public async Task DeleteAsync(string moodRecordId)
         {
             _logger.LogTrace(
-                $"{nameof(DeleteAsync)} in {nameof(MoodRecordRepository)}. " +
+                $"{nameof(DeleteAsync)} in {nameof(MongoDbRepository)}. " +
                 $"Deleting {nameof(moodRecordId)}: {moodRecordId}");
             
             var deleteFilter = Builders<MoodRecordDto>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
@@ -63,14 +63,14 @@ namespace Upnodo.Features.Mood.Infrastructure
 
         public async Task DeleteAllAsync()
         {
-            _logger.LogTrace($"{nameof(DeleteAllAsync)} in {nameof(MoodRecordRepository)}. Deleting all mood records");
+            _logger.LogTrace($"{nameof(DeleteAllAsync)} in {nameof(MongoDbRepository)}. Deleting all mood records");
             await _moods.DeleteManyAsync(_ => true);
         }
 
         public async Task<MoodRecord> ReadAsync(string moodRecordId)
         {
             _logger.LogTrace(
-                $"{nameof(ReadAsync)} in {nameof(MoodRecordRepository)}. " +
+                $"{nameof(ReadAsync)} in {nameof(MongoDbRepository)}. " +
                 $"Reading {nameof(moodRecordId)}: {moodRecordId}");
 
             var readFilter = Builders<MoodRecordDto>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
@@ -90,7 +90,7 @@ namespace Upnodo.Features.Mood.Infrastructure
         public async Task<List<MoodRecord>> ReadLatestAsync(int numberOfMoodRecords)
         {
             _logger.LogTrace(
-                $"{nameof(ReadAsync)} in {nameof(MoodRecordRepository)}. " +
+                $"{nameof(ReadAsync)} in {nameof(MongoDbRepository)}. " +
                 $"Reading {nameof(numberOfMoodRecords)}: {numberOfMoodRecords.ToString()}");
 
             var result = await _moods.Find(_ => true)
@@ -113,7 +113,7 @@ namespace Upnodo.Features.Mood.Infrastructure
         public async Task<MoodRecord> UpdateAsync(MoodRecord moodRecord)
         {
             _logger.LogTrace(
-                $"{nameof(UpdateAsync)} in {nameof(MoodRecordRepository)}. " +
+                $"{nameof(UpdateAsync)} in {nameof(MongoDbRepository)}. " +
                 $"Updating {nameof(moodRecord)} body: {JsonSerializer.Serialize(moodRecord)}");
 
             var filter = Builders<MoodRecordDto>.Filter.Eq(

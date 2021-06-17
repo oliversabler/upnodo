@@ -1,13 +1,12 @@
 using Microsoft.Extensions.DependencyInjection;
 using Upnodo.BuildingBlocks.Application.Abstractions;
-using Upnodo.BuildingBlocks.Application.Contracts;
-using Upnodo.Features.Mood.Application.CreateMoodRecord;
 using Upnodo.Features.Mood.Application.DeleteAllMoodRecords;
 using Upnodo.Features.Mood.Application.DeleteMoodRecord;
 using Upnodo.Features.Mood.Application.GetLatestCreatedMoodRecords;
 using Upnodo.Features.Mood.Application.GetMoodRecordByRecordId;
 using Upnodo.Features.Mood.Application.UpdateMoodRecord;
-using Upnodo.Features.Mood.Infrastructure;
+using Upnodo.Features.Mood.Domain.Models.CreateMoodRecord;
+using Upnodo.Features.Mood.Infrastructure.Repositories;
 using Upnodo.Features.Mood.Infrastructure.Services;
 
 namespace Upnodo.Api.Features.Mood.Configurations
@@ -23,7 +22,7 @@ namespace Upnodo.Api.Features.Mood.Configurations
             s.AddTransient<IService<GetLatestCreatedMoodRecordsResponse>, GetLatestCreatedMoodRecordsService>();
             s.AddTransient<IService<UpdateMoodRecordResponse>, UpdateMoodRecordService>();
 
-            s.AddSingleton<MoodRecordRepository>();
+            s.AddSingleton<MongoDbRepository>();
         }
     }
 }

@@ -4,21 +4,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Abstractions;
-using Upnodo.Features.Mood.Application.CreateMoodRecord;
 using Upnodo.Features.Mood.Domain;
+using Upnodo.Features.Mood.Domain.Models.CreateMoodRecord;
+using Upnodo.Features.Mood.Infrastructure.Repositories;
 
 namespace Upnodo.Features.Mood.Infrastructure.Services
 {
     public class CreateMoodRecordService : IService<CreateMoodRecordResponse>
     {
-        private readonly MoodRecordRepository _moodRecordRepository;
+        private readonly MongoDbRepository _mongoDbRepository;
         private readonly ILogger<CreateMoodRecordService> _logger;
 
         public CreateMoodRecordService(
-            MoodRecordRepository moodRecordRepository,
+            MongoDbRepository mongoDbRepository,
             ILogger<CreateMoodRecordService> logger)
         {
-            _moodRecordRepository = moodRecordRepository;
+            _mongoDbRepository = mongoDbRepository;
             _logger = logger;
         }
 
@@ -44,7 +45,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
                 command.Username,
                 command.Email);
 
-            var response = await _moodRecordRepository.CreateAsync(moodRecord);
+            var response = await _mongoDbRepository.CreateAsync(moodRecord);
 
             return new CreateMoodRecordResponse(true, response);
         }
