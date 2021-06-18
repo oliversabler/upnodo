@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.Features.Mood.Application.CreateMoodRecord;
 using Upnodo.Features.Mood.Domain;
-using Upnodo.Features.Mood.Domain.DTO;
+using Upnodo.Features.Mood.Infrastructure.DTO;
 using Upnodo.Features.Mood.Infrastructure.Repositories;
 
 namespace Upnodo.Features.Mood.Infrastructure.Services

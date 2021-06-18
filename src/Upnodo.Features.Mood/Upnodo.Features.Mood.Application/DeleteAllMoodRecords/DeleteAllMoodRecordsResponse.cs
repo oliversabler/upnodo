@@ -4,7 +4,7 @@ namespace Upnodo.Features.Mood.Application.DeleteAllMoodRecords
 {
     public class DeleteAllMoodRecordsResponse : BaseResponse
     {
-        public DeleteAllMoodRecordsResponse(bool success, object value) : base(success, value)
+        public DeleteAllMoodRecordsResponse(bool success) : base(success)
         {
         }
     }

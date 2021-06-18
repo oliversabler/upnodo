@@ -14,6 +14,10 @@ namespace Upnodo.Features.Mood.Domain
 
         public User? User { get; }
 
+        private MoodRecord()
+        {
+        }
+
         private MoodRecord(
             string moodRecordId,
             DateTime dateCreated,
@@ -67,6 +71,11 @@ namespace Upnodo.Features.Mood.Domain
                 dateUpdated,
                 moodStatus,
                 CreateUser(userId, username, email, firstname, lastname));
+        }
+
+        public static MoodRecord CreateEmpty()
+        {
+            return new();
         }
 
         public static MoodRecord UpdateMood(

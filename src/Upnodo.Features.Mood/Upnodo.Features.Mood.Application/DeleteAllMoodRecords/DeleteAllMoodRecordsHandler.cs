@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Abstractions;
+using Upnodo.Features.Mood.Domain;
 
 namespace Upnodo.Features.Mood.Application.DeleteAllMoodRecords
 {
@@ -25,7 +26,8 @@ namespace Upnodo.Features.Mood.Application.DeleteAllMoodRecords
             CancellationToken token)
         {
             _logger.LogTrace($"{nameof(DeleteAllMoodRecordsHandler)} running.");
-            return await _deleteAllMoodRecordsService.RunAsync(request, token);
+
+            return await _deleteAllMoodRecordsService.RunAsync(MoodRecord.CreateEmpty(), token);
         }
     }
 }

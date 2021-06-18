@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.Features.Mood.Domain;
-using Upnodo.Features.Mood.Domain.DTO;
+using Upnodo.Features.Mood.Infrastructure.DTO;
 
 namespace Upnodo.Features.Mood.Infrastructure.Repositories
 {

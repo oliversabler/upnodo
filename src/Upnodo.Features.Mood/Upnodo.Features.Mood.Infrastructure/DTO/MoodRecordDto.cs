@@ -1,8 +1,9 @@
 using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Upnodo.Features.Mood.Domain;
 
-namespace Upnodo.Features.Mood.Domain.DTO
+namespace Upnodo.Features.Mood.Infrastructure.DTO
 {
     public class MoodRecordDto
     {
