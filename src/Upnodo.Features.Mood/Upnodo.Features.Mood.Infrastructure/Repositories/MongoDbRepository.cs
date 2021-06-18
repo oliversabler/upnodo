@@ -36,6 +36,12 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
 
             return moodRecord.MoodRecordId;
         }
+        
+        public async Task DeleteAllAsync()
+        {
+            _logger.LogTrace($"{nameof(DeleteAllAsync)} in {nameof(MongoDbRepository)}. Deleting all mood records");
+            await _moods.DeleteManyAsync(_ => true);
+        }
 
         public async Task DeleteAsync(string moodRecordId)
         {
@@ -46,12 +52,6 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
             var deleteFilter = Builders<MoodRecordDto>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
 
             await _moods.DeleteOneAsync(deleteFilter);
-        }
-
-        public async Task DeleteAllAsync()
-        {
-            _logger.LogTrace($"{nameof(DeleteAllAsync)} in {nameof(MongoDbRepository)}. Deleting all mood records");
-            await _moods.DeleteManyAsync(_ => true);
         }
 
         public async Task<MoodRecord> ReadAsync(string moodRecordId)
