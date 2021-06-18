@@ -7,6 +7,7 @@ using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.Features.Mood.Application.UpdateMoodRecord;
 using Upnodo.Features.Mood.Domain;
 using Upnodo.Features.Mood.Infrastructure.DTO;
+using Upnodo.Features.Mood.Infrastructure.Mappers;
 using Upnodo.Features.Mood.Infrastructure.Repositories;
 
 namespace Upnodo.Features.Mood.Infrastructure.Services
@@ -37,14 +38,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(UpdateMoodRecordCommand)}");
             }
 
-            var dto = new MoodRecordDto
-            {
-                MoodRecordId = moodRecord.MoodRecordId,
-                DateUpdated = moodRecord.DateUpdated,
-                MoodStatus = moodRecord.MoodStatus
-            };
-
-            var response = await _mongoDbRepository.UpdateAsync(dto);
+            var response = await _mongoDbRepository.UpdateAsync(MoodRecordMapper.GetDto(moodRecord));
 
             return new UpdateMoodRecordResponse(true, response);
         }
