@@ -25,7 +25,8 @@ namespace Upnodo.Features.Mood.Application.GetLatestCreatedMoodRecords
             CancellationToken token)
         {
             _logger.LogTrace($"{nameof(GetLatestCreatedMoodRecordsHandler)} running.");
-            return await _getLatestCreatedMoodRecordsService.RunAsync(request, token);
+
+            return await _getLatestCreatedMoodRecordsService.RunAsync(request.TotalNumberOfMoodRecords, token);
         }
     }
 }

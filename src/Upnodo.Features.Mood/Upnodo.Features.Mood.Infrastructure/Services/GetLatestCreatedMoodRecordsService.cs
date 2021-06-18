@@ -1,11 +1,11 @@
 using System;
-using System.Text.Json;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Abstractions;
-using Upnodo.BuildingBlocks.Application.Contracts;
 using Upnodo.Features.Mood.Application.GetLatestCreatedMoodRecords;
+using Upnodo.Features.Mood.Domain;
 using Upnodo.Features.Mood.Infrastructure.Repositories;
 
 namespace Upnodo.Features.Mood.Infrastructure.Services
@@ -27,17 +27,33 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
         {
             _logger.LogTrace($"{nameof(RunAsync)} in {nameof(GetLatestCreatedMoodRecordsService)} running.");
 
-            if (request is not GetLatestCreatedMoodRecordsQuery query)
+            if (request is not int totalNumberOfMoodRecords)
             {
                 _logger.LogError(
-                    $"{nameof(request)} with body: {JsonSerializer.Serialize(request)} " +
-                    $"is not of type {typeof(GetLatestCreatedMoodRecordsQuery)}");
+                    $"{nameof(request)} is not of type {typeof(int)}");
 
                 throw new ArgumentException(
-                    $"{nameof(request)} is not of type {typeof(GetLatestCreatedMoodRecordsQuery)}");
+                    $"{nameof(request)} is not of type {typeof(int)}");
             }
 
-            var records = await _mongoDbRepository.ReadLatestAsync(query.TotalNumberOfMoodRecords);
+            var records = await _mongoDbRepository.ReadLatestAsync(totalNumberOfMoodRecords);
+
+            var moodRecords = new List<MoodRecord>();
+
+            foreach (var moodRecord in moodRecords)
+            {
+                moodRecords.Add(
+                    MoodRecord.CreateMood(
+                        moodRecord.MoodRecordId,
+                        moodRecord.DateCreated,
+                        moodRecord.DateUpdated,
+                        moodRecord.MoodStatus,
+                        moodRecord.User?.UserId!,
+                        moodRecord.User?.Username!,
+                        moodRecord.User?.Email!,
+                        moodRecord.User?.Firstname!,
+                        moodRecord.User?.Lastname!));
+            }
 
             return new GetLatestCreatedMoodRecordsResponse(true, records);
         }

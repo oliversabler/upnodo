@@ -36,7 +36,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
 
             return moodRecord.MoodRecordId;
         }
-        
+
         public async Task DeleteAllAsync()
         {
             _logger.LogTrace($"{nameof(DeleteAllAsync)} in {nameof(MongoDbRepository)}. Deleting all mood records");
@@ -52,6 +52,35 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
             var deleteFilter = Builders<MoodRecordDto>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
 
             await _moods.DeleteOneAsync(deleteFilter);
+        }
+
+        public async Task<List<MoodRecordDto>> ReadLatestAsync(int numberOfMoodRecords)
+        {
+            _logger.LogTrace(
+                $"{nameof(ReadAsync)} in {nameof(MongoDbRepository)}. " +
+                $"Reading {nameof(numberOfMoodRecords)}: {numberOfMoodRecords.ToString()}");
+
+            var result = await _moods.Find(_ => true)
+                .SortByDescending(f => f.DateCreated)
+                .Limit(numberOfMoodRecords)
+                .ToListAsync();
+
+            return result.Select(col => new MoodRecordDto
+            {
+                MoodRecordId = col.MoodRecordId,
+                DateCreated = col.DateCreated,
+                DateUpdated = col.DateUpdated,
+                MoodStatus = col.MoodStatus,
+                User = new UserDto
+                {
+                    UserId = col.User.UserId,
+                    Username = col.User.Username,
+                    Email = col.User.Email,
+                    Firstname = col.User.Firstname,
+                    Lastname = col.User.Lastname,
+                    Fullname = col.User.Fullname
+                }
+            }).ToList();
         }
 
         public async Task<MoodRecord> ReadAsync(string moodRecordId)
@@ -75,33 +104,6 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
                 moodRecordCollection.User.Email!,
                 moodRecordCollection.User.Firstname,
                 moodRecordCollection.User.Lastname);
-        }
-
-        public async Task<List<MoodRecord>> ReadLatestAsync(int numberOfMoodRecords)
-        {
-            _logger.LogTrace(
-                $"{nameof(ReadAsync)} in {nameof(MongoDbRepository)}. " +
-                $"Reading {nameof(numberOfMoodRecords)}: {numberOfMoodRecords.ToString()}");
-
-            var result = await _moods.Find(_ => true)
-                .SortByDescending(f => f.DateCreated)
-                .Limit(numberOfMoodRecords)
-                .ToListAsync();
-
-            // Map Dto => Model
-
-            return result.Select(moodRecordCollection =>
-                    MoodRecord.CreateMood(
-                        moodRecordCollection.MoodRecordId,
-                        moodRecordCollection.DateCreated,
-                        moodRecordCollection.DateUpdated,
-                        moodRecordCollection.MoodStatus,
-                        moodRecordCollection.User.UserId!,
-                        moodRecordCollection.User.Username!,
-                        moodRecordCollection.User.Email!,
-                        moodRecordCollection.User.Firstname,
-                        moodRecordCollection.User.Lastname))
-                .ToList();
         }
 
         public async Task<MoodRecord> UpdateAsync(MoodRecord moodRecord)
