@@ -58,6 +58,19 @@ namespace Upnodo.Api.Features.Mood
 
             return NoContent();
         }
+        
+        [HttpGet("read/{numberOfMoodRecords:int}", Name = nameof(GetLatestCreatedMoodRecords))]
+        public async Task<IActionResult> GetLatestCreatedMoodRecords(int numberOfMoodRecords, CancellationToken token)
+        {
+            _logger.LogTrace(
+                $"{nameof(GetLatestCreatedMoodRecords)} numberOfMoodRecords: {numberOfMoodRecords.ToString()}");
+
+            var result = await _mediator.Send(
+                MediatorRequestFactory.GetLatestCreatedMoodRecordsQuery(numberOfMoodRecords),
+                token);
+
+            return Ok(result);
+        }
 
         [HttpPost("read", Name = nameof(GetMoodRecordsByMoodRecordId))]
         public async Task<IActionResult> GetMoodRecordsByMoodRecordId(
@@ -68,19 +81,6 @@ namespace Upnodo.Api.Features.Mood
                 $"{nameof(GetMoodRecordsByMoodRecordId)} request body: {JsonSerializer.Serialize(request)}");
             var result = await _mediator.Send(
                 MediatorRequestFactory.GetMoodRecordByMoodRecordIdQuery(request),
-                token);
-
-            return Ok(result);
-        }
-
-        [HttpGet("read/{numberOfMoodRecords:int}", Name = nameof(GetLatestCreatedMoodRecords))]
-        public async Task<IActionResult> GetLatestCreatedMoodRecords(int numberOfMoodRecords, CancellationToken token)
-        {
-            _logger.LogTrace(
-                $"{nameof(GetLatestCreatedMoodRecords)} numberOfMoodRecords: {numberOfMoodRecords.ToString()}");
-
-            var result = await _mediator.Send(
-                MediatorRequestFactory.GetLatestCreatedMoodRecordsQuery(numberOfMoodRecords),
                 token);
 
             return Ok(result);

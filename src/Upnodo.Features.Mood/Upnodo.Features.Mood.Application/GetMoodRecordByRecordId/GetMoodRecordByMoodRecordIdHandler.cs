@@ -25,7 +25,8 @@ namespace Upnodo.Features.Mood.Application.GetMoodRecordByRecordId
             CancellationToken token)
         {
             _logger.LogTrace($"{nameof(GetMoodRecordByMoodRecordIdHandler)} running.");
-            return await _getMoodRecordByMoodRecordIdService.RunAsync(request, token);
+            
+            return await _getMoodRecordByMoodRecordIdService.RunAsync(request.MoodRecordId, token);
         }
     }
 }

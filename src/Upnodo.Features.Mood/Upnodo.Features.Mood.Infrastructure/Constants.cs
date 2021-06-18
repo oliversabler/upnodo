@@ -4,9 +4,9 @@ namespace Upnodo.Features.Mood.Infrastructure
     {
         public static class Elements
         {
-            public const string DateUpdated = "dateUpdated";
-            public const string Mood = "mood";
-            public const string MoodRecordId = "moodRecordId";
+            public const string DateUpdated = "DateUpdated";
+            public const string Mood = "Mood";
+            public const string MoodRecordId = "MoodRecordId";
         }
     }
 }

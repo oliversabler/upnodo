@@ -65,45 +65,49 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
                 .Limit(numberOfMoodRecords)
                 .ToListAsync();
 
-            return result.Select(col => new MoodRecordDto
+            return result.Select(moodRecord => new MoodRecordDto
             {
-                MoodRecordId = col.MoodRecordId,
-                DateCreated = col.DateCreated,
-                DateUpdated = col.DateUpdated,
-                MoodStatus = col.MoodStatus,
+                MoodRecordId = moodRecord.MoodRecordId,
+                DateCreated = moodRecord.DateCreated,
+                DateUpdated = moodRecord.DateUpdated,
+                MoodStatus = moodRecord.MoodStatus,
                 User = new UserDto
                 {
-                    UserId = col.User.UserId,
-                    Username = col.User.Username,
-                    Email = col.User.Email,
-                    Firstname = col.User.Firstname,
-                    Lastname = col.User.Lastname,
-                    Fullname = col.User.Fullname
+                    UserId = moodRecord.User?.UserId,
+                    Username = moodRecord.User?.Username,
+                    Email = moodRecord.User?.Email,
+                    Firstname = moodRecord.User?.Firstname,
+                    Lastname = moodRecord.User?.Lastname,
+                    Fullname = moodRecord.User?.Fullname
                 }
             }).ToList();
         }
 
-        public async Task<MoodRecord> ReadAsync(string moodRecordId)
+        public async Task<MoodRecordDto> ReadAsync(string moodRecordId)
         {
             _logger.LogTrace(
                 $"{nameof(ReadAsync)} in {nameof(MongoDbRepository)}. " +
                 $"Reading {nameof(moodRecordId)}: {moodRecordId}");
+            
+            var result = await _moods.FindAsync(filter => filter.MoodRecordId == moodRecordId);
+            var moodRecord = result.FirstOrDefault();
 
-            var readFilter = Builders<MoodRecordDto>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
-            var result = await _moods.FindAsync(readFilter);
-            var moodRecordCollection = result.FirstOrDefault();
-
-            // Todo: Pass DTO
-            return MoodRecord.CreateMood(
-                moodRecordCollection.MoodRecordId,
-                moodRecordCollection.DateCreated,
-                moodRecordCollection.DateUpdated,
-                moodRecordCollection.MoodStatus,
-                moodRecordCollection.User.UserId!,
-                moodRecordCollection.User.Username!,
-                moodRecordCollection.User.Email!,
-                moodRecordCollection.User.Firstname,
-                moodRecordCollection.User.Lastname);
+            return new MoodRecordDto
+            {
+                MoodRecordId = moodRecord.MoodRecordId,
+                DateCreated = moodRecord.DateCreated,
+                DateUpdated = moodRecord.DateUpdated,
+                MoodStatus = moodRecord.MoodStatus,
+                User = new UserDto
+                {
+                    UserId = moodRecord.User?.UserId,
+                    Username = moodRecord.User?.Username,
+                    Email = moodRecord.User?.Email,
+                    Firstname = moodRecord.User?.Firstname,
+                    Lastname = moodRecord.User?.Lastname,
+                    Fullname = moodRecord.User?.Fullname
+                }
+            };
         }
 
         public async Task<MoodRecord> UpdateAsync(MoodRecord moodRecord)
@@ -128,6 +132,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
             var readFilter = Builders<MoodRecordDto>.Filter.Eq(
                 Constants.Elements.MoodRecordId,
                 moodRecord.MoodRecordId);
+
             var moodCollection = _moods.Find(readFilter).FirstOrDefault();
 
             var updatedMoodRecord = MoodRecord.UpdateMood(
@@ -138,7 +143,6 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
 
             _logger.LogTrace(
                 $"Fetched updated {nameof(moodRecord)}. Body: {JsonSerializer.Serialize(updatedMoodRecord)}");
-
             return updatedMoodRecord;
         }
     }
