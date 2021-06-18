@@ -22,6 +22,8 @@ using Upnodo.Features.Mood.Application.DeleteMoodRecord;
 using Upnodo.Features.Mood.Application.GetLatestCreatedMoodRecords;
 using Upnodo.Features.Mood.Application.GetMoodRecordByRecordId;
 using Upnodo.Features.Mood.Application.UpdateMoodRecord;
+using Upnodo.Features.Mood.Infrastructure.Mappers;
+using Upnodo.Features.Mood.Infrastructure.Services;
 
 namespace Upnodo.Api
 {
@@ -69,6 +71,9 @@ namespace Upnodo.Api
 
             // MongoDb
             RegisterMongoDb(services);
+            
+            // AutoMapper
+            services.AddAutoMapper(new[] {typeof(MoodRecordMapper)});
 
             // Services
             services.AddMood();
@@ -90,7 +95,7 @@ namespace Upnodo.Api
                 app.UseHsts();
                 app.UseHttpsRedirection();
             }
-
+            
             // Swagger documentation
             app.UseSwagger();
             app.UseSwaggerUI(options =>

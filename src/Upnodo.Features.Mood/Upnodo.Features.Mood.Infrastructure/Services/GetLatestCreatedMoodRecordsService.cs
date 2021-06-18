@@ -1,11 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.Features.Mood.Application.GetLatestCreatedMoodRecords;
-using Upnodo.Features.Mood.Domain;
+using Upnodo.Features.Mood.Infrastructure.Mappers;
 using Upnodo.Features.Mood.Infrastructure.Repositories;
 
 namespace Upnodo.Features.Mood.Infrastructure.Services
@@ -36,26 +35,9 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
                     $"{nameof(request)} is not of type {typeof(int)}");
             }
 
-            var records = await _mongoDbRepository.ReadLatestAsync(totalNumberOfMoodRecords);
+            var response = await _mongoDbRepository.ReadLatestAsync(totalNumberOfMoodRecords);
 
-            var moodRecords = new List<MoodRecord>();
-
-            foreach (var moodRecord in moodRecords)
-            {
-                moodRecords.Add(
-                    MoodRecord.CreateMood(
-                        moodRecord.MoodRecordId,
-                        moodRecord.DateCreated,
-                        moodRecord.DateUpdated,
-                        moodRecord.MoodStatus,
-                        moodRecord.User?.UserId!,
-                        moodRecord.User?.Username!,
-                        moodRecord.User?.Email!,
-                        moodRecord.User?.Firstname!,
-                        moodRecord.User?.Lastname!));
-            }
-
-            return new GetLatestCreatedMoodRecordsResponse(true, records);
+            return new GetLatestCreatedMoodRecordsResponse(true, MoodRecordMapper.GetModelCollection(response));
         }
     }
 }

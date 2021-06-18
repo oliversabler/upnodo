@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.Features.Mood.Application.CreateMoodRecord;
 using Upnodo.Features.Mood.Domain;
-using Upnodo.Features.Mood.Infrastructure.DTO;
+using Upnodo.Features.Mood.Infrastructure.Mappers;
 using Upnodo.Features.Mood.Infrastructure.Repositories;
 
 namespace Upnodo.Features.Mood.Infrastructure.Services
@@ -36,25 +36,8 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(CreateMoodRecordCommand)}");
             }
-            
-            // Todo: Automapper
-            var dto = new MoodRecordDto
-            {
-                MoodRecordId = moodRecord.MoodRecordId,
-                DateCreated = moodRecord.DateCreated,
-                MoodStatus = moodRecord.MoodStatus,
-                User = new UserDto
-                {
-                    UserId = moodRecord.User!.UserId!,
-                    Username = moodRecord.User!.Username!,
-                    Email = moodRecord.User!.Email!,
-                    Firstname = moodRecord.User.Firstname,
-                    Lastname = moodRecord.User.Lastname,
-                    Fullname = moodRecord.User.Fullname
-                }
-            };
 
-            var response = await _mongoDbRepository.CreateAsync(dto);
+            var response = await _mongoDbRepository.CreateAsync(MoodRecordMapper.GetDto(moodRecord));
 
             return new CreateMoodRecordResponse(true, response);
         }

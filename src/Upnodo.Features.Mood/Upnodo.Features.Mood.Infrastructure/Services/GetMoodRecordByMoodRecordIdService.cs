@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.Features.Mood.Application.GetMoodRecordByRecordId;
-using Upnodo.Features.Mood.Domain;
+using Upnodo.Features.Mood.Infrastructure.Mappers;
 using Upnodo.Features.Mood.Infrastructure.Repositories;
 
 namespace Upnodo.Features.Mood.Infrastructure.Services
@@ -38,19 +38,8 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
             }
 
             var response = await _mongoDbRepository.ReadAsync(moodRecordId);
-            
-            var moodRecord = MoodRecord.CreateMood(
-                response.MoodRecordId,
-                response.DateCreated,
-                response.DateUpdated,
-                response.MoodStatus,
-                response.User?.UserId!,
-                response.User?.Username!,
-                response.User?.Email!,
-                response.User?.Firstname!,
-                response.User?.Lastname!);
 
-            return new GetMoodRecordByMoodRecordIdResponse(true, moodRecord);
+            return new GetMoodRecordByMoodRecordIdResponse(true, MoodRecordMapper.GetModel(response));
         }
     }
 }

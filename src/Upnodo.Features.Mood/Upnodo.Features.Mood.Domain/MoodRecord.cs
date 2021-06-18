@@ -86,15 +86,6 @@ namespace Upnodo.Features.Mood.Domain
             return new(moodRecordId, dateUpdated, moodStatus);
         }
 
-        public static MoodRecord UpdateMood(
-            string moodRecordId,
-            DateTime dateCreated,
-            DateTime dateUpdated,
-            MoodStatus moodStatus)
-        {
-            return new(moodRecordId, dateCreated, dateUpdated, moodStatus);
-        }
-
         private static User CreateUser(
             string userId,
             string username,

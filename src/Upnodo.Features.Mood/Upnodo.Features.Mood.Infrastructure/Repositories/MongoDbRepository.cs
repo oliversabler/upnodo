@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
@@ -63,23 +62,8 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
                 .SortByDescending(f => f.DateCreated)
                 .Limit(numberOfMoodRecords)
                 .ToListAsync();
-
-            return result.Select(moodRecord => new MoodRecordDto
-            {
-                MoodRecordId = moodRecord.MoodRecordId,
-                DateCreated = moodRecord.DateCreated,
-                DateUpdated = moodRecord.DateUpdated,
-                MoodStatus = moodRecord.MoodStatus,
-                User = new UserDto
-                {
-                    UserId = moodRecord.User?.UserId,
-                    Username = moodRecord.User?.Username,
-                    Email = moodRecord.User?.Email,
-                    Firstname = moodRecord.User?.Firstname,
-                    Lastname = moodRecord.User?.Lastname,
-                    Fullname = moodRecord.User?.Fullname
-                }
-            }).ToList();
+            
+            return result;
         }
 
         public async Task<MoodRecordDto> ReadAsync(string moodRecordId)
@@ -91,22 +75,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
             var result = await _moods.FindAsync(filter => filter.MoodRecordId == moodRecordId);
             var moodRecord = result.FirstOrDefault();
 
-            return new MoodRecordDto
-            {
-                MoodRecordId = moodRecord.MoodRecordId,
-                DateCreated = moodRecord.DateCreated,
-                DateUpdated = moodRecord.DateUpdated,
-                MoodStatus = moodRecord.MoodStatus,
-                User = new UserDto
-                {
-                    UserId = moodRecord.User?.UserId,
-                    Username = moodRecord.User?.Username,
-                    Email = moodRecord.User?.Email,
-                    Firstname = moodRecord.User?.Firstname,
-                    Lastname = moodRecord.User?.Lastname,
-                    Fullname = moodRecord.User?.Fullname
-                }
-            };
+            return moodRecord;
         }
 
         public async Task<string> UpdateAsync(MoodRecordDto moodRecord)
