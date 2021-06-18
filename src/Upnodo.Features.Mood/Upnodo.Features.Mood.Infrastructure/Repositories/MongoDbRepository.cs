@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using Upnodo.BuildingBlocks.Application.Abstractions;
-using Upnodo.Features.Mood.Domain;
 using Upnodo.Features.Mood.Infrastructure.DTO;
 
 namespace Upnodo.Features.Mood.Infrastructure.Repositories
@@ -110,40 +109,23 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
             };
         }
 
-        public async Task<MoodRecord> UpdateAsync(MoodRecord moodRecord)
+        public async Task<string> UpdateAsync(MoodRecordDto moodRecord)
         {
             _logger.LogTrace(
                 $"{nameof(UpdateAsync)} in {nameof(MongoDbRepository)}. " +
                 $"Updating {nameof(moodRecord)} body: {JsonSerializer.Serialize(moodRecord)}");
 
             var filter = Builders<MoodRecordDto>.Filter.Eq(
-                Constants.Elements.MoodRecordId,
+                nameof(MoodRecordDto.MoodRecordId),
                 moodRecord.MoodRecordId);
 
             var update = Builders<MoodRecordDto>.Update
-                .Set(Constants.Elements.DateUpdated, moodRecord.DateUpdated)
-                .Set(Constants.Elements.Mood, moodRecord.MoodStatus);
+                .Set(nameof(MoodRecordDto.DateUpdated), moodRecord.DateUpdated)
+                .Set(nameof(MoodRecordDto.MoodStatus), moodRecord.MoodStatus);
 
             await _moods.UpdateOneAsync(filter, update);
-
-            // Not optimal, does not return the updated document at all times
-            _logger.LogTrace($"Fetching updated {nameof(moodRecord)}");
-
-            var readFilter = Builders<MoodRecordDto>.Filter.Eq(
-                Constants.Elements.MoodRecordId,
-                moodRecord.MoodRecordId);
-
-            var moodCollection = _moods.Find(readFilter).FirstOrDefault();
-
-            var updatedMoodRecord = MoodRecord.UpdateMood(
-                moodCollection.MoodRecordId,
-                moodCollection.DateCreated,
-                moodCollection.DateUpdated,
-                moodCollection.MoodStatus);
-
-            _logger.LogTrace(
-                $"Fetched updated {nameof(moodRecord)}. Body: {JsonSerializer.Serialize(updatedMoodRecord)}");
-            return updatedMoodRecord;
+            
+            return moodRecord.MoodRecordId;
         }
     }
 }

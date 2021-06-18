@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Abstractions;
+using Upnodo.Features.Mood.Domain;
 
 namespace Upnodo.Features.Mood.Application.UpdateMoodRecord
 {
@@ -22,7 +23,10 @@ namespace Upnodo.Features.Mood.Application.UpdateMoodRecord
         public async Task<UpdateMoodRecordResponse> Handle(UpdateMoodRecordCommand request, CancellationToken token)
         {
             _logger.LogTrace($"{nameof(UpdateMoodRecordHandler)} running.");
-            return await _updateMoodRecordService.RunAsync(request, token);
+
+            var moodRecord = MoodRecord.UpdateMood(request.MoodRecordId, request.DateUpdate, request.MoodStatus);
+            
+            return await _updateMoodRecordService.RunAsync(moodRecord, token);
         }
     }
 }
