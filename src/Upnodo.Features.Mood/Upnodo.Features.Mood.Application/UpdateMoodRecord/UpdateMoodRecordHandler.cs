@@ -3,10 +3,8 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Abstractions;
-using Upnodo.BuildingBlocks.Application.Contracts;
-using Upnodo.Features.Mood.Application.UpdateMoodRecord;
 
-namespace Upnodo.Api.Features.Mood.Handlers
+namespace Upnodo.Features.Mood.Application.UpdateMoodRecord
 {
     public class UpdateMoodRecordHandler : IRequestHandler<UpdateMoodRecordCommand, UpdateMoodRecordResponse>
     {

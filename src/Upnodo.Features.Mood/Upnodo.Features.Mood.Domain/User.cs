@@ -1,28 +1,37 @@
-using MongoDB.Bson.Serialization.Attributes;
-
 namespace Upnodo.Features.Mood.Domain
 {
     public class User
     {
-        [BsonElement(Constants.Elements.UserId)]
         public string? UserId { get; }
 
-        [BsonElement(Constants.Elements.Username)]
         public string? Username { get; }
 
-        [BsonElement(Constants.Elements.Email)]
         public string? Email { get; }
 
-        private User(string userId, string username, string email)
+        public string Firstname { get; }
+
+        public string Lastname { get; }
+
+        public string Fullname { get; }
+
+        private User(string userId, string username, string email, string firstname, string lastname)
         {
             UserId = userId;
             Username = username;
             Email = email;
+            Firstname = firstname;
+            Lastname = lastname;
+            Fullname = $"{firstname} {lastname}";
         }
 
-        public static User CreateUser(string userId, string username, string email)
+        public static User CreateUser(
+            string userId, 
+            string username, 
+            string email, 
+            string firstname, 
+            string lastname)
         {
-            return new(userId, username, email);
+            return new(userId, username, email, firstname, lastname);
         }
     }
 }

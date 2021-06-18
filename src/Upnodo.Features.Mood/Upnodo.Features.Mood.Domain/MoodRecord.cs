@@ -1,28 +1,17 @@
 using System;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
 
 namespace Upnodo.Features.Mood.Domain
 {
-    // Todo: I feel like we dont need these domain models
     public class MoodRecord
     {
-        [BsonId]
-        public ObjectId Id { get; set; }
-
-        [BsonElement(Constants.Elements.MoodRecordId)]
         public string MoodRecordId { get; }
 
-        [BsonElement(Constants.Elements.DateCreated)]
         public DateTime DateCreated { get; }
 
-        [BsonElement(Constants.Elements.DateUpdated)]
         public DateTime DateUpdated { get; }
 
-        [BsonElement(Constants.Elements.Mood)]
         public MoodStatus MoodStatus { get; }
 
-        [BsonElement(Constants.Elements.User)]
         public User? User { get; }
 
         private MoodRecord(
@@ -41,22 +30,22 @@ namespace Upnodo.Features.Mood.Domain
 
         private MoodRecord(
             string moodRecordId,
-            DateTime dateUpdated,
-            MoodStatus moodStatus)
-        {
-            MoodRecordId = moodRecordId;
-            DateUpdated = dateUpdated;
-            MoodStatus = moodStatus;
-        }
-
-        private MoodRecord(
-            string moodRecordId,
             DateTime dateCreated,
             DateTime dateUpdated,
             MoodStatus moodStatus)
         {
             MoodRecordId = moodRecordId;
             DateCreated = dateCreated;
+            DateUpdated = dateUpdated;
+            MoodStatus = moodStatus;
+        }
+
+        private MoodRecord(
+            string moodRecordId,
+            DateTime dateUpdated,
+            MoodStatus moodStatus)
+        {
+            MoodRecordId = moodRecordId;
             DateUpdated = dateUpdated;
             MoodStatus = moodStatus;
         }
@@ -68,9 +57,16 @@ namespace Upnodo.Features.Mood.Domain
             MoodStatus moodStatus,
             string userId,
             string username,
-            string email)
+            string email,
+            string firstname,
+            string lastname)
         {
-            return new(moodRecordId, dateCreated, dateUpdated, moodStatus, CreateUser(userId, username, email));
+            return new(
+                moodRecordId,
+                dateCreated,
+                dateUpdated,
+                moodStatus,
+                CreateUser(userId, username, email, firstname, lastname));
         }
 
         public static MoodRecord UpdateMood(
@@ -90,9 +86,14 @@ namespace Upnodo.Features.Mood.Domain
             return new(moodRecordId, dateCreated, dateUpdated, moodStatus);
         }
 
-        private static User CreateUser(string userId, string username, string email)
+        private static User CreateUser(
+            string userId,
+            string username,
+            string email,
+            string firstname,
+            string lastname)
         {
-            return User.CreateUser(userId, username, email);
+            return User.CreateUser(userId, username, email, firstname, lastname);
         }
     }
 }

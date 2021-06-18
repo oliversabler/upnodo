@@ -1,6 +1,6 @@
 using Upnodo.BuildingBlocks.Application.Contracts;
 
-namespace Upnodo.Features.Mood.Domain.Models.CreateMoodRecord
+namespace Upnodo.Features.Mood.Application.CreateMoodRecord
 {
     public class CreateMoodRecordResponse : BaseResponse
     {

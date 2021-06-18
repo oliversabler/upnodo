@@ -1,8 +1,9 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using MediatR;
+using Upnodo.Features.Mood.Domain;
 
-namespace Upnodo.Features.Mood.Domain.Models.CreateMoodRecord
+namespace Upnodo.Features.Mood.Application.CreateMoodRecord
 {
     public class CreateMoodRecordCommand : IRequest<CreateMoodRecordResponse>
     {
@@ -19,12 +20,18 @@ namespace Upnodo.Features.Mood.Domain.Models.CreateMoodRecord
         public string Username { get; }
 
         public string Email { get; }
+        
+        public string Firstname { get; }
+        
+        public string Lastname { get; }
 
         public CreateMoodRecordCommand(
             MoodStatus moodStatus,
             string userId,
             string username,
-            string email)
+            string email, 
+            string firstname, 
+            string lastname)
         {
             MoodRecordId = Guid.NewGuid().ToString();
             DateCreated = DateTime.UtcNow;
@@ -32,6 +39,8 @@ namespace Upnodo.Features.Mood.Domain.Models.CreateMoodRecord
             UserId = userId;
             Username = username;
             Email = email;
+            Firstname = firstname;
+            Lastname = lastname;
         }
     }
 }

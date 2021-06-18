@@ -1,17 +1,23 @@
+using Upnodo.Features.Mood.Application.CreateMoodRecord;
 using Upnodo.Features.Mood.Application.DeleteAllMoodRecords;
 using Upnodo.Features.Mood.Application.DeleteMoodRecord;
 using Upnodo.Features.Mood.Application.GetLatestCreatedMoodRecords;
 using Upnodo.Features.Mood.Application.GetMoodRecordByRecordId;
 using Upnodo.Features.Mood.Application.UpdateMoodRecord;
-using Upnodo.Features.Mood.Domain.Models.CreateMoodRecord;
 
-namespace Upnodo.Api.Features.Mood.Configurations
+namespace Upnodo.Api.Features.Mood
 {
     internal static class MediatorRequestFactory
     {
-        internal static CreateMoodRecordCommand CreateMoodRecordCommand(CreateMoodRecordRequest recordRequest)
+        internal static CreateMoodRecordCommand CreateMoodRecordCommand(CreateMoodRecordRequest request)
         {
-            return new(recordRequest.MoodStatus, recordRequest.UserId, recordRequest.Username, recordRequest.Email);
+            return new(
+                request.MoodStatus, 
+                request.UserId, 
+                request.Username, 
+                request.Email,
+                request.Firstname,
+                request.Lastname);
         }
 
         internal static DeleteAllMoodRecordsCommand DeleteAllMoodRecordsCommand()
@@ -25,9 +31,9 @@ namespace Upnodo.Api.Features.Mood.Configurations
         }
 
         internal static GetMoodRecordByMoodRecordIdQuery GetMoodRecordByMoodRecordIdQuery(
-            GetMoodRecordByMoodRecordIdRequest getMoodRecordByMoodRecordIdQuery)
+            GetMoodRecordByMoodRecordIdRequest request)
         {
-            return new(getMoodRecordByMoodRecordIdQuery.MoodRecordId, getMoodRecordByMoodRecordIdQuery.Cache);
+            return new(request.MoodRecordId, request.Cache);
         }
 
         internal static GetLatestCreatedMoodRecordsQuery GetLatestCreatedMoodRecordsQuery(int totalNumberOfMoodRecords)
@@ -35,9 +41,9 @@ namespace Upnodo.Api.Features.Mood.Configurations
             return new(totalNumberOfMoodRecords);
         }
 
-        internal static UpdateMoodRecordCommand UpdateMoodRecordCommand(UpdateMoodRecordRequest updateMoodRecordRequest)
+        internal static UpdateMoodRecordCommand UpdateMoodRecordCommand(UpdateMoodRecordRequest request)
         {
-            return new(updateMoodRecordRequest.MoodRecordId, updateMoodRecordRequest.MoodStatus);
+            return new(request.MoodRecordId, request.MoodStatus);
         }
     }
 }

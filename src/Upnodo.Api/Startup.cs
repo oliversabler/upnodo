@@ -9,13 +9,19 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using Upnodo.Api.Features.Mood.Configurations;
+using Upnodo.Api.Features.Mood;
 using Upnodo.Api.Features.User.Configurations;
 using Upnodo.Api.Filters;
 using Upnodo.Api.Middleware.Exceptions;
 using Upnodo.Api.PipelineBehaviors;
 using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.BuildingBlocks.Application.Settings;
+using Upnodo.Features.Mood.Application.CreateMoodRecord;
+using Upnodo.Features.Mood.Application.DeleteAllMoodRecords;
+using Upnodo.Features.Mood.Application.DeleteMoodRecord;
+using Upnodo.Features.Mood.Application.GetLatestCreatedMoodRecords;
+using Upnodo.Features.Mood.Application.GetMoodRecordByRecordId;
+using Upnodo.Features.Mood.Application.UpdateMoodRecord;
 
 namespace Upnodo.Api
 {
@@ -59,9 +65,7 @@ namespace Upnodo.Api
             });
 
             // MediatR
-            services.AddMediatR(new[] {typeof(Startup)});
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheBehavior<,>));
+            RegisterMediatr(services);
 
             // MongoDb
             RegisterMongoDb(services);
@@ -101,6 +105,22 @@ namespace Upnodo.Api
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+        }
+
+        private void RegisterMediatr(IServiceCollection services)
+        {
+            services.AddMediatR(new[]
+            {
+                typeof(CreateMoodRecordHandler),
+                typeof(DeleteAllMoodRecordsHandler),
+                typeof(DeleteMoodRecordHandler),
+                typeof(GetLatestCreatedMoodRecordsHandler),
+                typeof(GetMoodRecordByMoodRecordIdHandler),
+                typeof(UpdateMoodRecordHandler)
+            });
+            
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheBehavior<,>));
         }
 
         private void RegisterMongoDb(IServiceCollection services)

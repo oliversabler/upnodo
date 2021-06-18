@@ -3,10 +3,8 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Abstractions;
-using Upnodo.BuildingBlocks.Application.Contracts;
-using Upnodo.Features.Mood.Application.DeleteMoodRecord;
 
-namespace Upnodo.Api.Features.Mood.Handlers
+namespace Upnodo.Features.Mood.Application.DeleteMoodRecord
 {
     public class DeleteMoodRecordHandler : IRequestHandler<DeleteMoodRecordCommand, DeleteMoodRecordResponse>
     {

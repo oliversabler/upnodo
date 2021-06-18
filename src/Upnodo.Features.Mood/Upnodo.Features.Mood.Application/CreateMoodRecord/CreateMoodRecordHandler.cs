@@ -1,11 +1,12 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Abstractions;
-using Upnodo.Features.Mood.Domain.Models.CreateMoodRecord;
+using Upnodo.Features.Mood.Domain;
 
-namespace Upnodo.Api.Features.Mood.Handlers
+namespace Upnodo.Features.Mood.Application.CreateMoodRecord
 {
     public class CreateMoodRecordHandler : IRequestHandler<CreateMoodRecordCommand, CreateMoodRecordResponse>
     {
@@ -20,10 +21,22 @@ namespace Upnodo.Api.Features.Mood.Handlers
             _logger = logger;
         }
 
-        public async Task<CreateMoodRecordResponse> Handle(CreateMoodRecordCommand request, CancellationToken token)
+        public async Task<CreateMoodRecordResponse> Handle(CreateMoodRecordCommand command, CancellationToken token)
         {
             _logger.LogTrace($"{nameof(CreateMoodRecordHandler)} running.");
-            return await _createMoodRecordService.RunAsync(request, token);
+            
+            var moodRecord = MoodRecord.CreateMood(
+                command.MoodRecordId,
+                command.DateCreated,
+                DateTime.MinValue,
+                command.MoodStatus,
+                command.UserId,
+                command.Username,
+                command.Email,
+                command.Firstname,
+                command.Lastname);
+
+            return await _createMoodRecordService.RunAsync(moodRecord, token);
         }
     }
 }

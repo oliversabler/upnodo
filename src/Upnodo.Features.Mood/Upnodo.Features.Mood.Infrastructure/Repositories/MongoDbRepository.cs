@@ -26,28 +26,15 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
             _moods = db.GetCollection<MoodRecordDto>(settings.MoodsCollectionName);
         }
 
-        public async Task<MoodRecord> CreateAsync(MoodRecord moodRecord)
+        public async Task<string> CreateAsync(MoodRecordDto moodRecord)
         {
             _logger.LogTrace(
                 $"{nameof(CreateAsync)} in {nameof(MongoDbRepository)} running. " +
                 $"Creating {nameof(moodRecord)} body: {JsonSerializer.Serialize(moodRecord)}");
-            
-            await _moods.InsertOneAsync(new MoodRecordDto
-            {
-                MoodRecordId = moodRecord.MoodRecordId,
-                DateCreated = moodRecord.DateCreated,
-                MoodStatus = moodRecord.MoodStatus,
-                User = new UserDto
-                {
-                    UserId = moodRecord.User!.UserId!,
-                    Username = moodRecord.User!.Username!,
-                    Email = moodRecord.User!.Email!
-                }
-            });
-            
-            // Todo: Fetch the inserted document instead
 
-            return moodRecord;
+            await _moods.InsertOneAsync(moodRecord);
+
+            return moodRecord.MoodRecordId;
         }
 
         public async Task DeleteAsync(string moodRecordId)
@@ -55,7 +42,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
             _logger.LogTrace(
                 $"{nameof(DeleteAsync)} in {nameof(MongoDbRepository)}. " +
                 $"Deleting {nameof(moodRecordId)}: {moodRecordId}");
-            
+
             var deleteFilter = Builders<MoodRecordDto>.Filter.Eq(Constants.Elements.MoodRecordId, moodRecordId);
 
             await _moods.DeleteOneAsync(deleteFilter);
@@ -77,6 +64,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
             var result = await _moods.FindAsync(readFilter);
             var moodRecordCollection = result.FirstOrDefault();
 
+            // Todo: Pass DTO
             return MoodRecord.CreateMood(
                 moodRecordCollection.MoodRecordId,
                 moodRecordCollection.DateCreated,
@@ -84,7 +72,9 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
                 moodRecordCollection.MoodStatus,
                 moodRecordCollection.User.UserId!,
                 moodRecordCollection.User.Username!,
-                moodRecordCollection.User.Email!);
+                moodRecordCollection.User.Email!,
+                moodRecordCollection.User.Firstname,
+                moodRecordCollection.User.Lastname);
         }
 
         public async Task<List<MoodRecord>> ReadLatestAsync(int numberOfMoodRecords)
@@ -98,6 +88,8 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
                 .Limit(numberOfMoodRecords)
                 .ToListAsync();
 
+            // Map Dto => Model
+
             return result.Select(moodRecordCollection =>
                     MoodRecord.CreateMood(
                         moodRecordCollection.MoodRecordId,
@@ -106,7 +98,9 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
                         moodRecordCollection.MoodStatus,
                         moodRecordCollection.User.UserId!,
                         moodRecordCollection.User.Username!,
-                        moodRecordCollection.User.Email!))
+                        moodRecordCollection.User.Email!,
+                        moodRecordCollection.User.Firstname,
+                        moodRecordCollection.User.Lastname))
                 .ToList();
         }
 
@@ -128,7 +122,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
 
             // Not optimal, does not return the updated document at all times
             _logger.LogTrace($"Fetching updated {nameof(moodRecord)}");
-            
+
             var readFilter = Builders<MoodRecordDto>.Filter.Eq(
                 Constants.Elements.MoodRecordId,
                 moodRecord.MoodRecordId);

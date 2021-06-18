@@ -7,7 +7,7 @@ namespace Upnodo.BuildingBlocks.Application.Contracts
         public bool Success { get; }
         
         public object Value { get; }
-        
+
         protected BaseResponse(bool success, object value)
         {
             Success = success;

@@ -4,8 +4,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Abstractions;
+using Upnodo.Features.Mood.Application.CreateMoodRecord;
 using Upnodo.Features.Mood.Domain;
-using Upnodo.Features.Mood.Domain.Models.CreateMoodRecord;
+using Upnodo.Features.Mood.Domain.DTO;
 using Upnodo.Features.Mood.Infrastructure.Repositories;
 
 namespace Upnodo.Features.Mood.Infrastructure.Services
@@ -27,7 +28,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
         {
             _logger.LogTrace($"{nameof(RunAsync)} in {nameof(CreateMoodRecordService)} running.");
 
-            if (request is not CreateMoodRecordCommand command)
+            if (request is not MoodRecord moodRecord)
             {
                 _logger.LogError(
                     $"{nameof(request)} with body: {JsonSerializer.Serialize(request)} " +
@@ -35,17 +36,25 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(CreateMoodRecordCommand)}");
             }
+            
+            // Todo: Automapper
+            var dto = new MoodRecordDto
+            {
+                MoodRecordId = moodRecord.MoodRecordId,
+                DateCreated = moodRecord.DateCreated,
+                MoodStatus = moodRecord.MoodStatus,
+                User = new UserDto
+                {
+                    UserId = moodRecord.User!.UserId!,
+                    Username = moodRecord.User!.Username!,
+                    Email = moodRecord.User!.Email!,
+                    Firstname = moodRecord.User.Firstname,
+                    Lastname = moodRecord.User.Lastname,
+                    Fullname = moodRecord.User.Fullname
+                }
+            };
 
-            var moodRecord = MoodRecord.CreateMood(
-                command.MoodRecordId,
-                command.DateCreated,
-                DateTime.MinValue,
-                command.MoodStatus,
-                command.UserId,
-                command.Username,
-                command.Email);
-
-            var response = await _mongoDbRepository.CreateAsync(moodRecord);
+            var response = await _mongoDbRepository.CreateAsync(dto);
 
             return new CreateMoodRecordResponse(true, response);
         }
