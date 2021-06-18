@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -63,11 +64,7 @@ namespace Upnodo.Api
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheBehavior<,>));
 
             // MongoDb
-            services.Configure<MongoDbSettings>(
-                Configuration.GetSection(nameof(MongoDbSettings)));
-
-            services.AddSingleton<IMongoDbSettings>(sp =>
-                sp.GetRequiredService<IOptions<MongoDbSettings>>().Value);
+            RegisterMongoDb(services);
 
             // Services
             services.AddMood();
@@ -104,6 +101,27 @@ namespace Upnodo.Api
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+        }
+
+        private void RegisterMongoDb(IServiceCollection services)
+        {
+            services.Configure<MongoDbSettings>(
+                Configuration.GetSection(nameof(MongoDbSettings)));
+
+            services.AddSingleton<IMongoDbSettings>(sp =>
+            {
+                var val = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
+                if (string.IsNullOrEmpty(val.ConnectionString) ||
+                    string.IsNullOrEmpty(val.DatabaseName) ||
+                    string.IsNullOrEmpty(val.MoodsCollectionName) ||
+                    string.IsNullOrEmpty(val.UsersCollectionName))
+                {
+                    throw new Exception($"Missing values in {nameof(MongoDbSettings)}, " +
+                        "check if your appsettings.json settings are aligned with the class name.");
+                }
+
+                return val;
+            });
         }
     }
 }
