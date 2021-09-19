@@ -8,6 +8,10 @@
 
     <PropertyGroup>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+        <UserSecretsId>9a386e44-e54c-4756-ab8c-7760ace910c6</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <DockerfileContext>..\..</DockerfileContext>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -29,6 +33,7 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
       <PackageReference Include="Polly" Version="7.2.2" />
       <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.4" />
       <PackageReference Include="UnoptimizedAssemblyDetector" Version="0.1.1">
