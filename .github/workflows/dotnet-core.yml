@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Install dependencies
-      run: dotnet restore
+      run: dotnet restore Upnodo.sln
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build Upnodo.sln --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test Upnodo.sln --no-restore --verbosity normal
