@@ -1,41 +1,44 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{366455B4-62D2-43A9-BD01-FD293568F443}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upnodo.Api", "src\Upnodo.Api\Upnodo.Api.csproj", "{B35CFA10-B72C-479B-BCDF-B13F0583C059}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Upnodo.Api", "src\Upnodo.Api\Upnodo.Api.csproj", "{B35CFA10-B72C-479B-BCDF-B13F0583C059}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Features", "Features", "{AE1BA2D8-1BD2-41D6-A6E3-CBE61102CA95}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mood", "Mood", "{0AC7C12B-A8C2-4828-ADF8-077912D50295}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upnodo.Features.Mood.Application", "src\Upnodo.Features.Mood\Upnodo.Features.Mood.Application\Upnodo.Features.Mood.Application.csproj", "{540F696B-D01B-4B9A-8F94-C77F87288816}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Upnodo.Features.Mood.Application", "src\Upnodo.Features.Mood\Upnodo.Features.Mood.Application\Upnodo.Features.Mood.Application.csproj", "{540F696B-D01B-4B9A-8F94-C77F87288816}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upnodo.Features.Mood.Domain", "src\Upnodo.Features.Mood\Upnodo.Features.Mood.Domain\Upnodo.Features.Mood.Domain.csproj", "{6D0497F0-25A2-4071-976C-2418178BBC25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Upnodo.Features.Mood.Domain", "src\Upnodo.Features.Mood\Upnodo.Features.Mood.Domain\Upnodo.Features.Mood.Domain.csproj", "{6D0497F0-25A2-4071-976C-2418178BBC25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upnodo.Features.Mood.Infrastructure", "src\Upnodo.Features.Mood\Upnodo.Features.Mood.Infrastructure\Upnodo.Features.Mood.Infrastructure.csproj", "{917447B4-3B66-4D7A-9EF9-E5B3A8DA546C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upnodo.Features.Mood.Tests", "src\Upnodo.Features.Mood\Upnodo.Features.Mood.Tests\Upnodo.Features.Mood.Tests.csproj", "{AD4BC041-0493-489F-81C7-53F080A18576}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Upnodo.Features.Mood.Infrastructure", "src\Upnodo.Features.Mood\Upnodo.Features.Mood.Infrastructure\Upnodo.Features.Mood.Infrastructure.csproj", "{917447B4-3B66-4D7A-9EF9-E5B3A8DA546C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User", "User", "{BECF7965-6C6A-4C09-BA28-5C58F14C7B7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upnodo.Features.User.Application", "src\Upnodo.Features.User\Upnodo.Features.User.Application\Upnodo.Features.User.Application.csproj", "{EAD39258-EAB2-4B94-B37D-632D9FC23061}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Upnodo.Features.User.Application", "src\Upnodo.Features.User\Upnodo.Features.User.Application\Upnodo.Features.User.Application.csproj", "{EAD39258-EAB2-4B94-B37D-632D9FC23061}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upnodo.Features.User.Domain", "src\Upnodo.Features.User\Upnodo.Features.User.Domain\Upnodo.Features.User.Domain.csproj", "{E7A4B0BF-7334-4B4F-BBE1-D7CC4EFA497E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Upnodo.Features.User.Domain", "src\Upnodo.Features.User\Upnodo.Features.User.Domain\Upnodo.Features.User.Domain.csproj", "{E7A4B0BF-7334-4B4F-BBE1-D7CC4EFA497E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upnodo.Features.User.Infrastructure", "src\Upnodo.Features.User\Upnodo.Features.User.Infrastructure\Upnodo.Features.User.Infrastructure.csproj", "{BFEBBC00-DAC8-41C3-974F-DB3C7CCE2467}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upnodo.Features.User.Tests", "src\Upnodo.Features.User\Upnodo.Features.User.Tests\Upnodo.Features.User.Tests.csproj", "{1DFABAEA-958D-4B08-B08B-FFC103CE36C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Upnodo.Features.User.Infrastructure", "src\Upnodo.Features.User\Upnodo.Features.User.Infrastructure\Upnodo.Features.User.Infrastructure.csproj", "{BFEBBC00-DAC8-41C3-974F-DB3C7CCE2467}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{2F50AE3C-67EC-4096-B0FD-5DB0AFE62964}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Upnodo.BuildingBlocks.Application", "src\Upnodo.BuildingBlocks\Upnodo.BuildingBlocks.Application\Upnodo.BuildingBlocks.Application.csproj", "{82FC44FD-F31A-4CCA-A1A6-27D49D07A004}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Upnodo.BuildingBlocks.Application", "src\Upnodo.BuildingBlocks\Upnodo.BuildingBlocks.Application\Upnodo.BuildingBlocks.Application.csproj", "{82FC44FD-F31A-4CCA-A1A6-27D49D07A004}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{0108B21B-9E70-45E8-8650-AE65CB32277A}"
-ProjectSection(SolutionItems) = preProject
-	docker-compose.yml = docker-compose.yml
-	Dockerfile = Dockerfile
-	.editorconfig = .editorconfig
-EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0108B21B-9E70-45E8-8650-AE65CB32277A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		docker-compose.yml = docker-compose.yml
+		Dockerfile = Dockerfile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8C7D2DFE-3C86-4A94-849F-CF116AE62538}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7C70CF7F-B8CC-48F2-96AC-FB1239C285D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +62,6 @@ Global
 		{917447B4-3B66-4D7A-9EF9-E5B3A8DA546C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{917447B4-3B66-4D7A-9EF9-E5B3A8DA546C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{917447B4-3B66-4D7A-9EF9-E5B3A8DA546C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD4BC041-0493-489F-81C7-53F080A18576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD4BC041-0493-489F-81C7-53F080A18576}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD4BC041-0493-489F-81C7-53F080A18576}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD4BC041-0493-489F-81C7-53F080A18576}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EAD39258-EAB2-4B94-B37D-632D9FC23061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EAD39258-EAB2-4B94-B37D-632D9FC23061}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAD39258-EAB2-4B94-B37D-632D9FC23061}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -75,27 +74,31 @@ Global
 		{BFEBBC00-DAC8-41C3-974F-DB3C7CCE2467}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFEBBC00-DAC8-41C3-974F-DB3C7CCE2467}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFEBBC00-DAC8-41C3-974F-DB3C7CCE2467}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1DFABAEA-958D-4B08-B08B-FFC103CE36C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1DFABAEA-958D-4B08-B08B-FFC103CE36C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1DFABAEA-958D-4B08-B08B-FFC103CE36C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1DFABAEA-958D-4B08-B08B-FFC103CE36C0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{82FC44FD-F31A-4CCA-A1A6-27D49D07A004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{82FC44FD-F31A-4CCA-A1A6-27D49D07A004}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82FC44FD-F31A-4CCA-A1A6-27D49D07A004}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82FC44FD-F31A-4CCA-A1A6-27D49D07A004}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{366455B4-62D2-43A9-BD01-FD293568F443} = {8C7D2DFE-3C86-4A94-849F-CF116AE62538}
 		{B35CFA10-B72C-479B-BCDF-B13F0583C059} = {366455B4-62D2-43A9-BD01-FD293568F443}
+		{AE1BA2D8-1BD2-41D6-A6E3-CBE61102CA95} = {8C7D2DFE-3C86-4A94-849F-CF116AE62538}
 		{0AC7C12B-A8C2-4828-ADF8-077912D50295} = {AE1BA2D8-1BD2-41D6-A6E3-CBE61102CA95}
 		{540F696B-D01B-4B9A-8F94-C77F87288816} = {0AC7C12B-A8C2-4828-ADF8-077912D50295}
 		{6D0497F0-25A2-4071-976C-2418178BBC25} = {0AC7C12B-A8C2-4828-ADF8-077912D50295}
 		{917447B4-3B66-4D7A-9EF9-E5B3A8DA546C} = {0AC7C12B-A8C2-4828-ADF8-077912D50295}
-		{AD4BC041-0493-489F-81C7-53F080A18576} = {0AC7C12B-A8C2-4828-ADF8-077912D50295}
 		{BECF7965-6C6A-4C09-BA28-5C58F14C7B7F} = {AE1BA2D8-1BD2-41D6-A6E3-CBE61102CA95}
 		{EAD39258-EAB2-4B94-B37D-632D9FC23061} = {BECF7965-6C6A-4C09-BA28-5C58F14C7B7F}
 		{E7A4B0BF-7334-4B4F-BBE1-D7CC4EFA497E} = {BECF7965-6C6A-4C09-BA28-5C58F14C7B7F}
 		{BFEBBC00-DAC8-41C3-974F-DB3C7CCE2467} = {BECF7965-6C6A-4C09-BA28-5C58F14C7B7F}
-		{1DFABAEA-958D-4B08-B08B-FFC103CE36C0} = {BECF7965-6C6A-4C09-BA28-5C58F14C7B7F}
+		{2F50AE3C-67EC-4096-B0FD-5DB0AFE62964} = {8C7D2DFE-3C86-4A94-849F-CF116AE62538}
 		{82FC44FD-F31A-4CCA-A1A6-27D49D07A004} = {2F50AE3C-67EC-4096-B0FD-5DB0AFE62964}
+		{0108B21B-9E70-45E8-8650-AE65CB32277A} = {8C7D2DFE-3C86-4A94-849F-CF116AE62538}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {85CE07C4-DD50-4F94-BB7F-9883E9B41423}
 	EndGlobalSection
 EndGlobal
