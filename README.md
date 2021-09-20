@@ -50,8 +50,13 @@ Setup environment (users)
 - [x] Make async
 - [ ] Caching, take a look at https://codewithmukesh.com/blog/caching-with-mediatr-in-aspnet-core/
 - [ ] Test Coyote https://github.com/microsoft/coyote/
+- [ ] Move from MongoDb to EF or add the possibility to use one or the other
+- [ ] Automapper
+- [ ] Healthcheck endpoint
 - [ ] Fix https binding
 - [ ] Make sure some fields are unique in MongoDb
 - [ ] Unit Tests
 - [ ] Nullable enable?
+- [ ] Elastic?
+- [ ] Queue based communication?
 - [ ] NSwag?
