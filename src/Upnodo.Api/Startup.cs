@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -38,6 +39,8 @@ namespace Upnodo.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks();
+
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                 .AddJsonOptions(options =>
@@ -59,7 +62,7 @@ namespace Upnodo.Api
             // Swagger
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new OpenApiInfo {Title = "Upnodo Api", Version = "v1"});
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "Upnodo Api", Version = "v1" });
                 options.SchemaFilter<IgnoreReadOnlySchemaFilter>();
 
                 var filePath = Path.Combine(System.AppContext.BaseDirectory, "Upnodo.Api.xml");
@@ -71,9 +74,9 @@ namespace Upnodo.Api
 
             // MongoDb
             RegisterMongoDb(services);
-            
+
             // AutoMapper
-            services.AddAutoMapper(new[] {typeof(MoodRecordMapper)});
+            services.AddAutoMapper(new[] { typeof(MoodRecordMapper) });
 
             // Services
             services.AddMood();
@@ -95,7 +98,7 @@ namespace Upnodo.Api
                 app.UseHsts();
                 app.UseHttpsRedirection();
             }
-            
+
             // Swagger documentation
             app.UseSwagger();
             app.UseSwaggerUI(options =>
@@ -109,7 +112,13 @@ namespace Upnodo.Api
 
             app.UseRouting();
             app.UseAuthorization();
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+
+                endpoints.MapHealthChecks("/health/live", new HealthCheckOptions { Predicate = _ => false });
+                endpoints.MapHealthChecks("/health/ready", new HealthCheckOptions { Predicate = _ => false });
+            });
         }
 
         private void RegisterMediatr(IServiceCollection services)
@@ -123,7 +132,7 @@ namespace Upnodo.Api
                 typeof(GetMoodRecordByMoodRecordIdHandler),
                 typeof(UpdateMoodRecordHandler)
             });
-            
+
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CacheBehavior<,>));
         }
