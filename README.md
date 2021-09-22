@@ -52,7 +52,7 @@ Setup environment (users)
 - [ ] Test Coyote https://github.com/microsoft/coyote/
 - [ ] Move from MongoDb to EF or add the possibility to use one or the other
 - [ ] Automapper
-- [ ] Healthcheck endpoint
+- [x] Healthcheck endpoints
 - [ ] Fix https binding
 - [ ] Make sure some fields are unique in MongoDb
 - [ ] Unit Tests
