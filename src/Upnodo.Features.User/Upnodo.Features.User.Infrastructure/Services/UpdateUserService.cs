@@ -22,7 +22,7 @@ namespace Upnodo.Features.User.Infrastructure.Services
             {
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(UpdateUserCommand)}");
             }
-            
+
             var user = new Domain.User(
                 command.Alias,
                 command.DateUpdated,
@@ -31,7 +31,7 @@ namespace Upnodo.Features.User.Infrastructure.Services
                 command.Lastname);
 
             var response = _userRepository.Update(command.UserId, user);
-            
+
             return Task.FromResult(new UpdateUserResponse(true, response));
         }
     }

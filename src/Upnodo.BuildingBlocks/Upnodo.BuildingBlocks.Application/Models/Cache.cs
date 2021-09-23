@@ -6,7 +6,7 @@ namespace Upnodo.BuildingBlocks.Application.Models
     {
         [JsonIgnore]
         public string? CacheKey { get; set; }
-        
+
         public bool BypassCache { get; set; }
     }
 }

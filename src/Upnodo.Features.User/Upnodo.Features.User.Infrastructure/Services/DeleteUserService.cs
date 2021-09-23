@@ -23,9 +23,9 @@ namespace Upnodo.Features.User.Infrastructure.Services
             {
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(DeleteUserCommand)}");
             }
-            
+
             _userRepository.Delete(command.UserId);
-            
+
             return Task.FromResult(new DeleteUserResponse(true, null));
         }
     }

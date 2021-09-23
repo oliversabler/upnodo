@@ -13,7 +13,7 @@ namespace Upnodo.Features.Mood.Application.UpdateMoodRecord
         [Required]
         [NotNull, DisallowNull]
         public string MoodRecordId { get; }
-        
+
         public UpdateMoodRecordRequest(MoodStatus moodStatus, string moodRecordId)
         {
             MoodStatus = moodStatus;

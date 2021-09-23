@@ -32,7 +32,7 @@ namespace Upnodo.Features.User.Infrastructure.Services
                 command.Lastname);
 
             var response = _userRepository.Create(user);
-            
+
             return Task.FromResult(new CreateUserResponse(true, response));
         }
     }

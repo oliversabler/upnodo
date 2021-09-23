@@ -32,7 +32,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
                 _logger.LogError(
                     $"{nameof(request)} with body: {JsonSerializer.Serialize(request)} " +
                     $"is not of type {typeof(GetMoodRecordByMoodRecordIdQuery)}");
-                
+
                 throw new ArgumentException(
                     $"{nameof(request)} is not of type {typeof(GetMoodRecordByMoodRecordIdQuery)}");
             }

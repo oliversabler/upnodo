@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.Features.Mood.Application.UpdateMoodRecord;
 using Upnodo.Features.Mood.Domain;
-using Upnodo.Features.Mood.Infrastructure.DTO;
 using Upnodo.Features.Mood.Infrastructure.Mappers;
 using Upnodo.Features.Mood.Infrastructure.Repositories;
 
@@ -34,7 +33,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
                 _logger.LogError(
                     $"{nameof(request)} with body: {JsonSerializer.Serialize(request)} " +
                     $"is not of type {typeof(UpdateMoodRecordCommand)}");
-                
+
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(UpdateMoodRecordCommand)}");
             }
 

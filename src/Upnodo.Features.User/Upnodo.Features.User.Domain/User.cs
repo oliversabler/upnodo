@@ -40,7 +40,7 @@ namespace Upnodo.Features.User.Domain
 
         [BsonElement("dateCreated")]
         private DateTime DateCreated { get; }
-        
+
         [BsonElement("dateUpdate")]
         private DateTime DateUpdated { get; }
 

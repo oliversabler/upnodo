@@ -23,7 +23,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
         public async Task<DeleteAllMoodRecordsResponse> RunAsync<T>(T request, CancellationToken token)
         {
             _logger.LogTrace($"{nameof(RunAsync)} in {nameof(DeleteAllMoodRecordsService)} running.");
-            
+
             await _mongoDbRepository.DeleteAllAsync();
 
             return new DeleteAllMoodRecordsResponse(true);

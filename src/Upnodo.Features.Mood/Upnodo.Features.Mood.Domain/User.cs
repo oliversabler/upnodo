@@ -25,10 +25,10 @@ namespace Upnodo.Features.Mood.Domain
         }
 
         public static User CreateUser(
-            string userId, 
-            string username, 
-            string email, 
-            string firstname, 
+            string userId,
+            string username,
+            string email,
+            string firstname,
             string lastname)
         {
             return new(userId, username, email, firstname, lastname);

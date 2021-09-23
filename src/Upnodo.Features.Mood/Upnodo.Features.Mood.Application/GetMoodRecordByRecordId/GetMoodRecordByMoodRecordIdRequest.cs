@@ -10,7 +10,7 @@ namespace Upnodo.Features.Mood.Application.GetMoodRecordByRecordId
             MoodRecordId = moodRecordId;
             Cache = cache;
         }
-        
+
         [Required]
         public string MoodRecordId { get; }
 

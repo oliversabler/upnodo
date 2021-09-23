@@ -18,14 +18,14 @@ namespace Upnodo.Features.User.Infrastructure
         public Domain.User Create(Domain.User user)
         {
             _users.InsertOne(user);
-            
+
             return user;
         }
 
         public void Delete(string userId)
         {
             var deleteFilter = Builders<Domain.User>.Filter.Eq(nameof(userId), userId);
-            
+
             _users.DeleteOne(deleteFilter);
         }
 
@@ -37,7 +37,7 @@ namespace Upnodo.Features.User.Infrastructure
                 .Set("email", user.Email)
                 .Set("firstname", user.Firstname)
                 .Set("lastname", user.Lastname);
-            
+
             _users.UpdateOne(filter, update);
 
             return user;

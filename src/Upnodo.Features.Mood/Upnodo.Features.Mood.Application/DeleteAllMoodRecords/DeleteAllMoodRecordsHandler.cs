@@ -7,14 +7,14 @@ using Upnodo.Features.Mood.Domain;
 
 namespace Upnodo.Features.Mood.Application.DeleteAllMoodRecords
 {
-    public class DeleteAllMoodRecordsHandler : 
+    public class DeleteAllMoodRecordsHandler :
         IRequestHandler<DeleteAllMoodRecordsCommand, DeleteAllMoodRecordsResponse>
     {
         private readonly IService<DeleteAllMoodRecordsResponse> _deleteAllMoodRecordsService;
         private readonly ILogger<DeleteAllMoodRecordsHandler> _logger;
 
         public DeleteAllMoodRecordsHandler(
-            IService<DeleteAllMoodRecordsResponse> deleteAllMoodRecordsService, 
+            IService<DeleteAllMoodRecordsResponse> deleteAllMoodRecordsService,
             ILogger<DeleteAllMoodRecordsHandler> logger)
         {
             _deleteAllMoodRecordsService = deleteAllMoodRecordsService;
@@ -22,7 +22,7 @@ namespace Upnodo.Features.Mood.Application.DeleteAllMoodRecords
         }
 
         public async Task<DeleteAllMoodRecordsResponse> Handle(
-            DeleteAllMoodRecordsCommand request, 
+            DeleteAllMoodRecordsCommand request,
             CancellationToken token)
         {
             _logger.LogTrace($"{nameof(DeleteAllMoodRecordsHandler)} running.");

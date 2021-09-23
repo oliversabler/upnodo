@@ -20,17 +20,17 @@ namespace Upnodo.Features.Mood.Application.CreateMoodRecord
         public string Username { get; }
 
         public string Email { get; }
-        
+
         public string Firstname { get; }
-        
+
         public string Lastname { get; }
 
         public CreateMoodRecordCommand(
             MoodStatus moodStatus,
             string userId,
             string username,
-            string email, 
-            string firstname, 
+            string email,
+            string firstname,
             string lastname)
         {
             MoodRecordId = Guid.NewGuid().ToString();

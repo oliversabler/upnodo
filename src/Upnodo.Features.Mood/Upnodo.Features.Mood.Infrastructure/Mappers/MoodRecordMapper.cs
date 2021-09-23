@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Upnodo.Features.Mood.Domain;
-using Upnodo.Features.Mood.Infrastructure.DTO;
+using Upnodo.Features.Mood.Infrastructure.Dtos;
 
 namespace Upnodo.Features.Mood.Infrastructure.Mappers
 {

@@ -8,15 +8,15 @@ namespace Upnodo.Features.User.Application.CreateUser
         public string Alias { get; }
 
         public DateTime Date { get; }
-        
+
         public string Email { get; }
 
         public string Firstname { get; }
-        
+
         public string UserId { get; }
-        
+
         public string Lastname { get; }
-        
+
         public CreateUserCommand(string alias, string email, string firstname, string lastname)
         {
             Alias = alias;

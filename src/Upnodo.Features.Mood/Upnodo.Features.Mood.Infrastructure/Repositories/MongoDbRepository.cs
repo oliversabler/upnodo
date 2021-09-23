@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using Upnodo.BuildingBlocks.Application.Abstractions;
-using Upnodo.Features.Mood.Infrastructure.DTO;
+using Upnodo.Features.Mood.Infrastructure.Dtos;
 
 namespace Upnodo.Features.Mood.Infrastructure.Repositories
 {
@@ -62,7 +62,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
                 .SortByDescending(f => f.DateCreated)
                 .Limit(numberOfMoodRecords)
                 .ToListAsync();
-            
+
             return result;
         }
 
@@ -71,7 +71,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
             _logger.LogTrace(
                 $"{nameof(ReadAsync)} in {nameof(MongoDbRepository)}. " +
                 $"Reading {nameof(moodRecordId)}: {moodRecordId}");
-            
+
             var result = await _moods.FindAsync(filter => filter.MoodRecordId == moodRecordId);
             var moodRecord = result.FirstOrDefault();
 
@@ -93,7 +93,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
                 .Set(nameof(MoodRecordDto.MoodStatus), moodRecord.MoodStatus);
 
             await _moods.UpdateOneAsync(filter, update);
-            
+
             return moodRecord.MoodRecordId;
         }
     }

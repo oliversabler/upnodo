@@ -24,7 +24,7 @@ namespace Upnodo.Features.Mood.Application.CreateMoodRecord
         public async Task<CreateMoodRecordResponse> Handle(CreateMoodRecordCommand command, CancellationToken token)
         {
             _logger.LogTrace($"{nameof(CreateMoodRecordHandler)} running.");
-            
+
             var moodRecord = MoodRecord.CreateMood(
                 command.MoodRecordId,
                 command.DateCreated,

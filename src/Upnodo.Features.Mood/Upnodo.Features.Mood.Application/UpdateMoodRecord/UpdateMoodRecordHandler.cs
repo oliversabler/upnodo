@@ -13,7 +13,7 @@ namespace Upnodo.Features.Mood.Application.UpdateMoodRecord
         private readonly ILogger<UpdateMoodRecordHandler> _logger;
 
         public UpdateMoodRecordHandler(
-            IService<UpdateMoodRecordResponse> updateMoodRecordService, 
+            IService<UpdateMoodRecordResponse> updateMoodRecordService,
             ILogger<UpdateMoodRecordHandler> logger)
         {
             _updateMoodRecordService = updateMoodRecordService;
@@ -25,7 +25,7 @@ namespace Upnodo.Features.Mood.Application.UpdateMoodRecord
             _logger.LogTrace($"{nameof(UpdateMoodRecordHandler)} running.");
 
             var moodRecord = MoodRecord.UpdateMood(request.MoodRecordId, request.DateUpdate, request.MoodStatus);
-            
+
             return await _updateMoodRecordService.RunAsync(moodRecord, token);
         }
     }

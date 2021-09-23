@@ -23,7 +23,7 @@ namespace Upnodo.Features.Mood.Application.DeleteMoodRecord
         public async Task<DeleteMoodRecordResponse> Handle(DeleteMoodRecordCommand request, CancellationToken token)
         {
             _logger.LogTrace($"{nameof(DeleteMoodRecordHandler)} running.");
-            
+
             return await _deleteMoodRecordService.RunAsync(MoodRecord.CreateEmpty(), token);
         }
     }
