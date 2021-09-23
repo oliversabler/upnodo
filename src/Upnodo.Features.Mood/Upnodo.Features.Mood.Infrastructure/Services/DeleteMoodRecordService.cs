@@ -11,11 +11,11 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 {
     public class DeleteMoodRecordService : IService<DeleteMoodRecordResponse>
     {
-        private readonly MongoDbRepository _mongoDbRepository;
+        private readonly MongoDbMoodRecordRepository _mongoDbRepository;
         private readonly ILogger<DeleteMoodRecordService> _logger;
 
         public DeleteMoodRecordService(
-            MongoDbRepository mongoDbRepository,
+            MongoDbMoodRecordRepository mongoDbRepository,
             ILogger<DeleteMoodRecordService> logger)
         {
             _mongoDbRepository = mongoDbRepository;

@@ -11,7 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Upnodo.Api.Features.Mood;
-using Upnodo.Api.Features.User.Configurations;
+using Upnodo.Api.Features.User;
 using Upnodo.Api.Filters;
 using Upnodo.Api.Middleware.Exceptions;
 using Upnodo.Api.PipelineBehaviors;

@@ -22,7 +22,7 @@ namespace Upnodo.Api.Features.Mood
             s.AddTransient<IService<GetLatestCreatedMoodRecordsResponse>, GetLatestCreatedMoodRecordsService>();
             s.AddTransient<IService<UpdateMoodRecordResponse>, UpdateMoodRecordService>();
 
-            s.AddSingleton<MongoDbRepository>();
+            s.AddSingleton<MongoDbMoodRecordRepository>();
         }
     }
 }

@@ -2,7 +2,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Upnodo.Api.Features.User.Configurations;
 using Upnodo.Features.User.Application.CreateUser;
 using Upnodo.Features.User.Application.UpdateUser;
 

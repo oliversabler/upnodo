@@ -4,36 +4,29 @@ using System.Threading.Tasks;
 using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.BuildingBlocks.Application.Contracts;
 using Upnodo.Features.User.Application.CreateUser;
+using Upnodo.Features.User.Infrastructure.Mappers;
 
 namespace Upnodo.Features.User.Infrastructure.Services
 {
     public class CreateUserService : IService<CreateUserResponse>
     {
-        private readonly UserRepository _userRepository;
+        private readonly MongoDbUserRepository _userRepository;
 
-        public CreateUserService(UserRepository userRepository)
+        public CreateUserService(MongoDbUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
-        public Task<CreateUserResponse> RunAsync<T>(T request, CancellationToken token)
+        public async Task<CreateUserResponse> RunAsync<T>(T request, CancellationToken token)
         {
-            if (request is not CreateUserCommand command)
+            if (request is not Domain.User user)
             {
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(CreateUserCommand)}");
             }
 
-            var user = new Domain.User(
-                command.Alias,
-                command.Date,
-                command.Email,
-                command.Firstname,
-                command.UserId,
-                command.Lastname);
+            var response = await _userRepository.CreateAsync(UserMapper.GetDto(user));
 
-            var response = _userRepository.Create(user);
-
-            return Task.FromResult(new CreateUserResponse(true, response));
+            return new CreateUserResponse(true, response);
         }
     }
 }

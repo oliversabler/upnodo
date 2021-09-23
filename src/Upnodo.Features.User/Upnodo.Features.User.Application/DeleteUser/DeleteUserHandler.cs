@@ -2,10 +2,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Upnodo.BuildingBlocks.Application.Abstractions;
-using Upnodo.BuildingBlocks.Application.Contracts;
-using Upnodo.Features.User.Application.DeleteUser;
 
-namespace Upnodo.Api.Features.User.Handlers
+namespace Upnodo.Features.User.Application.DeleteUser
 {
     public class DeleteUserHandler : IRequestHandler<DeleteUserCommand, DeleteUserResponse>
     {

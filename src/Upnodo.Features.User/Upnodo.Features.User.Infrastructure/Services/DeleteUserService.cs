@@ -10,9 +10,9 @@ namespace Upnodo.Features.User.Infrastructure.Services
 {
     public class DeleteUserService : IService<DeleteUserResponse>
     {
-        private readonly UserRepository _userRepository;
+        private readonly MongoDbUserRepository _userRepository;
 
-        public DeleteUserService(UserRepository userRepository)
+        public DeleteUserService(MongoDbUserRepository userRepository)
         {
             _userRepository = userRepository;
         }

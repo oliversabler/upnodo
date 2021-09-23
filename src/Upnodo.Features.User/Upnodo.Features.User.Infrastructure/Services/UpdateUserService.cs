@@ -9,9 +9,9 @@ namespace Upnodo.Features.User.Infrastructure.Services
 {
     public class UpdateUserService : IService<UpdateUserResponse>
     {
-        private readonly UserRepository _userRepository;
+        private readonly MongoDbUserRepository _userRepository;
 
-        public UpdateUserService(UserRepository userRepository)
+        public UpdateUserService(MongoDbUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
@@ -23,14 +23,14 @@ namespace Upnodo.Features.User.Infrastructure.Services
                 throw new ArgumentException($"{nameof(request)} is not of type {typeof(UpdateUserCommand)}");
             }
 
-            var user = new Domain.User(
-                command.Alias,
-                command.DateUpdated,
-                command.Email,
-                command.Firstname,
-                command.Lastname);
+            //var user = new Domain.User(
+            //    command.Alias,
+            //    command.DateUpdated,
+            //    command.Email,
+            //    command.Firstname,
+            //    command.Lastname);
 
-            var response = _userRepository.Update(command.UserId, user);
+            var response = _userRepository.Update(command.UserId, null);
 
             return Task.FromResult(new UpdateUserResponse(true, response));
         }

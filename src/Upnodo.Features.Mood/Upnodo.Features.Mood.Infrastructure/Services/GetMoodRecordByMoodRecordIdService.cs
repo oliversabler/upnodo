@@ -12,11 +12,11 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
 {
     public class GetMoodRecordByMoodRecordIdService : IService<GetMoodRecordByMoodRecordIdResponse>
     {
-        private readonly MongoDbRepository _mongoDbRepository;
+        private readonly MongoDbMoodRecordRepository _mongoDbRepository;
         private readonly ILogger<GetMoodRecordByMoodRecordIdService> _logger;
 
         public GetMoodRecordByMoodRecordIdService(
-            MongoDbRepository mongoDbRepository,
+            MongoDbMoodRecordRepository mongoDbRepository,
             ILogger<GetMoodRecordByMoodRecordIdService> logger)
         {
             _mongoDbRepository = mongoDbRepository;

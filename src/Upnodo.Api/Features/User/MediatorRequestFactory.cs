@@ -2,7 +2,7 @@ using Upnodo.Features.User.Application.CreateUser;
 using Upnodo.Features.User.Application.DeleteUser;
 using Upnodo.Features.User.Application.UpdateUser;
 
-namespace Upnodo.Api.Features.User.Configurations
+namespace Upnodo.Api.Features.User
 {
     internal static class MediatorRequestFactory
     {
