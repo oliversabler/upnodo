@@ -24,7 +24,9 @@ using Upnodo.Features.Mood.Application.GetLatestCreatedMoodRecords;
 using Upnodo.Features.Mood.Application.GetMoodRecordByRecordId;
 using Upnodo.Features.Mood.Application.UpdateMoodRecord;
 using Upnodo.Features.Mood.Infrastructure.Mappers;
-using Upnodo.Features.Mood.Infrastructure.Services;
+using Upnodo.Features.User.Application.CreateUser;
+using Upnodo.Features.User.Application.DeleteUser;
+using Upnodo.Features.User.Application.UpdateUser;
 
 namespace Upnodo.Api
 {
@@ -130,7 +132,10 @@ namespace Upnodo.Api
                 typeof(DeleteMoodRecordHandler),
                 typeof(GetLatestCreatedMoodRecordsHandler),
                 typeof(GetMoodRecordByMoodRecordIdHandler),
-                typeof(UpdateMoodRecordHandler)
+                typeof(UpdateMoodRecordHandler),
+                typeof(CreateUserHandler),
+                typeof(DeleteUserHandler),
+                typeof(UpdateUserHandler)
             });
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));

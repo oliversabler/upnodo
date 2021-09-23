@@ -32,9 +32,9 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
             {
                 _logger.LogError(
                     $"{nameof(request)} with body: {JsonSerializer.Serialize(request)} " +
-                    $"is not of type {typeof(CreateMoodRecordCommand)}");
+                    $"is not of type {typeof(MoodRecord)}");
 
-                throw new ArgumentException($"{nameof(request)} is not of type {typeof(CreateMoodRecordCommand)}");
+                throw new ArgumentException($"{nameof(request)} is not of type {typeof(MoodRecord)}");
             }
 
             var response = await _mongoDbRepository.CreateAsync(MoodRecordMapper.GetDto(moodRecord));

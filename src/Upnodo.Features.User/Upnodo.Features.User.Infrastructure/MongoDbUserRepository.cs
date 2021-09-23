@@ -12,12 +12,15 @@ namespace Upnodo.Features.User.Infrastructure
         private readonly IMongoCollection<UserDto> _users;
         private readonly ILogger<MongoDbUserRepository> _logger;
 
-        public MongoDbUserRepository(IMongoDbSettings settings)
+        public MongoDbUserRepository(
+            IMongoDbSettings settings,
+            ILogger<MongoDbUserRepository> logger)
         {
             var client = new MongoClient(settings.ConnectionString);
             var db = client.GetDatabase(settings.DatabaseName);
 
             _users = db.GetCollection<UserDto>(settings.UsersCollectionName);
+            _logger = logger;
         }
 
         public async Task<string> CreateAsync(UserDto user)

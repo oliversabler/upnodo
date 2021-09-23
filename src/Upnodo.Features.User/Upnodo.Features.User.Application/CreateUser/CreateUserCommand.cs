@@ -5,26 +5,29 @@ namespace Upnodo.Features.User.Application.CreateUser
 {
     public class CreateUserCommand : IRequest<CreateUserResponse>
     {
-        public string Alias { get; }
+        public string UserId { get; }
 
-        public DateTime Date { get; }
+        public string Username { get; }
 
         public string Email { get; }
 
         public string Firstname { get; }
 
-        public string UserId { get; }
-
         public string Lastname { get; }
 
-        public CreateUserCommand(string alias, string email, string firstname, string lastname)
+        public string Fullname { get; }
+
+        public DateTime DateCreated { get; }
+
+        public CreateUserCommand(string username, string email, string firstname, string lastname)
         {
-            Alias = alias;
-            Date = DateTime.UtcNow;
+            UserId = Guid.NewGuid().ToString();
+            Username = username;
             Email = email;
             Firstname = firstname;
-            UserId = Guid.NewGuid().ToString();
             Lastname = lastname;
+            Fullname = $"{firstname} {lastname}";
+            DateCreated = DateTime.UtcNow;
         }
     }
 }

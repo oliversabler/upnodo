@@ -11,6 +11,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Upnodo.BuildingBlocks\Upnodo.BuildingBlocks.Application\Upnodo.BuildingBlocks.Application.csproj" />
+      <ProjectReference Include="..\Upnodo.Features.User.Domain\Upnodo.Features.User.Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>
