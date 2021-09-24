@@ -1,7 +1,10 @@
-version: 2
-updates:
+name: "Dependabot"
 
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "daily"
+on:
+  version: 2
+  updates:
+
+    - package-ecosystem: "github-actions"
+      directory: "/"
+      schedule:
+        interval: "daily"
