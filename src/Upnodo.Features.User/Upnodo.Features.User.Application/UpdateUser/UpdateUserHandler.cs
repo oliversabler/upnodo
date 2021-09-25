@@ -23,12 +23,13 @@ namespace Upnodo.Features.User.Application.UpdateUser
         {
             _logger.LogTrace($"{nameof(UpdateUserResponse)} running.");
 
-            var user = Domain.User.CreateUser(
+            var user = Domain.User.UpdateUser(
                 command.UserId,
                 command.Username,
                 command.Email,
                 command.Firstname,
-                command.Lastname);
+                command.Lastname,
+                command.DateUpdated);
 
             return await _updateUserService.RunAsync(user, token);
         }

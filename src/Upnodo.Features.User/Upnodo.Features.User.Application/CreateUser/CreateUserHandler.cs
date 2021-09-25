@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -28,7 +29,9 @@ namespace Upnodo.Features.User.Application.CreateUser
                 command.Username,
                 command.Email,
                 command.Firstname,
-                command.Lastname);
+                command.Lastname,
+                command.DateCreated,
+                DateTime.MinValue);
 
             return await _createUserService.RunAsync(user, token);
         }

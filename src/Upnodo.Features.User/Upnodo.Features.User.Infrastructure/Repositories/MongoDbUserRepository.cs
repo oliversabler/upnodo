@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
+using System.Collections.Generic;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Upnodo.BuildingBlocks.Application.Abstractions;
@@ -43,6 +44,20 @@ namespace Upnodo.Features.User.Infrastructure.Repositories
             var deleteFilter = Builders<UserDto>.Filter.Eq(nameof(userId), userId);
 
             await _users.DeleteOneAsync(deleteFilter);
+        }
+
+        public async Task<List<UserDto>> ReadLatestAsync(int numberOfUsers)
+        {
+            _logger.LogTrace(
+                $"{nameof(ReadLatestAsync)} in {nameof(MongoDbUserRepository)}. " +
+                $"Reading {nameof(numberOfUsers)}: {numberOfUsers}");
+
+            var result = await _users.Find(_ => true)
+                .SortByDescending(f => f.DateCreated)
+                .Limit(numberOfUsers)
+                .ToListAsync();
+
+            return result;
         }
 
         public async Task<string> UpdateAsync(UserDto user)

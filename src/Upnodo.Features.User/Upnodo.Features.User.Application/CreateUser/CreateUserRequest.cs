@@ -5,7 +5,7 @@ namespace Upnodo.Features.User.Application.CreateUser
     public class CreateUserRequest
     {
         [Required]
-        public string Alias { get; set; }
+        public string Username { get; set; }
 
         [Required]
         public string Email { get; set; }

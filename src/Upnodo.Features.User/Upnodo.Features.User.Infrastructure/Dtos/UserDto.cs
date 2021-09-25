@@ -1,4 +1,6 @@
-﻿namespace Upnodo.Features.User.Infrastructure.Dtos
+﻿using System;
+
+namespace Upnodo.Features.User.Infrastructure.Dtos
 {
     public class UserDto
     {
@@ -13,5 +15,9 @@
         public string Lastname { get; set; }
 
         public string Fullname { get; set; }
+
+        public DateTime DateCreated { get; set; }
+
+        public DateTime DateUpdated { get; set; }
     }
 }

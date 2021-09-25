@@ -1,3 +1,5 @@
+using System;
+
 namespace Upnodo.Features.User.Domain
 {
     public class User
@@ -14,7 +16,17 @@ namespace Upnodo.Features.User.Domain
 
         public string Fullname { get; }
 
-        private User(string userId, string username, string email, string firstname, string lastname)
+        public DateTime DateCreated { get; }
+
+        public DateTime DateUpdated { get; }
+
+        public User(
+            string userId,
+            string username,
+            string email,
+            string firstname,
+            string lastname,
+            DateTime dateUpdated)
         {
             UserId = userId;
             Username = username;
@@ -22,6 +34,26 @@ namespace Upnodo.Features.User.Domain
             Firstname = firstname;
             Lastname = lastname;
             Fullname = $"{firstname} {lastname}";
+            DateUpdated = dateUpdated;
+        }
+
+        private User(
+            string userId,
+            string username,
+            string email,
+            string firstname,
+            string lastname,
+            DateTime dateCreated,
+            DateTime dateUpdated)
+        {
+            UserId = userId;
+            Username = username;
+            Email = email;
+            Firstname = firstname;
+            Lastname = lastname;
+            Fullname = $"{firstname} {lastname}";
+            DateCreated = dateCreated;
+            DateUpdated = dateUpdated;
         }
 
         public static User CreateUser(
@@ -29,9 +61,22 @@ namespace Upnodo.Features.User.Domain
             string username,
             string email,
             string firstname,
-            string lastname)
+            string lastname,
+            DateTime dateCreated,
+            DateTime dateUpdated)
         {
-            return new(userId, username, email, firstname, lastname);
+            return new(userId, username, email, firstname, lastname, dateCreated, dateUpdated);
+        }
+
+        public static User UpdateUser(
+            string userId,
+            string username,
+            string email,
+            string firstname,
+            string lastname,
+            DateTime dateUpdated)
+        {
+            return new(userId, username, email, firstname, lastname, dateUpdated);
         }
     }
 }

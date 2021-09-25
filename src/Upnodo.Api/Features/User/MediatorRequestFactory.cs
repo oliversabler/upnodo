@@ -9,7 +9,7 @@ namespace Upnodo.Api.Features.User
         internal static CreateUserCommand CreateUserCommand(CreateUserRequest request)
         {
             return new CreateUserCommand(
-                request.Alias,
+                request.Username,
                 request.Email,
                 request.Firstname,
                 request.Lastname);
