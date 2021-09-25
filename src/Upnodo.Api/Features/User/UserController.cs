@@ -26,6 +26,20 @@ namespace Upnodo.Api.Features.User
             return Ok(result);
         }
 
+        /// <summary>
+        /// Use with caution, this request removes all previous saved user records.
+        /// </summary>
+        /// <remarks>Warning!</remarks>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        [HttpDelete("delete", Name = nameof(DeleteAllMoodRecords))]
+        public async Task<IActionResult> DeleteAllMoodRecords(CancellationToken token)
+        {
+            await _mediator.Send(MediatorRequestFactory.DeleteAllUsersCommand(), token);
+
+            return NoContent();
+        }
+
         [HttpDelete("{userId}")]
         public async Task<IActionResult> DeleteUser(string userId, CancellationToken token)
         {

@@ -35,6 +35,13 @@ namespace Upnodo.Features.User.Infrastructure.Repositories
             return user.UserId;
         }
 
+        public async Task DeleteAllAsync()
+        {
+            _logger.LogTrace($"{nameof(DeleteAllAsync)} in {nameof(MongoDbUserRepository)}. Deleting all mood records");
+
+            await _users.DeleteManyAsync(_ => true);
+        }
+
         public async Task DeleteAsync(string userId)
         {
             _logger.LogTrace(

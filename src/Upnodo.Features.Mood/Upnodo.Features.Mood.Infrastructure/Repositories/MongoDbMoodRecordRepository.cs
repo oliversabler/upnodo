@@ -38,6 +38,7 @@ namespace Upnodo.Features.Mood.Infrastructure.Repositories
         public async Task DeleteAllAsync()
         {
             _logger.LogTrace($"{nameof(DeleteAllAsync)} in {nameof(MongoDbMoodRecordRepository)}. Deleting all mood records");
+
             await _moods.DeleteManyAsync(_ => true);
         }
 
