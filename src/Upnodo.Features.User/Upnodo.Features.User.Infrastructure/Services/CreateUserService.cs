@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.Features.User.Application.CreateUser;
 using Upnodo.Features.User.Infrastructure.Mappers;
+using Upnodo.Features.User.Infrastructure.Repositories;
 
 namespace Upnodo.Features.User.Infrastructure.Services
 {

@@ -4,6 +4,7 @@ using Upnodo.Features.User.Application.CreateUser;
 using Upnodo.Features.User.Application.DeleteUser;
 using Upnodo.Features.User.Application.UpdateUser;
 using Upnodo.Features.User.Infrastructure;
+using Upnodo.Features.User.Infrastructure.Repositories;
 using Upnodo.Features.User.Infrastructure.Services;
 
 namespace Upnodo.Api.Features.User

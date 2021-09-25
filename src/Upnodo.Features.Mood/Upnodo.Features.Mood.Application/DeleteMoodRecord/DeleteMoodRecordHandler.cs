@@ -20,11 +20,11 @@ namespace Upnodo.Features.Mood.Application.DeleteMoodRecord
             _logger = logger;
         }
 
-        public async Task<DeleteMoodRecordResponse> Handle(DeleteMoodRecordCommand request, CancellationToken token)
+        public async Task<DeleteMoodRecordResponse> Handle(DeleteMoodRecordCommand command, CancellationToken token)
         {
             _logger.LogTrace($"{nameof(DeleteMoodRecordHandler)} running.");
 
-            return await _deleteMoodRecordService.RunAsync(MoodRecord.CreateEmpty(), token);
+            return await _deleteMoodRecordService.RunAsync(command.MoodId, token);
         }
     }
 }

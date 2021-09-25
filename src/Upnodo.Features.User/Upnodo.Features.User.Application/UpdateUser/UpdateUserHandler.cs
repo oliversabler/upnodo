@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Abstractions;
 
 namespace Upnodo.Features.User.Application.UpdateUser
@@ -8,15 +9,28 @@ namespace Upnodo.Features.User.Application.UpdateUser
     public class UpdateUserHandler : IRequestHandler<UpdateUserCommand, UpdateUserResponse>
     {
         private readonly IService<UpdateUserResponse> _updateUserService;
+        private readonly ILogger<UpdateUserHandler> _logger;
 
-        public UpdateUserHandler(IService<UpdateUserResponse> updateUserService)
+        public UpdateUserHandler(
+            IService<UpdateUserResponse> updateUserService,
+            ILogger<UpdateUserHandler> logger)
         {
             _updateUserService = updateUserService;
+            _logger = logger;
         }
 
-        public async Task<UpdateUserResponse> Handle(UpdateUserCommand request, CancellationToken token)
+        public async Task<UpdateUserResponse> Handle(UpdateUserCommand command, CancellationToken token)
         {
-            return await _updateUserService.RunAsync(request, token);
+            _logger.LogTrace($"{nameof(UpdateUserResponse)} running.");
+
+            var user = Domain.User.CreateUser(
+                command.UserId,
+                command.Username,
+                command.Email,
+                command.Firstname,
+                command.Lastname);
+
+            return await _updateUserService.RunAsync(user, token);
         }
     }
 }

@@ -22,20 +22,20 @@ namespace Upnodo.Features.Mood.Infrastructure.Services
             _logger = logger;
         }
 
-        public async Task<DeleteMoodRecordResponse> RunAsync<T>(T request, CancellationToken token)
+        public async Task<DeleteMoodRecordResponse> RunAsync<T>(T moodRecordId, CancellationToken token)
         {
             _logger.LogTrace($"{nameof(RunAsync)} in {nameof(DeleteMoodRecordService)} running.");
 
-            if (request is not DeleteMoodRecordCommand command)
+            if (moodRecordId is not string)
             {
                 _logger.LogError(
-                    $"{nameof(request)} with body: {JsonSerializer.Serialize(request)} " +
-                    $"is not of type {typeof(DeleteMoodRecordCommand)}");
+                    $"{nameof(moodRecordId)} with id: {moodRecordId} " +
+                    $"is not of type {typeof(string)}");
 
-                throw new ArgumentException($"{nameof(request)} is not of type {typeof(DeleteMoodRecordCommand)}");
+                throw new ArgumentException($"{nameof(moodRecordId)} is not of type {typeof(string)}");
             }
 
-            await _mongoDbRepository.DeleteAsync(command.MoodId);
+            await _mongoDbRepository.DeleteAsync(moodRecordId.ToString());
 
             return new DeleteMoodRecordResponse(true);
         }

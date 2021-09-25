@@ -23,7 +23,7 @@ namespace Upnodo.Api.Features.User
         public static UpdateUserCommand UpdateUserCommand(UpdateUserRequest request)
         {
             return new UpdateUserCommand(
-                request.Alias,
+                request.Username,
                 request.Email,
                 request.Firstname,
                 request.Lastname,

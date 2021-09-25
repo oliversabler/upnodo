@@ -1,32 +1,45 @@
+using Microsoft.Extensions.Logging;
 using System;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.BuildingBlocks.Application.Contracts;
 using Upnodo.Features.User.Application.CreateUser;
 using Upnodo.Features.User.Application.DeleteUser;
+using Upnodo.Features.User.Infrastructure.Repositories;
 
 namespace Upnodo.Features.User.Infrastructure.Services
 {
     public class DeleteUserService : IService<DeleteUserResponse>
     {
         private readonly MongoDbUserRepository _userRepository;
+        private readonly ILogger<DeleteUserService> _logger;
 
-        public DeleteUserService(MongoDbUserRepository userRepository)
+        public DeleteUserService(
+            MongoDbUserRepository userRepository, 
+            ILogger<DeleteUserService> logger)
         {
             _userRepository = userRepository;
+            _logger = logger;
         }
 
-        public Task<DeleteUserResponse> RunAsync<T>(T request, CancellationToken token)
+        public async Task<DeleteUserResponse> RunAsync<T>(T userId, CancellationToken token)
         {
-            if (request is not DeleteUserCommand command)
+            _logger.LogTrace($"{nameof(RunAsync)} in {nameof(CreateUserService)} running.");
+
+            if (userId is not string)
             {
-                throw new ArgumentException($"{nameof(request)} is not of type {typeof(DeleteUserCommand)}");
+                _logger.LogError(
+                    $"{nameof(userId)} with id: {userId} " +
+                    $"is not of type {typeof(string)}");
+
+                throw new ArgumentException($"{nameof(userId)} is not of type {typeof(string)}");
             }
 
-            _userRepository.Delete(command.UserId);
+            await _userRepository.DeleteAsync(userId.ToString());
 
-            return Task.FromResult(new DeleteUserResponse(true, null));
+            return new DeleteUserResponse(true, null);
         }
     }
 }
