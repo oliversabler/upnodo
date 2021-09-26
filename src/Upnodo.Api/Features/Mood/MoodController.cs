@@ -30,6 +30,7 @@ namespace Upnodo.Api.Features.Mood
             CancellationToken token)
         {
             _logger.LogTrace($"{nameof(CreateMoodRecord)} request body: {JsonSerializer.Serialize(request)}");
+
             var result = await _mediator.Send(MediatorRequestFactory.CreateMoodRecordCommand(request), token);
 
             return Ok(result);
@@ -44,7 +45,8 @@ namespace Upnodo.Api.Features.Mood
         [HttpDelete("delete", Name = nameof(DeleteAllMoodRecords))]
         public async Task<IActionResult> DeleteAllMoodRecords(CancellationToken token)
         {
-            _logger.LogTrace($"{nameof(DeleteAllMoodRecords)}");
+            _logger.LogTrace(nameof(DeleteAllMoodRecords));
+
             await _mediator.Send(MediatorRequestFactory.DeleteAllMoodRecordsCommand(), token);
 
             return NoContent();
@@ -54,11 +56,12 @@ namespace Upnodo.Api.Features.Mood
         public async Task<IActionResult> DeleteMoodRecord(string moodRecordId, CancellationToken token)
         {
             _logger.LogTrace($"{nameof(DeleteMoodRecord)} moodRecordId: {moodRecordId}");
+
             await _mediator.Send(MediatorRequestFactory.DeleteMoodRecordCommand(moodRecordId), token);
 
             return NoContent();
         }
-        
+
         [HttpGet("read/{numberOfMoodRecords:int}", Name = nameof(GetLatestCreatedMoodRecords))]
         public async Task<IActionResult> GetLatestCreatedMoodRecords(int numberOfMoodRecords, CancellationToken token)
         {
@@ -79,6 +82,7 @@ namespace Upnodo.Api.Features.Mood
         {
             _logger.LogTrace(
                 $"{nameof(GetMoodRecordsByMoodRecordId)} request body: {JsonSerializer.Serialize(request)}");
+
             var result = await _mediator.Send(
                 MediatorRequestFactory.GetMoodRecordByMoodRecordIdQuery(request),
                 token);
@@ -92,6 +96,7 @@ namespace Upnodo.Api.Features.Mood
             CancellationToken token)
         {
             _logger.LogTrace($"{nameof(UpdateMoodRecord)} request body: {request}");
+
             var result = await _mediator.Send(MediatorRequestFactory.UpdateMoodRecordCommand(request), token);
 
             return Ok(result);
