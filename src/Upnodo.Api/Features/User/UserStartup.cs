@@ -3,6 +3,7 @@ using Upnodo.BuildingBlocks.Application.Abstractions;
 using Upnodo.Features.User.Application.CreateUser;
 using Upnodo.Features.User.Application.DeleteAllUsers;
 using Upnodo.Features.User.Application.DeleteUser;
+using Upnodo.Features.User.Application.GetLatestCreatedUsers;
 using Upnodo.Features.User.Application.UpdateUser;
 using Upnodo.Features.User.Infrastructure.Repositories;
 using Upnodo.Features.User.Infrastructure.Services;
@@ -16,6 +17,7 @@ namespace Upnodo.Api.Features.User
             s.AddTransient<IService<CreateUserResponse>, CreateUserService>();
             s.AddTransient<IService<DeleteAllUsersResponse>, DeleteAllUsersService>();
             s.AddTransient<IService<DeleteUserResponse>, DeleteUserService>();
+            s.AddTransient<IService<GetLatestCreatedUsersResponse>, GetLatestCreatedUsersService>();
             s.AddTransient<IService<UpdateUserResponse>, UpdateUserService>();
 
             s.AddSingleton<MongoDbUserRepository>();

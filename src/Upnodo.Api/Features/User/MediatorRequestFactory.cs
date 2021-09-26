@@ -1,6 +1,7 @@
 using Upnodo.Features.User.Application.CreateUser;
 using Upnodo.Features.User.Application.DeleteAllUsers;
 using Upnodo.Features.User.Application.DeleteUser;
+using Upnodo.Features.User.Application.GetLatestCreatedUsers;
 using Upnodo.Features.User.Application.UpdateUser;
 
 namespace Upnodo.Api.Features.User
@@ -9,7 +10,7 @@ namespace Upnodo.Api.Features.User
     {
         internal static CreateUserCommand CreateUserCommand(CreateUserRequest request)
         {
-            return new CreateUserCommand(
+            return new(
                 request.Username,
                 request.Email,
                 request.Firstname,
@@ -23,12 +24,17 @@ namespace Upnodo.Api.Features.User
 
         internal static DeleteUserCommand DeleteUserCommand(string userId)
         {
-            return new DeleteUserCommand(userId);
+            return new(userId);
         }
 
-        public static UpdateUserCommand UpdateUserCommand(UpdateUserRequest request)
+        internal static GetLatestCreatedUsersQuery GetLatestCreatedUsersQuery(int numberOfUsers)
         {
-            return new UpdateUserCommand(
+            return new(numberOfUsers);
+        }
+
+        internal static UpdateUserCommand UpdateUserCommand(UpdateUserRequest request)
+        {
+            return new(
                 request.Username,
                 request.Email,
                 request.Firstname,

@@ -57,7 +57,7 @@ namespace Upnodo.Features.User.Infrastructure.Repositories
         {
             _logger.LogTrace(
                 $"{nameof(ReadLatestAsync)} in {nameof(MongoDbUserRepository)}. " +
-                $"Reading {nameof(numberOfUsers)}: {numberOfUsers}");
+                $"Reading {nameof(numberOfUsers)}: {numberOfUsers.ToString()}");
 
             var result = await _users.Find(_ => true)
                 .SortByDescending(f => f.DateCreated)

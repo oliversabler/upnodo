@@ -48,6 +48,19 @@ namespace Upnodo.Api.Features.User
             return NoContent();
         }
 
+        [HttpGet("read/{numberOfUsers:int}", Name = nameof(GetLatestCreatedUsers))]
+        public async Task<IActionResult> GetLatestCreatedUsers(int numberOfUsers, CancellationToken token)
+        {
+            //_logger.LogTrace(
+            //    $"{nameof(GetLatestCreatedUsers)} numberOfUsers: {numberOfUsers.ToString()}");
+
+            var result = await _mediator.Send(
+                MediatorRequestFactory.GetLatestCreatedUsersQuery(numberOfUsers),
+                token);
+
+            return Ok(result);
+        }
+
         [HttpPut("update", Name = nameof(UpdateUser))]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserRequest request, CancellationToken token)
         {

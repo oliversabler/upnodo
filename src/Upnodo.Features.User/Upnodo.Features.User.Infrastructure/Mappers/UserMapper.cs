@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System.Collections.Generic;
 using Upnodo.Features.User.Infrastructure.Dtos;
 
 namespace Upnodo.Features.User.Infrastructure.Mappers
@@ -26,6 +27,11 @@ namespace Upnodo.Features.User.Infrastructure.Mappers
         internal static Domain.User GetModel(UserDto userDto)
         {
             return ToModelMapper.Map<Domain.User>(userDto);
+        }
+
+        internal static List<Domain.User> GetModelCollection(List<UserDto> users)
+        {
+            return ToModelMapper.Map<List<Domain.User>>(users);
         }
     }
 }

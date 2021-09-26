@@ -22,11 +22,11 @@ namespace Upnodo.Features.User.Application.DeleteAllUsers
 
         public async Task<DeleteAllUsersResponse> Handle(
             DeleteAllUsersCommand request,
-            CancellationToken cancellationToken)
+            CancellationToken token)
         {
             _logger.LogTrace($"{nameof(DeleteAllUsersHandler)} running.");
 
-            return await _deleteAllUsersService.RunAsync(request, cancellationToken);
+            return await _deleteAllUsersService.RunAsync(request, token);
         }
     }
 }
