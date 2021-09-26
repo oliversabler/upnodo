@@ -2,6 +2,7 @@ using Upnodo.Features.User.Application.CreateUser;
 using Upnodo.Features.User.Application.DeleteAllUsers;
 using Upnodo.Features.User.Application.DeleteUser;
 using Upnodo.Features.User.Application.GetLatestCreatedUsers;
+using Upnodo.Features.User.Application.GetUserByUserId;
 using Upnodo.Features.User.Application.UpdateUser;
 
 namespace Upnodo.Api.Features.User
@@ -30,6 +31,11 @@ namespace Upnodo.Api.Features.User
         internal static GetLatestCreatedUsersQuery GetLatestCreatedUsersQuery(int numberOfUsers)
         {
             return new(numberOfUsers);
+        }
+
+        internal static GetUserByUserIdQuery GetUserByUserIdQuery(GetUserByUserIdRequest request)
+        {
+            return new(request.UserId, request.Cache);
         }
 
         internal static UpdateUserCommand UpdateUserCommand(UpdateUserRequest request)

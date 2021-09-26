@@ -12,9 +12,9 @@ namespace Upnodo.Api.Features.Mood
         internal static CreateMoodRecordCommand CreateMoodRecordCommand(CreateMoodRecordRequest request)
         {
             return new(
-                request.MoodStatus, 
-                request.UserId, 
-                request.Username, 
+                request.MoodStatus,
+                request.UserId,
+                request.Username,
                 request.Email,
                 request.Firstname,
                 request.Lastname);
@@ -30,15 +30,14 @@ namespace Upnodo.Api.Features.Mood
             return new(moodId);
         }
 
+        internal static GetLatestCreatedMoodRecordsQuery GetLatestCreatedMoodRecordsQuery(int totalNumberOfMoodRecords)
+        {
+            return new(totalNumberOfMoodRecords);
+        }
         internal static GetMoodRecordByMoodRecordIdQuery GetMoodRecordByMoodRecordIdQuery(
             GetMoodRecordByMoodRecordIdRequest request)
         {
             return new(request.MoodRecordId, request.Cache);
-        }
-
-        internal static GetLatestCreatedMoodRecordsQuery GetLatestCreatedMoodRecordsQuery(int totalNumberOfMoodRecords)
-        {
-            return new(totalNumberOfMoodRecords);
         }
 
         internal static UpdateMoodRecordCommand UpdateMoodRecordCommand(UpdateMoodRecordRequest request)

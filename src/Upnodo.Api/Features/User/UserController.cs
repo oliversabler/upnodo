@@ -5,6 +5,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Upnodo.Features.User.Application.CreateUser;
+using Upnodo.Features.User.Application.GetUserByUserId;
 using Upnodo.Features.User.Application.UpdateUser;
 
 namespace Upnodo.Api.Features.User
@@ -66,6 +67,21 @@ namespace Upnodo.Api.Features.User
 
             var result = await _mediator.Send(
                 MediatorRequestFactory.GetLatestCreatedUsersQuery(numberOfUsers),
+                token);
+
+            return Ok(result);
+        }
+
+        [HttpPost("read", Name = nameof(GetUserByUserId))]
+        public async Task<IActionResult> GetUserByUserId(
+            [FromBody] GetUserByUserIdRequest request,
+            CancellationToken token)
+        {
+            _logger.LogTrace(
+                $"{nameof(GetUserByUserId)} request body: {JsonSerializer.Serialize(request)}");
+
+            var result = await _mediator.Send(
+                MediatorRequestFactory.GetUserByUserIdQuery(request),
                 token);
 
             return Ok(result);

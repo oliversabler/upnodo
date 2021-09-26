@@ -67,6 +67,18 @@ namespace Upnodo.Features.User.Infrastructure.Repositories
             return result;
         }
 
+        public async Task<UserDto> ReadAsync(string userId)
+        {
+            _logger.LogTrace(
+                $"{nameof(ReadAsync)} in {nameof(MongoDbUserRepository)}. " +
+                $"Reading {nameof(userId)}: {userId}");
+
+            var result = await _users.FindAsync(filter => filter.UserId == userId);
+            var moodRecord = result.FirstOrDefault();
+
+            return moodRecord;
+        }
+
         public async Task<string> UpdateAsync(UserDto user)
         {
             _logger.LogTrace(
