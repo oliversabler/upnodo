@@ -18,7 +18,7 @@ namespace Upnodo.Api.Features.User
             _mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("create", Name = nameof(CreateUser))]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request, CancellationToken token)
         {
             var result = await _mediator.Send(MediatorRequestFactory.CreateUserCommand(request), token);
@@ -32,15 +32,15 @@ namespace Upnodo.Api.Features.User
         /// <remarks>Warning!</remarks>
         /// <param name="token"></param>
         /// <returns></returns>
-        [HttpDelete("delete", Name = nameof(DeleteAllMoodRecords))]
-        public async Task<IActionResult> DeleteAllMoodRecords(CancellationToken token)
+        [HttpDelete("delete", Name = nameof(DeleteAllUsers))]
+        public async Task<IActionResult> DeleteAllUsers(CancellationToken token)
         {
             await _mediator.Send(MediatorRequestFactory.DeleteAllUsersCommand(), token);
 
             return NoContent();
         }
 
-        [HttpDelete("{userId}")]
+        [HttpDelete("{userId}", Name = nameof(DeleteUser))]
         public async Task<IActionResult> DeleteUser(string userId, CancellationToken token)
         {
             await _mediator.Send(MediatorRequestFactory.DeleteUserCommand(userId), token);
@@ -48,7 +48,7 @@ namespace Upnodo.Api.Features.User
             return NoContent();
         }
 
-        [HttpPut]
+        [HttpPut("update", Name = nameof(UpdateUser))]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserRequest request, CancellationToken token)
         {
             var result = await _mediator.Send(MediatorRequestFactory.UpdateUserCommand(request), token);

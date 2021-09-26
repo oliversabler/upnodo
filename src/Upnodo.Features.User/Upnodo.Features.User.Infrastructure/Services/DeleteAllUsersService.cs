@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Upnodo.BuildingBlocks.Application.Abstractions;
+using Upnodo.Features.User.Application.DeleteAllUsers;
 using Upnodo.Features.User.Infrastructure.Repositories;
 
 namespace Upnodo.Features.User.Infrastructure.Services

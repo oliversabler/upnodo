@@ -2,17 +2,21 @@
 using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
+using Upnodo.BuildingBlocks.Application.Abstractions;
 
 namespace Upnodo.Features.User.Application.DeleteAllUsers
 {
     public class DeleteAllUsersHandler
         : IRequestHandler<DeleteAllUsersCommand, DeleteAllUsersResponse>
     {
-
+        private readonly IService<DeleteAllUsersResponse> _deleteAllUsersService;
         private readonly ILogger<DeleteAllUsersHandler> _logger;
 
-        public DeleteAllUsersHandler(ILogger<DeleteAllUsersHandler> logger)
+        public DeleteAllUsersHandler(
+            IService<DeleteAllUsersResponse> deleteAllUsersService,
+            ILogger<DeleteAllUsersHandler> logger)
         {
+            _deleteAllUsersService = deleteAllUsersService;
             _logger = logger;
         }
 
@@ -22,7 +26,7 @@ namespace Upnodo.Features.User.Application.DeleteAllUsers
         {
             _logger.LogTrace($"{nameof(DeleteAllUsersHandler)} running.");
 
-            throw new System.NotImplementedException();
+            return await _deleteAllUsersService.RunAsync(request, cancellationToken);
         }
     }
 }
