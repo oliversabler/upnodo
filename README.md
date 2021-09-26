@@ -60,5 +60,5 @@ Setup environment (users)
 - [ ] Elastic?
 - [ ] Queue based communication?
 - [ ] NSwag?
-- [ ] Add GetAllUsers and GetUserByUserId
-- [ ] Fix UpdateUser
+- [x] Add GetAllUsers and GetUserByUserId
+- [x] Fix UpdateUser
