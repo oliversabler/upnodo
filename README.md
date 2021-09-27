@@ -46,6 +46,7 @@ Setup environment (users)
 - [ ] Test Coyote https://github.com/microsoft/coyote/
 - [ ] Fix https binding
 - [ ] Unit Tests
+- [ ] Integration Tests https://github.com/mariotoffia/FluentDocker
 - [ ] Add stopwatch to logging
 - [ ] Nullable enable?
 - [ ] Elastic?
