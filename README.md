@@ -42,23 +42,12 @@ Setup environment (users)
    - `db.users.createIndex({ "userId": 1 }, { unique: true })`
 
 ## Todo
-- [x] Create docker network with upnodo API and MongoDB connection
-- [x] Create docker-compose file
-- [x] Fix Models and Repositories, not working properly anymore
-- [x] Add analyzers and .editorconfig
-- [x] Add more logging
-- [x] Make async
 - [ ] Caching, take a look at https://codewithmukesh.com/blog/caching-with-mediatr-in-aspnet-core/
 - [ ] Test Coyote https://github.com/microsoft/coyote/
-- [ ] Move from MongoDb to EF or add the possibility to use one or the other
-- [ ] Automapper
-- [x] Healthcheck endpoints
 - [ ] Fix https binding
-- [ ] Make sure some fields are unique in MongoDb
 - [ ] Unit Tests
+- [ ] Add stopwatch to logging
 - [ ] Nullable enable?
 - [ ] Elastic?
 - [ ] Queue based communication?
 - [ ] NSwag?
-- [x] Add GetAllUsers and GetUserByUserId
-- [x] Fix UpdateUser
