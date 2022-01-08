@@ -7,16 +7,15 @@ using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using Upnodo.BuildingBlocks.Application.Abstractions;
-using Upnodo.BuildingBlocks.Application.Contracts;
 
 namespace Upnodo.Api.PipelineBehaviors
 {
-    public class CacheBehavior<TRequest, TResponse> : 
-        IPipelineBehavior<TRequest, TResponse> where TRequest : ICacheableQuery
+    public class CacheBehavior<TRequest, TResponse> :
+        IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>, ICacheableQuery
     {
         private readonly IDistributedCache _cache;
         private readonly ILogger<CacheBehavior<TRequest, TResponse>> _logger;
-        
+
         private const int AbsoluteExpiration = 15;
         private const int SlidingExpiration = 3;
 
@@ -27,18 +26,18 @@ namespace Upnodo.Api.PipelineBehaviors
         }
 
         public async Task<TResponse> Handle(
-            TRequest request, 
-            CancellationToken token, 
+            TRequest request,
+            CancellationToken token,
             RequestHandlerDelegate<TResponse> next)
         {
             if (request?.Cache == null)
             {
                 return await next();
             }
-            
+
             TResponse response;
-            
-            if (request.Cache.BypassCache) 
+
+            if (request.Cache.BypassCache)
                 return await next();
 
             var cachedResponse = await _cache.GetAsync(request.Cache.CacheKey, token);
@@ -52,13 +51,13 @@ namespace Upnodo.Api.PipelineBehaviors
                 response = await GetResponseAndAddToCache(request, token, next);
                 _logger.LogInformation($"Added to cache: {request.Cache.CacheKey}.");
             }
-            
+
             return response;
         }
-        
+
         private async Task<TResponse> GetResponseAndAddToCache(
-            TRequest request, 
-            CancellationToken token, 
+            TRequest request,
+            CancellationToken token,
             RequestHandlerDelegate<TResponse> next)
         {
             var response = await next();
@@ -67,13 +66,13 @@ namespace Upnodo.Api.PipelineBehaviors
             {
                 AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(AbsoluteExpiration),
                 SlidingExpiration = TimeSpan.FromMinutes(SlidingExpiration),
-                
+
             };
-                
+
             var serializedData = Encoding.Default.GetBytes(JsonSerializer.Serialize(response));
-                
+
             await _cache.SetAsync(request.Cache!.CacheKey, serializedData, options, token);
-                
+
             return response;
         }
     }

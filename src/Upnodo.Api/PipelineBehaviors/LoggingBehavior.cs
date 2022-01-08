@@ -5,7 +5,8 @@ using Microsoft.Extensions.Logging;
 
 namespace Upnodo.Api.PipelineBehaviors
 {
-    public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
+    public class LoggingBehavior<TRequest, TResponse> :
+        IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {
         private readonly ILogger<LoggingBehavior<TRequest, TResponse>> _logger;
 
@@ -15,8 +16,8 @@ namespace Upnodo.Api.PipelineBehaviors
         }
 
         public async Task<TResponse> Handle(
-            TRequest request, 
-            CancellationToken token, 
+            TRequest request,
+            CancellationToken token,
             RequestHandlerDelegate<TResponse> next)
         {
             _logger.LogInformation($"Handling {typeof(TRequest).Name}");
